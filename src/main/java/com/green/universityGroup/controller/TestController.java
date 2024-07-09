@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TestController {
 
 	@GetMapping("/test")
-	public String getMethodName() {
+	public String list() {
 		return "/views/test/test";
 	}
 	
+	
+	@GetMapping("/test")
+	public String write() {
+		return "/views/test/test";
+	}
 }
