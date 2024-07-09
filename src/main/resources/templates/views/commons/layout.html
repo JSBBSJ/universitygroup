@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(pMain,pHead)">
+<head>
+	<meta charset="UTF-8">
+	<title>그린</title>
+	<link rel="stylesheet" href="/css/commons/reset.css">
+	<link rel="stylesheet" href="/css/commons/common.css">
+	<th:block th:insert="${pHead}" />
+</head>
+<body>
+	<header th:replace="~{views/commons/header}" ></header>
+	<main 	th:replace="${pMain}">메인태그가 치환됩니다.</main>
+</body>
+</html>

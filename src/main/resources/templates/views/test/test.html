@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>lms</title>
+</head>
+<body>
+    <header>헤더입니다</header>
+    <main>
+        <section class="profile">
+            <img src="profile.png" alt="프로필 사진">
+            <div class="info">
+                <div><strong>이름:</strong> 이진웅</div>
+                <div><strong>학과:</strong>컴퓨터소프트웨어</div>
+                <div><strong>최근 접속 IP:</strong> 192.168.0.1</div>
+                <div class="menu-box">
+                    <div class="menu-item">안읽은 메일</div>
+                    <div class="menu-item">내 정보</div>
+                    <!-- 추가 항목은 여기에 추가 -->
+                </div>
+            </div>
+        </section>
+        <section class="weather">날씨 영역</section>
+        <section class="class">
+            <span>이번학기 강좌 목록</span>
+            <ul>
+                <li>강좌 1</li>
+                <li>강좌 2</li>
+                <li>강좌 3</li>
+                <li>강좌 4</li>
+                <li>강좌 5</li>
+                <li>강좌 6</li>
+            </ul>
+        </section>
+    </main>
+    <footer>푸터</footer>
+</body>
+</html>
