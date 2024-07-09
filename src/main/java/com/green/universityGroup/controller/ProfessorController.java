@@ -3,6 +3,7 @@ package com.green.universityGroup.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 
 
@@ -22,5 +23,10 @@ public class ProfessorController {
 	@GetMapping("/professor/{no}")
 	public String detail(@PathVariable("no") long no) {
 		return "/views/professor/detail";
+	}
+	
+	@PutMapping("/professor/{no}")
+	public String update(@PathVariable("no") long no) {
+		return "redirect:/professor";
 	}
 }
