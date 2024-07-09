@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
-<head>
-<link rel="stylesheet" href="/css/s-main.css" />
+<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
+--><head>
+		<link rel="stylesheet" href="/css/styles.css" />
 		
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -13,15 +13,20 @@
 	    <h2>프로필 정보</h2>
 	    <p><strong>이름:</strong> 홍길동</p>
 	    <p><strong>학과:</strong> 컴퓨터공학과</p>
-	    <p><strong>IP 주소:123.123.123</strong> 
-	    </p>
+	    <p><strong>IP 주소:</strong>123.123.123ss</p> 
 		<button>안읽은 메일</button>
 	</div>
-	<section class="weather">
-		<div class="wathername">
-		    <h2>날씨</h2>
-		    
+	</section>
+	
+	<section class="memo">
+		<div class="weather">
+		    <p>날씨<p>
 		</div>
+		<div class="mail">메일</div>
+	</section>
+		
+		<div class="cal">캘린더</div>
+		<div class="su">수강목록</div>
 </main>
 </body>
 </html>
