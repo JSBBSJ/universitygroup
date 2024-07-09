@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class testController {
+public class LmsController {
 
-	@GetMapping("/test")
-	public String getMethodName() {
-		return "/views/test/test";
+	@GetMapping("/lms")
+	public String list() {
+		return "views/lms/list";
 	}
 	
 }
