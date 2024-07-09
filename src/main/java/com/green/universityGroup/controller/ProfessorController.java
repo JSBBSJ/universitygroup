@@ -14,7 +14,7 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/professor/new")
-	public String write() {
+	public String writer() {
 		return "/views/professor/wirte";
 	}
 	
