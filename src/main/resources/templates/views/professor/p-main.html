@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
 <head>
-		<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/s-main.css" />
 		
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <main>
-	<h1>교수 메인 페이지입니다</h1>
+	<section class="profile">
+	<div class="name">
+	    <h2>프로필 정보</h2>
+	    <p><strong>이름:</strong> 홍길동</p>
+	    <p><strong>학과:</strong> 컴퓨터공학과</p>
+	    <p><strong>IP 주소:123.123.123</strong> 
+	    </p>
+		<button>안읽은 메일</button>
+	</div>
+	<section class="weather">
+		<div class="wathername">
+		    <h2>날씨</h2>
+		    
+		</div>
 </main>
 </body>
 </html>
