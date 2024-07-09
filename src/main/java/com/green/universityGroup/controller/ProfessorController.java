@@ -13,4 +13,9 @@ public class ProfessorController {
 		return "/views/professor/p-main";
 	}
 	
+	@GetMapping("/professor/new")
+	public String write() {
+		return "/views/professor/wirte";
+	}
+	
 }
