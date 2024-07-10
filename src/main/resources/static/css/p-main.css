@@ -1,1 +1,80 @@
-@charset "UTF-8";
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body, html {
+	display:grid;
+	height: 100vh;
+	background: #f3f3f3;
+	
+}
+
+header {
+	padding: 1em;
+	margin-bottom: 1em;
+	background-color: #944e63;
+}
+
+main {
+	
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	max-width: 1500px;
+	margin: 0 auto;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 2fr 2fr; 
+	grid-auto-rows: 250px;
+	padding: 10px;
+	grid-gap: 20px;
+	grid-template-areas: 'pro borad borad' 
+						 'pro mail mail'
+						 'calendar workflow workflow'
+}
+
+.pro , .calendar{
+	width:300px;
+}
+
+.pro {
+	
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: pro;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: calendar;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.borad {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: borad;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	
+}
+
+.mail {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: mail;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.workflow {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: workflow;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

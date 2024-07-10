@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
---><head>
-		<link rel="stylesheet" href="/css/styles.css" />
-		
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">-->
+
+<head>
+
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/p-main.css">
 </head>
+
 <body>
-<main>
-	<section class="profile">
-	<div class="name">
-	    <h2>프로필 정보</h2>
-	    <p><strong>이름:</strong> 홍길동</p>
-	    <p><strong>학과:</strong> 컴퓨터공학과</p>
-	    <p><strong>IP 주소:</strong>123.123.123ss</p> 
-		<button>안읽은 메일</button>
-	</div>
-	</section>
-	
-	<section class="memo">
-		<div class="weather">
-		    <p>날씨<p>
+	<header>
+		<h1>라라대학교</h1>
+	</header>
+
+	<main>
+		<div class="container">
+			<div class="pro">
+				<h1>이름: 김몽 교수</h1>
+				<span>학과:컴퓨터공학과</span>
+			</div>
+			<div class="calendar">캘린더</div>
+			<div class="borad">게시판</div>
+			<div class="mail">메일</div>
+			<div class="workflow">전자결재</div>
 		</div>
-		<div class="mail">메일</div>
-	</section>
-		
-		<div class="cal">캘린더</div>
-		<div class="su">수강목록</div>
-</main>
+	</main>
+
 </body>
 </html>

@@ -1,103 +1,143 @@
-/* Reset default margin and padding for all elements */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+@charset "UTF-8";
+/* style.css */
 body {
-	display: grid;
-    grid-template-columns: 1fr,2fr;
-    grid-template-areas:
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 100px auto 50px;
+    grid-template-areas: 
+    'header'
     'main'
     'footer';
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f0f0f0;
-    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+}
+
+header {
+    border: none;
+    background-color: #944E63; 
+    color: #fff;
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content:left;
+    font-size: 27px;
+    padding: 1em;
+}
+
+footer {
+    border: none;
+    background-color: #333;
+    color: #fff;
+    grid-area: footer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    font-size: 1rem;
 }
 
 main {
-	 grid-template-areas:
-    'profile weather'
-    'cal su';
+    border: none;
+    grid-area: main;
     display: grid;
-    grid-template-columns: 1fr,2fr;
-    grid-auto-rows:minmax(150px,auto);
-    gap: 20px;
+    grid-template-columns: 1fr 2fr;
+    gap: 1em;
+    padding: 1em;
+}
+
+.profile, .weather, .class {
+    border: 1px solid #ccc;
+    background-color: #d9ebf9;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile {
-    display: grid;
-    grid-area:profile;
-    grid-template-columns: 1fr 2fr; 
-    grid-template-rows: minmax(300px, auto); 
-    grid-auto-rows: minmax(100px, auto); 
-    grid-column: 1; /* 왼쪽에 위치 */
+    grid-column: 1 / span 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1em;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid #333;
+}
+
+.profile .info {
+    font-size: 1rem;
+    color: #333;
+}
+
+.profile .info div {
+    margin: 0.5em 0;
+}
+
+.menu-box {
+    display: flex;
+    gap: 1em;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100px;
+    height: 30px;
+    padding: 0.5em 1em;
     border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.memo{
-	
-	gap: 20px;
+.menu-item:hover {
+    background-color: #e3f2fd;
 }
-
 
 .weather {
-    display: grid;
-    grid-area: weather;
-    grid-template-columns: 1fr 2fr; /* 1:2 비율로 설정 */
-    grid-template-rows: minmax(200px, auto); /* 높이를 최소 300px, 자동으로 조정 */
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    gap: 1000px;
+    grid-column: 1 / span 1;
+    grid-row: 2;
 }
 
-.mail {
-    display: grid;
-    grid-area: mail;
-    grid-template-columns: 1fr 2fr; /* 1:2 비율로 설정 */
-    grid-template-rows: minmax(200px, auto); /* 높이를 최소 300px, 자동으로 조정 */
+.class {
     border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    gap: 20px;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    background-color: #d9ebf9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-.cal {
-    display: grid;
-    grid-area:cal;
-    grid-template-columns: 1fr 2fr;
-	grid-template-rows: minmax(300px, auto);
-    grid-column: 1; /* 왼쪽에 위치 */
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ul.class {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.su {
-    display: grid;
-    grid-area:su;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: minmax(300px, auto);
-    
-    grid-column: 2; /* 오른쪽에 위치 */
+.class li {
+    background-color: #e3f2fd;
     border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 1em;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
 }
 
+.class li:hover {
+    background-color: #bbdefb;
+}
