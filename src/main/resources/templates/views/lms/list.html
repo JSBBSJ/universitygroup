@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -64,4 +65,89 @@
 	    </div>
 </body>
 
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/lms.css" />
+     <link rel="stylesheet" href="/css/chatbot.css" />
+     <script src="js/chatbot.js"></script>
+</head>
+<body>
+    <header>
+    	<section class="logo">
+    		<div class="logo-img"></div>
+	    		<div class="logo-text">
+	    			나라대학교
+	    		</div>
+    	</section>
+    </header>
+    <main>
+        <section class="profile">
+            <img src="profile.png" alt="프로필 사진">
+            <div class="info">
+                <div><strong>이름:</strong> 이진웅</div>
+                <div><strong>학과:</strong>컴퓨터소프트웨어</div>
+                <div><strong>최근 접속 IP:</strong> 192.168.0.1</div>
+                <div class="menu-box">
+                    <div class="menu-item">안읽은 메일</div>
+                    <div class="menu-item">내 정보</div>
+                    <!-- 추가 항목은 여기에 추가 -->
+                </div>
+            </div>
+        </section>
+        <section class="weather">날씨 영역</section>
+        <section class="class">
+            <span>이번학기 강좌 목록</span>
+            <ul>
+                <li>강좌 1</li>
+                <li>강좌 2</li>
+                <li>강좌 3</li>
+                <li>강좌 4</li>
+                <li>강좌 5</li>
+                <li>강좌 6</li>
+            </ul>
+        </section>
+       <article id="chat-bot">
+		<h1>챗봇</h1>
+		<div class="wrap">
+			<section id="conversation">
+				<h1>대화화면</h1>
+				<div class="wrap view-size">
+					<ul class="bot-menu">
+						<li>
+							<button class="btn-bot" id="btn-bot"></button>
+						</li>
+					</ul>
+					<div class="container" id="bot-container">
+						<div class="c-header flex between col-center">
+							<p class="help flex col-center">
+								<span>HELP</span>
+							</p>
+							<p><b>그린챗봇</b></p>
+							<p class="close flex end col-center">
+								<span onclick="btnCloseClicked()"></span>
+							</p>
+						</div>
+						<div class="c-content" id="chat-content">
+							<!--대화내용 들어가는 영역-->
+	
+						</div>
+						<div class="c-question flex col-center">
+							<span class="home-icon"></span>
+							<span class="q-wrap">
+								<input type="text" class="question" id="question" placeholder="질문을 입력하세요">
+								<button class="btn-send" onclick="btnMsgSendClicked()"></button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</article>
+    </main>
+    <footer>푸터</footer>
+</body>
+>>>>>>> 85c56a9f41e9937edc44446f40cff3c520e31738
 </html>
