@@ -4,8 +4,8 @@
 	position: fixed;
 	bottom: 70px;
 	right: 20px;
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 	background-color: #944E63;
 	border-radius: 50%;
 	display: flex;
@@ -27,7 +27,7 @@
 }
 
 .chatbot-window {
-    position: absolute;
+    position: fixed;
     bottom: 190px;
     right: 60px;
     width: 360px;
@@ -36,7 +36,7 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: none; /* 초기에는 숨김 */
+    display: none; 
     flex-direction: column;
     overflow: hidden;
     z-index: 1000;
@@ -64,7 +64,7 @@
 
 .chatbot-body {
 	padding: 10px;
-	height: 350px;
+	height: 370px;
 	overflow-y: auto;
 }
 
@@ -87,4 +87,6 @@
 
 .question {
 	width: 100%;
+	border:none;
+	outline: none;
 }
