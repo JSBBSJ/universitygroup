@@ -1,21 +1,88 @@
 <!DOCTYPE html>
 <!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">-->
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/css/s-main.css" />
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/s-main.css">
 </head>
+
 <body>
-	
-<main>
-	<div class="container">
-	<div class="profile">프로필</div>
-	<div class="schedule">시간표</div>
-	<div class="weather">날씨</div>
-	<div class="board">게시판</div>
-	<div class="calendar">캘린더</div>
-	</div>
-	
-</main>
+	<header>
+		<h1>라라대학교</h1>
+
+	</header>
+
+	<main class="main">
+		<section class="container">
+
+			<div class="profile">
+
+				<div class="pro-back">
+					<img src="images/s-main/프로필 사진.png" id="img">
+				</div>
+
+				<div class="name">
+					<p>김라라	(2024001795)</p>
+					<strong>컴퓨터공학과</strong><br>
+					<span>접속IP:</span>
+				</div>
+
+				<div class="btn-box">
+					<div class="box1">
+						<a href="#">마이페이지</a>
+					</div>
+				</div>
+
+				<div class="info">
+					<div class="icons">
+						<div class="co">
+							<span class="icon01"></span>
+							<br>
+							<span id="Cnt1">12/20</span>
+							이수학점
+						</div>
+
+						<div class="co">
+							<span class="icon02"></span>
+							<br>
+							<span id="Cnt2">준비중</span>
+							상담
+						</div>
+
+						<div class="co">
+							<span class="icon03"></span>
+							<br>
+							<span id="Cnt3">10</span>
+							마일리지
+						</div>
+
+
+						<div class="co"><span class="icon04"></span>
+							<br>
+							<span id="Cnt4">-</span>
+							인증현황
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="weather">
+				<div class="weather-top"><b>오늘 날씨</b></div>
+			</div>
+			
+			<div class="shed">			
+				<div class=""><b>오늘 날씨</b></div>
+		 </div>
+			<div class="board">게시판</div>
+			<div class="class-list">수강목록</div>
+		</section>
+
+	</main>
+
 
 </body>
+
+</html>
