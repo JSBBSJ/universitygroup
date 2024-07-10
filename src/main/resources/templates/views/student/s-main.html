@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">-->
-
+<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
+-->
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/s-main.css">
+	<title>라라대학교</title>
+	<link rel="stylesheet" href="/css/s-main/s-main.css">
 </head>
 
 <body>
 	<header>
 		<h1>라라대학교</h1>
-
 	</header>
 
 	<main class="main">
@@ -19,7 +18,7 @@
 			<div class="profile">
 
 				<div class="pro-back">
-					<img src="images/s-main/프로필 사진.png" id="img">
+					<img src="/images/s-main/프로필 사진.jpg" id="img">
 				</div>
 
 				<div class="name">
@@ -36,21 +35,21 @@
 
 				<div class="info">
 					<div class="icons">
-						<div class="co">
+						<div class="icon">
 							<span class="icon01"></span>
 							<br>
 							<span id="Cnt1">12/20</span>
 							이수학점
 						</div>
 
-						<div class="co">
+						<div class="icon">
 							<span class="icon02"></span>
 							<br>
 							<span id="Cnt2">준비중</span>
 							상담
 						</div>
 
-						<div class="co">
+						<div class="icon">
 							<span class="icon03"></span>
 							<br>
 							<span id="Cnt3">10</span>
@@ -58,7 +57,7 @@
 						</div>
 
 
-						<div class="co"><span class="icon04"></span>
+						<div class="icon"><span class="icon04"></span>
 							<br>
 							<span id="Cnt4">-</span>
 							인증현황
@@ -70,14 +69,37 @@
 			</div>
 
 			<div class="weather">
-				<div class="weather-top"><b>오늘 날씨</b></div>
+				<div class="weather-top">
+					<b>오늘 날씨</b>
+				</div>
 			</div>
 			
 			<div class="shed">			
-				<div class=""><b>오늘 날씨</b></div>
+				<div class="shed-top">
+					<b>시간표</b>
+				</div>
 		 </div>
-			<div class="board">게시판</div>
-			<div class="class-list">수강목록</div>
+		 
+		 
+			<div class="board">		
+				<div class="board-top">
+					<b>게시판</b>
+				</div>
+				<div class="board-bot">
+					<ul class="board-menu">
+						<li>제목</li>
+						<li>작성자</li>
+						<li>등록일</li>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="class-list">
+				<div class="class-list-top">
+					<b>수강목록</b>
+				</div>
+			</div>
 		</section>
 
 	</main>
