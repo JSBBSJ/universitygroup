@@ -1,0 +1,7 @@
+/**
+ * 
+ */
+
+function toggleChatbot() {
+    $('#chatbotWindow').toggle();
+}
