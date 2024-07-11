@@ -1,27 +1,141 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
+
+<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">-->
+
 <head>
-<link rel="stylesheet" href="/css/s-main.css" />
-		
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/p-main.css">
 </head>
+
 <body>
-<main>
-	<section class="profile">
-	<div class="name">
-	    <h2>프로필 정보</h2>
-	    <p><strong>이름:</strong> 홍길동</p>
-	    <p><strong>학과:</strong> 컴퓨터공학과</p>
-	    <p><strong>IP 주소:123.123.123</strong> 
-	    </p>
-		<button>안읽은 메일</button>
-	</div>
-	<section class="weather">
-		<div class="wathername">
-		    <h2>날씨</h2>
-		    
-		</div>
-</main>
+	<header>
+		<h1>라라대학교</h1>
+	</header>
+
+	<main class="main">
+		<section class="container">
+			<div class="profile">
+				<div class="pro-back">
+					<img src="/images/common/professor/profile.jpg" id="img">
+				</div>
+
+				<div class="name">
+					<p>김라라 (2024001795)</p>
+					<strong>컴퓨터공학과</strong><br>
+					<span>접속IP:</span>
+				</div>
+
+				<div class="btn-box">
+					<div class="box1">
+						<a href="#">마이페이지</a>
+					</div>
+				</div>
+
+				<div class="info">
+					<div class="icons">
+						<div class="co">
+							<span class="icon01"></span>
+							<br>
+							<span id="Cnt1">준비중</span>
+							상담
+						</div>
+						<div class="co">
+							<span class="icon02"></span>
+							<br>
+							<span id="Cnt2">-</span>
+							문서함
+						</div>
+						<div class="co">
+							<span class="icon03"></span>
+							<br>
+							<span id="Cnt3">미등록</span>
+							학점관리
+						</div>
+						<div class="co"><span class="icon04"></span>
+							<br>
+							<span id="Cnt4">-</span>
+							출결관리
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="calendar">
+
+				<div class="month">7월 2024</div>
+				<div class="days">
+					<div class="day">일</div>
+					<div class="day">월</div>
+					<div class="day">화</div>
+					<div class="day">수</div>
+					<div class="day">목</div>
+					<div class="day">금</div>
+					<div class="day">토</div>
+					<div class="day">1</div>
+					<div class="day">2</div>
+					<div class="day">3</div>
+					<div class="day">4</div>
+					<div class="day">5</div>
+					<div class="day">6</div>
+					<div class="day">7</div>
+					<div class="day">8</div>
+					<div class="day">9</div>
+					<div class="day">10</div>
+					<div class="day">11</div>
+					<div class="day">12</div>
+					<div class="day">13</div>
+					<div class="day">14</div>
+					<div class="day">15</div>
+					<div class="day">16</div>
+					<div class="day">17</div>
+					<div class="day">18</div>
+					<div class="day">19</div>
+					<div class="day">20</div>
+					<div class="day">21</div>
+					<div class="day">22</div>
+					<div class="day">23</div>
+					<div class="day">24</div>
+					<div class="day">25</div>
+					<div class="day">26</div>
+					<div class="day">27</div>
+					<div class="day">28</div>
+					<div class="day">29</div>
+					<div class="day">30</div>
+					<div class="day">31</div>
+					<!-- 빈 공간으로 남는 부분을 위해 추가적으로 div를 넣을 수 있습니다 -->
+				</div>
+			</div>
+
+		
+
+			<section class="board">
+				<div class="board_name">공지사항</div>
+				<div class="board_title">
+					<img src="/images/common/professor/notice.png" id="notice_img">					
+				
+					<div class="notice">
+						<div class="notice_title">학사공지</div>
+						<div class="notice_content">
+							<p>[교내 수강 신청 기간 알림]</p>
+							<p>[교내 수강 신청 기간 알림]</p>
+							<p>[교내 수강 신청 기간 알림]</p>
+							<p>[교내 수강 신청 기간 알림]</p>
+							<p>[교내 수강 신청 기간 알림]</p>
+						</div>
+
+					</div>
+			</section>
+
+					
+			<div class="mail">메일</div>
+			<div class="workflow">전자결재</div>
+			</div>
+	</main>
+
 </body>
+
 </html>
