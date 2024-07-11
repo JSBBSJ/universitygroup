@@ -242,12 +242,21 @@ main {
 	margin-left: 150px;
 }
 
+.board_name{
+	margin-top: 50px;
+	margin-left: 150px;
+}
+
 .board_title{
 	border-top-left-radius: 1em; /* 이거 없으면 위쪽만 둥근 네모가 아님 */
 	border-top-right-radius: 1em;
 	position: relative;
 	height: 100px;
+<<<<<<< HEAD
 	margin-left: 70px;
+=======
+	margin-left: 100px;
+>>>>>>> 7cd740077125a8228458d129b13c6bcc5515d3f4
 	margin-bottom: 30px;
 	
 }
@@ -266,10 +275,19 @@ main {
 	
     background-color: #f9f9f9; /* Light background color */
     border: 1px solid #e0e0e0; /* Light border */
+<<<<<<< HEAD
     padding: 20px; /* Padding inside the notice */
   	margin-left: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     
+=======
+	justify-content: center;
+	align-items: center;
+    padding: 20px; /* Padding inside the notice */
+  	margin-left: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 500px; /* Maximum width for the notice */
+>>>>>>> 7cd740077125a8228458d129b13c6bcc5515d3f4
 	
 	
 }
@@ -287,4 +305,13 @@ main {
     line-height: 1.5; /* Improved line spacing for readability */
     color: #555; /* Medium color for the content */
     text-align: left; /* Left-align the content */
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+
+
+>>>>>>> 7cd740077125a8228458d129b13c6bcc5515d3f4
