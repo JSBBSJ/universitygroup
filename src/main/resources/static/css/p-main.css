@@ -248,12 +248,10 @@ main {
 }
 
 .board_title{
-	border-top-left-radius: 1em; /* 이거 없으면 위쪽만 둥근 네모가 아님 */
-	border-top-right-radius: 1em;
+	
 	position: relative;
 	height: 100px;
 	margin-left: 70px;
-	margin-left: 100px;
 	margin-bottom: 30px;
 	
 }
