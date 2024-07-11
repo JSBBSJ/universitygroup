@@ -15,6 +15,12 @@ public class ProfessorController {
 		return "/views/professor/p-main";
 	}
 	
+	@GetMapping("/board")
+	public String board() {
+		return "/views/professor/board";
+	}
+	
+	
 	@GetMapping("/professor/new")
 	public String write() {
 		return "/views/professor/wirte";
