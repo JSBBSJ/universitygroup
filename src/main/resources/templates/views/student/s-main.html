@@ -1,21 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/css/s-main.css" />
-</head>
-<body>
-	
-<main class="container">
-	
-	<div class="profile">프로필</div>
-	<div class="weather">날씨</div>
-	<div class="schedule">시간표</div>
-	<div class="board">게시판</div>
-	<div class="calendar">캘린더</div>
-	</div>
-	
-</main>
 
+<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
+
+-->
+
+<head>
+
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/p-main.css">
+</head>
+
+<body>
+	<header>
+		<h1>라라대학교</h1>
+	</header>
+
+	<main>
+		<div class="container">
+			<div class="pro">
+				<p><strong>이름:</strong> 홍길동</p>
+				<p><strong>학과:</strong> 컴퓨터공학과</p>
+				<p><strong>IP 주소:</strong>123.123.123ss</p>
+				<button>안읽은 메일</button>
+			</div>
+		</section>
+
+
+
+		<section class="sigan">
+			<p>시간</p>
+		</section>
+
+		<section class="weather">날씨</section>
+
+		<section class="ha">
+			<div class="cal">캘린더</div>
+			<div class="su">수강목록</div>
+		</section>
+	</main>
 </body>
+</html>
+
