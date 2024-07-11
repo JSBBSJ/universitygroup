@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 
 <!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
-
 -->
-
 <head>
-
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/p-main.css">
+	<title>라라대학교</title>
+	<link rel="stylesheet" href="/css/s-main/s-main.css">
+	
+	<link href='/js/s-main/packages/core/main.css' rel='stylesheet' />
+	<link href='/js/s-main//packages/daygrid/main.css' rel='stylesheet' />
+	<link href='/js/s-main/packages/timegrid/main.css' rel='stylesheet' />
+	<link href='/js/s-main/packages/list/main.css' rel='stylesheet' />
+	
+	
+	
+	<script src='/js/s-main/packages/core/main.js'></script>
+	<script src='/js/s-main/packages/interaction/main.js'></script>
+	<script src='/js/s-main/packages/daygrid/main.js'></script>
+	<script src='/js/s-main/packages/timegrid/main.js'></script>
+	<script src='/js/s-main/packages/list/main.js'></script>
+	
+	<script src=' /js/s-main/calendar.js'></script>
+	
 </head>
 
 <body>
@@ -16,28 +29,99 @@
 		<h1>라라대학교</h1>
 	</header>
 
-	<main>
-		<div class="container">
-			<div class="pro">
-				<p><strong>이름:</strong> 홍길동</p>
-				<p><strong>학과:</strong> 컴퓨터공학과</p>
-				<p><strong>IP 주소:</strong>123.123.123ss</p>
-				<button>안읽은 메일</button>
+	<main class="main">
+		<section class="container">
+
+			<div class="profile">
+
+				<div class="pro-back">
+					<img src="/images/s-main/프로필 사진.jpg" id="img">
+				</div>
+
+				<div class="name">
+					<p>김라라	(2024001795)</p>
+					<strong>컴퓨터공학과라라</strong><br>
+					<span>접속IP:</span>
+				</div>
+
+				<div class="btn-box">
+					<div class="box1">
+						<a href="#">마이페이지</a>
+					</div>
+				</div>
+
+				<div class="info">
+					<div class="icons">
+						<div class="icon">
+							<span class="icon01"></span>
+							<br>
+							<span id="Cnt1">12/20</span>
+							이수학점
+						</div>
+
+						<div class="icon">
+							<span class="icon02"></span>
+							<br>
+							<span id="Cnt2">준비중</span>
+							상담
+						</div>
+
+						<div class="icon">
+							<span class="icon03"></span>
+							<br>
+							<span id="Cnt3">10</span>
+							마일리지
+						</div>
+
+
+						<div class="icon"><span class="icon04"></span>
+							<br>
+							<span id="Cnt4">-</span>
+							인증현황
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="weather">
+				<div class="weather-top">
+					<b>오늘 날씨</b>
+				</div>
+			</div>
+			
+			<div class="shed">	
+				<div id='calendar'>
+				</div>
+		 </div>
+		 
+		 
+			<div class="board">		
+				<div class="board-top">
+					<b>게시판</b>
+				</div>
+				<div class="board-bot">
+					<ul class="board-menu">
+						<li>번호</li>
+						<li>제목</li>
+						<li>작성자</li>
+						<li>등록일</li>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="class-list">
+				<div class="class-list-top">
+					<b>수강목록</b>
+				</div>
 			</div>
 		</section>
 
-
-
-		<section class="sigan">
-			<p>시간</p>
-		</section>
-
-		<section class="weather">날씨</section>
-
-		<section class="ha">
-			<div class="cal">캘린더</div>
-			<div class="su">수강목록</div>
-		</section>
 	</main>
+
+
 </body>
+
 </html>
