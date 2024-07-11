@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
--->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
+
 <head>
 	<meta charset="UTF-8">
 	<title>라라대학교</title>
@@ -24,10 +24,8 @@
 	
 </head>
 
-<body>
-	<header>
-		<h1>라라대학교</h1>
-	</header>
+
+	
 
 	<main class="main">
 		<section class="container">
@@ -40,7 +38,7 @@
 
 				<div class="name">
 					<p>김라라	(2024001795)</p>
-					<strong>컴퓨터공학과라라</strong><br>
+					<span>컴퓨터공학과라라</span><br>
 					<span>접속IP:</span>
 				</div>
 
@@ -87,7 +85,7 @@
 
 			<div class="weather">
 				<div class="weather-top">
-					<b>오늘 날씨</b>
+					<a href="#">오늘날씨</a>
 				</div>
 			</div>
 			
@@ -99,14 +97,16 @@
 		 
 			<div class="board">		
 				<div class="board-top">
-					<b>게시판</b>
+					<a href="#">게시판</a>
 				</div>
 				<div class="board-bot">
-					<ul class="board-menu">
-						<li>번호</li>
-						<li>제목</li>
-						<li>작성자</li>
-						<li>등록일</li>
+					<ul >
+						<li class="board-menu">
+							<div>번호</div>
+							<div>제목</div>
+							<div>등록일</div>
+							<div>조회수</div>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -114,14 +114,23 @@
 			
 			<div class="class-list">
 				<div class="class-list-top">
-					<b>수강목록</b>
+					<a href="#">수강목록</a>
 				</div>
+				<div class="class-list-bot">
+					<ul >
+						<li class="class-list-menu">
+							<div>수강과목</div>
+							<div>교수명</div>
+							<div>강의실</div>
+							
+						</li>
+					</ul>
 			</div>
 		</section>
 
 	</main>
 
 
-</body>
+
 
 </html>
