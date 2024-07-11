@@ -8,17 +8,13 @@
 	
 }
 
-body, html {
+html {
  display: grid;
   height: 100vh; 
   background: #f3f3f3;
 }
 
-header{
-	
-	background-color: #944e63;
-	height: 100px;
-}
+
 
 .main {
   
@@ -266,6 +262,12 @@ header{
 	font-size: 20px;
 }
 
+.weather-top > a{
+	text-decoration: none;
+	color: #191919;
+	font-weight: 900;
+}
+
 
 /* /////////////////////////////////시간표 css/////////////////////// */
 
@@ -283,11 +285,41 @@ header{
   }
 
 /* /////////////////////////////////게시판 css/////////////////////// */
+
+
+
 .board-top{
 	
 	margin:1em;
 	font-size: 20px;
 }
+
+.board-top > a{
+	text-decoration: none;
+	color: #191919;
+	font-weight: 900;
+}
+
+
+.board-menu{
+	
+	display: flex;
+	height: 30px;
+	justify-content: center;
+	align-items: center; 
+	border-top:1px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
+	
+}
+
+.board-menu > div{
+	
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+
 
 /* /////////////////////////////////수강목록 css/////////////////////// */
 .class-list-top{
@@ -296,6 +328,29 @@ header{
 	font-size: 20px;
 }
 
+.class-list-top > a{
+	text-decoration: none;
+	color: #191919;
+	font-weight: 900;
+}
+
+.class-list-menu{
+	
+	display: flex;
+	height: 30px;
+	justify-content: center;
+	align-items: center; 
+	border-top:1px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
+	
+}
+
+.class-list-menu > div{
+	
+	margin: 0 auto;
+	text-align: center;
+	
+}
 
 
 
