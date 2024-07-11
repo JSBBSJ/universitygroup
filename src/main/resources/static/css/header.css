@@ -1,0 +1,102 @@
+@charset "UTF-8";
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%; 
+}
+
+.header-container {
+    padding: 0px 0; 
+    background-color: #944e63;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column; 
+    box-sizing: border-box; 
+    position: relative; /* 자식 요소의 절대 위치 설정을 위한 기준 */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    width: 100%;
+   
+}
+.logo a {
+    display: flex; /* 로고와 텍스트를 가로로 정렬 */
+    align-items: center; /* 세로로 가운데 정렬 */
+    color: white; /* 링크 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+    margin-right: 0px;
+}
+
+.logo span {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    padding: 0; 
+    margin: 0; 
+    box-sizing: border-box; 
+    border-top: 2px solid #ffffff; 
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    gap: 30px;
+}
+
+.menu li {
+    font-weight: bold; 
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    display: block; 
+    padding: 10px 0; 
+    border-radius: 4px; 
+    transition: background-color 0.3s, transform 0.3s, text-shadow 0.3s, box-shadow 0.3s; /* 여러 효과에 부드러운 전환 적용 */
+}
+
+.menu a:hover {
+     color: black;
+     transform: scale(1.1);
+}
+
+/* 로그아웃 아이콘 스타일 */
+.signout {
+    position: absolute; /* 아이콘을 상위 컨테이너에 대해 절대 위치 설정 */
+    top: 10px; /* 상단에서 10px */
+    right: 20px; /* 우측에서 20px */
+}
+
+.signout img {
+    width: 24px; /* 아이콘의 너비 */
+    height: 24px; /* 아이콘의 높이 */
+}
+
+/* 로그아웃 아이콘의 호버 효과 */
+.signout:hover img {
+    filter: brightness(0.8); /* 호버 시 아이콘의 밝기를 줄여 효과를 줌 */
+}
+
+
