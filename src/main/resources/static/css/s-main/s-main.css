@@ -74,6 +74,7 @@ header{
 	border-radius: 1em;
 	grid-area: shed;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	overflow: auto; 
 }
 
 .board{
