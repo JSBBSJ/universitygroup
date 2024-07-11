@@ -1,183 +1,204 @@
-
 <!DOCTYPE html>
 
-<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
-
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/p-main.css">
+	<link rel="stylesheet" href="/css/p-main/p-main.css">
 </head>
 
-<body>
-	<header>
-		<h1>라라대학교</h1>
-	</header>
+<main class="main">
+	
+	<section class="container">
+		<div class="profile">
+			<div class="pro-back">
+				<img src="/images/common/professor/profile.jpg" id="img">
+			</div>
 
-	<main class="main">
-		<section class="container">
-			<div class="profile">
-				<div class="pro-back">
-					<img src="/images/common/professor/profile.jpg" id="img">
-				</div>
+			<div class="name">
+				<p>김라라 (2024001795)</p>
+				<span>컴퓨터공학과</span><br>
+				<span>접속IP:</span>
+			</div>
 
-				<div class="name">
-					<p>김라라 (2024001795)</p>
-					<strong>컴퓨터공학과</strong><br>
-					<span>접속IP:</span>
-				</div>
-
-				<div class="btn-box">
-					<div class="box1">
-						<a href="#">마이페이지</a>
-					</div>
-				</div>
-
-				<div class="info">
-					<div class="icons">
-						<div class="co">
-							<span class="icon01"></span>
-							<br>
-							<span id="Cnt1">준비중</span>
-							상담
-						</div>
-						<div class="co">
-							<span class="icon02"></span>
-							<br>
-							<span id="Cnt2">-</span>
-							문서함
-						</div>
-						<div class="co">
-							<span class="icon03"></span>
-							<br>
-							<span id="Cnt3">미등록</span>
-							학점관리
-						</div>
-						<div class="co"><span class="icon04"></span>
-							<br>
-							<span id="Cnt4">-</span>
-							출결관리
-						</div>
-					</div>
+			<div class="btn-box">
+				<div class="box1">
+					<a href="#">마이페이지</a>
 				</div>
 			</div>
 
-
-
-			<div class="calendar">
-
-				<div class="month">7월 2024</div>
-				<div class="days">
-					<div class="day">일</div>
-					<div class="day">월</div>
-					<div class="day">화</div>
-					<div class="day">수</div>
-					<div class="day">목</div>
-					<div class="day">금</div>
-					<div class="day">토</div>
-					<div class="day">1</div>
-					<div class="day">2</div>
-					<div class="day">3</div>
-					<div class="day">4</div>
-					<div class="day">5</div>
-					<div class="day">6</div>
-					<div class="day">7</div>
-					<div class="day">8</div>
-					<div class="day">9</div>
-					<div class="day">10</div>
-					<div class="day">11</div>
-					<div class="day">12</div>
-					<div class="day">13</div>
-					<div class="day">14</div>
-					<div class="day">15</div>
-					<div class="day">16</div>
-					<div class="day">17</div>
-					<div class="day">18</div>
-					<div class="day">19</div>
-					<div class="day">20</div>
-					<div class="day">21</div>
-					<div class="day">22</div>
-					<div class="day">23</div>
-					<div class="day">24</div>
-					<div class="day">25</div>
-					<div class="day">26</div>
-					<div class="day">27</div>
-					<div class="day">28</div>
-					<div class="day">29</div>
-					<div class="day">30</div>
-					<div class="day">31</div>
-					<!-- 빈 공간으로 남는 부분을 위해 추가적으로 div를 넣을 수 있습니다 -->
-				</div>
-			</div>
-
-
-
-			<section class="board">
-
-				<div class="board_name">
-					<div class="na">
-						<span class="board_title"></span>
+			<div class="info">
+				<div class="icons">
+					<div class="co">
+						<span class="icon01"></span>
 						<br>
-						<span id="bo1">공지사항</span>
+						<span id="Cnt1">준비중</span>
+						상담
+					</div>
+					<div class="co">
+						<span class="icon02"></span>
+						<br>
+						<span id="Cnt2">-</span>
+						문서함
+					</div>
+					<div class="co">
+						<span class="icon03"></span>
+						<br>
+						<span id="Cnt3">미등록</span>
+						학점관리
+					</div>
+					<div class="co"><span class="icon04"></span>
+						<br>
+						<span id="Cnt4">-</span>
+						출결관리
 					</div>
 				</div>
+			</div>
+		</div>
 
 
-				<div class="notice">
-					<div class="notice_title">
-						<ul class="no1">
-							<li>학사공지</li>
-							<li>교수공지</li>
-							<li>안내사항</li>
-							<li>시설문의</li>
-						</ul>
-					</div>
-					<div class="notice_content">
-						<ul>
-							<li>[일자리센터] 실무체험 기반 '현직자 직무부트 캠프' 사전 직무 수요조사"</li>
-							<li>"제2회 청춘역1979 창작가요제 참가자 모집 안내"</li>
-							<li>[교내 수강 신청 기간 알림]</li>
-							<li>[교내 수강 신청 기간 알림]</li>
-						</ul>
-					</div>
 
+		<div class="calendar">
+
+			<div class="month">7월 2024</div>
+			<div class="days">
+				<div class="day">일</div>
+				<div class="day">월</div>
+				<div class="day">화</div>
+				<div class="day">수</div>
+				<div class="day">목</div>
+				<div class="day">금</div>
+				<div class="day">토</div>
+				<div class="day">1</div>
+				<div class="day">2</div>
+				<div class="day">3</div>
+				<div class="day">4</div>
+				<div class="day">5</div>
+				<div class="day">6</div>
+				<div class="day">7</div>
+				<div class="day">8</div>
+				<div class="day">9</div>
+				<div class="day">10</div>
+				<div class="day">11</div>
+				<div class="day">12</div>
+				<div class="day">13</div>
+				<div class="day">14</div>
+				<div class="day">15</div>
+				<div class="day">16</div>
+				<div class="day">17</div>
+				<div class="day">18</div>
+				<div class="day">19</div>
+				<div class="day">20</div>
+				<div class="day">21</div>
+				<div class="day">22</div>
+				<div class="day">23</div>
+				<div class="day">24</div>
+				<div class="day">25</div>
+				<div class="day">26</div>
+				<div class="day">27</div>
+				<div class="day">28</div>
+				<div class="day">29</div>
+				<div class="day">30</div>
+				<div class="day">31</div>
+				<!-- 빈 공간으로 남는 부분을 위해 추가적으로 div를 넣을 수 있습니다 -->
+			</div>
+		</div>
+
+
+
+		<section class="board">
+
+			<div class="board_name">
+				<div class="na">
+					<span class="board_title"></span>
+					<br>
+					<span id="bo1">공지사항</span>
 				</div>
-			</section>
-			
-			<section class="mail">
-				
-				<div class="mail_name">
+			</div>
+
+
+			<div class="notice">
+				<div class="notice_title">
+					<ul class="no1">
+						<li>학사공지</li>
+						<li>교수공지</li>
+						<li>안내사항</li>
+						<li>시설문의</li>
+					</ul>
+				</div>
+				<div class="notice_content">
+					<ul>
+						<li>[일자리센터] 실무체험 기반 '현직자 직무부트 캠프' 사전 직무 수요조사"</li>
+						<li>"제2회 청춘역1979 창작가요제 참가자 모집 안내"</li>
+						<li>[교내 수강 신청 기간 알림]</li>
+						<li>[교내 수강 신청 기간 알림]</li>
+					</ul>
+				</div>
+
+			</div>
+		</section>
+
+		<section class="mail">
+
+			<div class="mail_name">
 				<div class="ma">
 					<span class="mail_title"></span>
 					<br>
 					<span id="ma1">메일함</span>
 				</div>
-				</div>
-					
-					
+			</div>
+
+
 			<div class="mail_notice">
 				<div class="notice1">
 					<ul class="ma2">
-						<li>받은 메일함</li>
-						<li>보낸 메일함</li>
-						<li>안읽은 메일함</li>
-						<li>내게 쓴 메일함</li>
+						<li><strong>받은메일</strong></li>
+						<li>보낸메일</li>
+						<li>안읽은메일</li>
+						<li>내게 쓴 메일</li>
 					</ul>
 				</div>
-				
-			<div class="mail_content">
-				<ul>
-					<li>mail입니다.</li>
-					<li>mail입니다.</li>
-				</ul>
+
+				<div class="mail_content">
+					<ul>
+						<li>mail입니다.</li>
+						<li>mail입니다.</li>
+					</ul>
 				</div>
 			</div>
-			</section>
-			
-			<div class="workflow">전자결재</div>
-			</div>
-	</main>
+		</section>
 
-</body>
+
+		<section class="workflow">
+			<div class="work">
+				
+				<div class="flow">
+					<div class="fl">
+					<p>전자결재</p>
+					</div>
+					<div class="wo">
+						<span class="wo01"></span>
+						<br>
+						<span id="Wt1">결재요청</span>
+						
+					</div>
+					<div class="wo">
+						<span class="wo02"></span>
+						<br>
+						<span id="Wt2">결재대기</span>
+						
+					</div>
+					<div class="wo">
+						<span class="wo03"></span>
+						<br>
+						<span id="Wt3">결재완료</span>
+						
+					</div>
+					
+				</div>
+			</div>
+			</div>
+
+			</div>
+		</section>
+</main>
 </html>
