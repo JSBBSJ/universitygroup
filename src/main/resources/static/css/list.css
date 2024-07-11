@@ -7,7 +7,7 @@ body {
 	grid-template-rows: 100px auto 50px;
 	grid-template-areas: 'header' 'main' 'footer';
 	font-family: 'Arial', sans-serif;
-	background-color: #f0f0f5;
+	background-color: var(--bg-body);
 }
 
 header {
@@ -19,6 +19,15 @@ header {
 	align-items: center;
 	justify-content: left;
 	font-size: 27px;
+	padding: 1em;
+}
+
+main {
+	border: none;
+	grid-area: main;
+	display: grid;
+	grid-template-columns: minmax(300px, 400px) 1fr;
+	gap: 1em;
 	padding: 1em;
 }
 
@@ -36,14 +45,7 @@ footer {
 	overflow: hidden; /* 콘텐츠가 넘칠 경우 숨김 */
 }
 
-main {
-	border: none;
-	grid-area: main;
-	display: grid;
-	grid-template-columns: minmax(300px, 400px) 1fr;
-	gap: 1em;
-	padding: 1em;
-}
+
 
 .logo {
 	display: flex;
@@ -65,41 +67,64 @@ main {
 	margin: 0;
 }
 
+
 .profile, .weather, .class {
+	display:flex;
 	border: 1px solid #ccc;
-	background-color: #d9ebf9;
+	background-color: var(--fg-body);
 	padding: 1em;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile {
-	display: flex;
 	flex-direction: column;
-	align-items: center;
-	text-align: center;
-	gap: 1em;
+	background-color: #ffffff;
+	border-radius: 1em;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.profile img {
-	border-radius: 50%;
-	width: 120px;
-	height: 120px;
-	object-fit: cover;
-	border: 2px solid #333;
+.profile-bg {
+	border-top-left-radius: 1em; /* 이거 없으면 위쪽만 둥근 네모가 아님 */
+	border-top-right-radius: 1em;
+	position: relative;
+	height: 200px;
+	background-image: url("/images/common/professor/info_bg.png");
+}
+
+#img {
+	width: 110px;
+	height: 110px;
+	border-radius: 15%;
+	position: absolute;
+	bottom: 0px; /* 아래쪽에 배치 (백그라운드 이미지의 아래쪽에서 10px 위) */
+	left: 50%; /* 수평 중앙 정렬 */
+	transform: translateX(-50%); /* 수평 중앙 정렬 보정 */
 }
 
 .profile .info {
 	font-size: 1rem;
-	color: #333;
+	color: var(--text-black);
 }
 
+.name {
+	margin-top: 10px;
+	text-align: center;
+	justify-content: center;
+	color: var(--text-black);
+}
+
+.name > p {
+	font-size: 24px;
+	font-weight: 400;
+}
 .profile .info div {
 	margin: 0.5em 0;
 }
 
 .menu-box {
 	display: flex;
+	justify-content:center;
 	gap: 1em;
 }
 
@@ -132,7 +157,6 @@ main {
 	flex-direction: column;
 	gap: 5em;
 	padding: 1em;
-	background-color: #d9ebf9;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
