@@ -1,0 +1,302 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body, html {
+	display: grid;
+	height: 100vh;
+	background: #f3f3f3;
+}
+
+header {
+
+	background-color: #944e63;
+}
+
+main {
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	max-width: 1700px;
+	margin: 0 auto;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 2fr 2fr;
+	grid-auto-rows: 250px;
+	padding: 10px;
+	grid-gap: 20px;
+	grid-template-areas: 'profile board board' 'profile mail mail'
+		'calendar workflow workflow'
+}
+
+.profile, .calendar {
+	width: 400px;
+}
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: profile;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: calendar;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.board {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: board;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.mail {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: mail;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.workflow {
+	background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: workflow;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#img {
+	width: 110px;
+	height: 110px;
+	border-radius: 15%;
+	position: absolute;
+	bottom: 0px; /* 아래쪽에 배치 (백그라운드 이미지의 아래쪽에서 10px 위) */
+	left: 50%; /* 수평 중앙 정렬 */
+	transform: translateX(-50%); /* 수평 중앙 정렬 보정 */
+}
+
+.pro-back {
+	border-top-left-radius: 1em; /* 이거 없으면 위쪽만 둥근 네모가 아님 */
+	border-top-right-radius: 1em;
+	position: relative;
+	height: 200px;
+	background-image: url("/images/common/professor/info_bg.png");
+}
+
+.name {
+	margin-top: 10px;
+	text-align: center;
+	justify-content: center;
+	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
+}
+
+.name>p {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+/* /////////////////////중간 - 마이페이지 버튼////////////////////// */
+.btn-box {
+	margin-top: 10px;
+	display: flex;
+	gap: 1em;
+	justify-content: center;
+}
+
+.box1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 200px;
+	height: 50px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.box1:hover {
+	background-color: #e3f2fd;
+}
+
+.box1>a {
+	text-decoration: none;
+	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
+}
+
+/* ////////////////////////////////// 하단- 아이콘들 ////////////////////////////// */
+.info {
+	display: flex;
+	flex: 1;
+	margin-top: 10px;
+	justify-content: space-between;
+}
+
+.icons {
+	flex: 1;
+	display: flex;
+	margin-top: 10px;
+}
+
+.co {
+	flex: 1;
+	padding: 1em;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
+}
+
+.co:last-child {
+	border-right: none; /* 마지막 요소의 border-right 제거 */
+}
+
+.icon01 {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-image: url("/images/common/professor/pro1.png");
+	background-size: cover;
+	background-position: center;
+}
+
+.icon02 {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-image: url("/images/common/professor/pro2.png");
+	background-size: cover;
+	background-position: center;
+}
+
+.icon03 {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-image: url("/images/common/professor/pro3.png");
+	background-size: cover;
+	background-position: center;
+}
+
+.icon04 {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-image: url("/images/common/professor/pro4.png");
+	background-size: cover;
+	background-position: center;
+}
+
+.month {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-left: 10px; 
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7개의 열을 가진 그리드 생성 */
+    gap: 5px;
+}
+
+.day {
+    
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    margin: auto;
+    cursor: pointer; /* 클릭 가능하도록 커서 설정 */
+}
+
+.day:nth-child(n+8) {
+    color: #999; /* 주말은 회색으로 표시 */
+}
+
+/* 오늘 날짜 스타일링 */
+.day.today {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+.board{
+	display: flex;
+	
+}
+.board_name{
+	margin-top: 50px;
+	margin-left: 150px;
+}
+
+.board_name{
+	margin-top: 50px;
+	margin-left: 150px;
+}
+
+.board_title{
+	
+	position: relative;
+	height: 100px;
+	margin-left: 70px;
+	margin-bottom: 30px;
+	
+}
+
+
+#notice_img {
+	width: 110px;
+	height: 110px;
+	border-radius: 15%;
+	position: absolute;
+	left: 10%; /* 수평 중앙 정렬 */
+	transform: translateX(-50%); /* 수평 중앙 정렬 보정 */
+}
+
+.notice {
+	
+    background-color: #f9f9f9; /* Light background color */
+    border: 1px solid #e0e0e0; /* Light border */
+    padding: 20px; /* Padding inside the notice */
+  	margin-left: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    
+
+	justify-content: center;
+	align-items: center;
+    padding: 20px; /* Padding inside the notice */
+  	margin-left: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 500px; /* Maximum width for the notice */
+
+	
+	
+}
+
+.notice_title {
+    font-size: 24px; /* Larger font size for the title */
+    font-weight: bold; /* Bold font for the title */
+    color: #333; /* Darker color for the title */
+    margin-bottom: 10px; /* Space below the title */
+    text-align: center; /* Center-align the title */
+}
+
+.notice_content {
+    font-size: 16px; /* Standard font size for content */
+    line-height: 1.5; /* Improved line spacing for readability */
+    color: #555; /* Medium color for the content */
+    text-align: left; /* Left-align the content */
+}

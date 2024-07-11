@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+	<script src="/chatbot/chatbot.js"></script>
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/chatbot/chatbot.css" >
+</head>
+<body>
+	<h1>안녕하세요</h1>
+	
+	<article id="chat-bot">
+		<h1>챗봇</h1>
+		<div class="wrap">
+			<section id="conversation">
+				<h1>대화화면</h1>
+				<div class="wrap view-size">
+					<ul class="bot-menu">
+						<li>
+							<button class="btn-bot" id="btn-bot"></button>
+						</li>
+					</ul>
+					<div class="container" id="bot-container">
+						<div class="c-header flex between col-center">
+							<p class="help flex col-center">
+								<span>HELP</span>
+							</p>
+							<p><b>그린챗봇</b></p>
+							<p class="close flex end col-center">
+								<span onclick="btnCloseClicked()"></span>
+							</p>
+						</div>
+						<div class="c-content" id="chat-content">
+							<!--대화내용 들어가는 영역-->
+	
+						</div>
+						<div class="c-question flex col-center">
+							<span class="home-icon"></span>
+							<span class="q-wrap">
+								<input type="text" class="question" id="question" placeholder="질문을 입력하세요">
+								<button class="btn-send" onclick="btnMsgSendClicked()"></button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</article>
+</body>
+</html>

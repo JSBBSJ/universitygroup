@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 1:2 비율로 설정 */
+    grid-template-areas: 'main'; /* 하나의 영역만 사용 */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    padding: 10px; /* 패딩을 줄임 */
+    height: 100vh; /* body를 화면 전체 높이로 설정 */
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 1:2 비율로 설정 */
+    grid-template-areas:
+        'profile sigan'
+        'weather ha';
+    gap: 10px; /* 그리드 아이템들 사이의 간격을 줄임 */
+    height: 100%; /* main을 body의 높이와 동일하게 설정 */
+}
+
+.profile, .sigan, .weather, .cal, .su {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+	display: grid;
+	grid-area: profile;
+	grid-template-columns: 300px;
+	grid-template-rows: minmax(200px, auto);
+	grid-column: 1; /* 왼쪽에 위치 */
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sigan {
+    grid-area: sigan;
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 1:2 비율로 설정 */
+    grid-column: 2; /* 왼쪽에 위치 */
+    grid-template-rows: minmax(300px, auto); /* 높이를 최소 300px, 자동으로 조정 */
+}
+
+.cal {
+	display: grid;
+	grid-area: cal;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: minmax(300px, auto);
+	grid-column: 1; /* 왼쪽에 위치 */
+	border: 1px solid #ccc;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.su {
+	display: grid;
+	grid-area: su;
+	grid-template-columns: 2fr 1fr;
+	grid-template-rows: minmax(300px, auto);
+	grid-column: 2; /* 오른쪽에 위치 */
+	border: 1px solid #ccc;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

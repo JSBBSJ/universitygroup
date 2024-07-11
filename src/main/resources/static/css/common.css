@@ -5,3 +5,92 @@
 !!! 담당자 이외에 수정하지 마세요 !!!
  */
  
+ html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	 font-family: noto, dotum, "돋움", Verdana, Geneva, sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 색상 변수 */
+:root {
+    --main-color: #944E63;
+    --text-black: #191919;
+    --text-white: #FFFFFF;
+    --bg-body: #f3f3f3;
+    --fg-body: #ffffff;
+    --btn-color: #e3f2fd;
+}
+
+/* 헤더 스타일 */
+header {
+    font-size: 27px;
+    color: var(--main-color);
+}
+
+/* 본문 스타일 */
+body {
+    font-size: 16px;
+    color: var(--text-black);
+    background-color: var(--bg-body);
+}
+
+/* 기능 스타일 */
+.function {
+    font-size: 20px;
+}
+
+/* 버튼 스타일 */
+.btn {
+    width: 100px;
+    height: 30px;
+    background-color: var(--btn-color);
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--main-color);
+    color: var(--text-white);
+}
+
+
+
