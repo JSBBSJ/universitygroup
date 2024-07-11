@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{}) }">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 화면</title>
+    <title>라라대학교 로그인</title>
     <link rel="stylesheet" href="/css/signin.css" />
 </head>
 <body>
+
     <main>
-        <div class="signin">		
+        <div class="signin">        
             <h1>라라대학교 Signin</h1>
             <form action="/signin" method="post">
                 <label for="username">아이디</label>
@@ -18,8 +19,8 @@
                 <input id="password" type="password" name="password" placeholder="비밀번호를 입력하세요" required>
                 
                 <button type="submit">로그인</button>
-                <button type="button" onclick="window.location.href='/find-credentials';">아이디/비밀번호 찾기</button>
-            </form>		
+                <a href="/help"><button type="button">아이디/비밀번호 찾기</button></a>
+            </form>        
         </div>
     </main>
 </body>
