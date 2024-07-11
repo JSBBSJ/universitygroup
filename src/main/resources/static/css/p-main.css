@@ -233,70 +233,125 @@ main {
     color: white;
     font-weight: bold;
 }
-.board{
-	display: flex;
-	
-}
-.board_name{
-	margin-top: 50px;
-	margin-left: 150px;
+
+.board {
+    display: flex;
+    
 }
 
-.board_name{
-	margin-top: 50px;
-	margin-left: 150px;
+.board_name {
+ 	flex: 1;
+	justify-content: center;
+	align-items: center;
+	width:200px;
+	margin:4em;
+	margin-top:50px;
 }
 
-.board_title{
-	
-	position: relative;
+.board_title {
+	display: inline-block;
+	width: 100px;
 	height: 100px;
-	margin-left: 70px;
-	margin-bottom: 30px;
-	
+	background-image: url("/images/common/professor/notice.png");
+	background-size: cover;
+	background-position: center;
+    
 }
 
+.na{
 
-#notice_img {
-	width: 110px;
-	height: 110px;
-	border-radius: 15%;
-	position: absolute;
-	left: 10%; /* 수평 중앙 정렬 */
-	transform: translateX(-50%); /* 수평 중앙 정렬 보정 */
+    text-align: center;
+}
+
+.no1 {
+	display: flex;
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ebebec;
+}
+
+.no1 li {
+ 	display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    height: 50px;
+    text-align: center;
+    
+    
+}
+
+.no1 li:hover {
+    color: #944e63;
+    cursor: pointer; 
 }
 
 .notice {
 	
-    background-color: #f9f9f9; /* Light background color */
-    border: 1px solid #e0e0e0; /* Light border */
-    padding: 20px; /* Padding inside the notice */
-  	margin-left: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    
-
-	justify-content: center;
-	align-items: center;
-    padding: 20px; /* Padding inside the notice */
-  	margin-left: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    max-width: 500px; /* Maximum width for the notice */
-
-	
-	
+	flex: 8;
+    background-color: #f9f9f9; 
+    border: 1px solid #e0e0e0; 
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 1000px; 
+    overflow: hidden;
 }
 
 .notice_title {
-    font-size: 24px; /* Larger font size for the title */
-    font-weight: bold; /* Bold font for the title */
-    color: #333; /* Darker color for the title */
-    margin-bottom: 10px; /* Space below the title */
-    text-align: center; /* Center-align the title */
+	display:flex;
+    font-size: 20px; 
+    font-weight: bold;
+    color: #333; 
+    margin-bottom: 10px;
+    text-align: center;
+    
 }
 
 .notice_content {
-    font-size: 16px; /* Standard font size for content */
-    line-height: 1.5; /* Improved line spacing for readability */
-    color: #555; /* Medium color for the content */
-    text-align: left; /* Left-align the content */
+    font-size: 14px;
+    line-height: 1.5; 
+    color: #555; 
+    text-align: left; 
+    overflow: hidden; 
+    display: -webkit-box;
+    -webkit-line-clamp: 7;	
+    -webkit-box-orient: vertical;
+}
+
+.notice_content ul {
+    list-style-type: none; 
+    padding-left: 0; 
+}
+
+.notice_content li {
+    border-bottom: 1px solid #ebebec;
+    padding: 10px 0; 
+}
+/* ----------------------메일----------------------------------- */
+
+.mail{
+	display: flex;
+}
+
+.mail_name {
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	width:200px;
+	margin:4em;
+	margin-top:50px;
+}
+
+.ma {
+	text-align: center;
+}
+
+.mail_title{
+		display: inline-block;
+	width: 80px;
+	height:80px;
+	background-image: url("/images/common/professor/mail.png");
+	background-size: cover;
+	background-position: center;
 }
