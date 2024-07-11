@@ -7,7 +7,10 @@
 	<link rel="stylesheet" href="/css/common.css" />
 	<link rel="stylesheet" href="/css/list.css" />
 	<link rel="stylesheet" href="/css/bot/bot.css" />
+	<link rel="stylesheet" href="/css/weather/weather.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<script src="/js/bot/bot.js"></script>
+	<script src="/js/weather/weather.js"></script>
 </head>
 
 <body>
@@ -21,11 +24,15 @@
 	</header>
 	<main>
 		<section class="profile">
-			<img src="profile.png" alt="프로필 사진">
+			<div class="profile-bg">
+				<img src="/images/common/professor/profile.jpg" id="img">
+			</div>
 			<div class="info">
-				<div><strong>이름:</strong> 이진웅</div>
-				<div><strong>학과:</strong>컴퓨터소프트웨어</div>
-				<div><strong>최근 접속 IP:</strong> 192.168.0.1</div>
+				<div class="name">
+					<p>김라라 (2024001795)</p>
+					<strong>컴퓨터공학과</strong><br>
+					<span>접속IP:192.168.0.0</span>
+				</div>
 				<div class="menu-box">
 					<div class="menu-item">안읽은 메일</div>
 					<div class="menu-item">내 정보</div>
@@ -33,7 +40,21 @@
 				</div>
 			</div>
 		</section>
-		<section class="weather">날씨 영역</section>
+
+
+
+		<section class="weather">
+			<div class="weather-info">
+				<i id="weather-icon"></i>
+				<h2 id="city-name"></h2>
+				<p id="temperature"> </p>
+				<p id="humidity">현재 습도: </p>
+				<p id="weather">날씨: </p>
+				<p id="weather-description">상세 날씨 설명: </p>
+				<p id="wind-speed">바람 속도: </p>
+				<p id="cloudiness">구름: </p>
+			</div>
+		</section>
 		<section class="class">
 			<span>이번학기 강좌 목록</span>
 			<ul>
@@ -47,49 +68,50 @@
 		</section>
 	</main>
 	<footer>
-	    <div class="footer-container">
-	        <div class="footer-section logo">
-	            <img src="/images/common/main-logo.png" alt="대학교 로고">
-	            <p>우리 대학교는 최고의 교육과 연구를 통해 미래를 선도하는 인재를 양성합니다.</p>
-	        </div>
-	        <div class="footer-section links">
-	            <h3>유용한 링크</h3>
-	            <ul>
-	                <li><a href="/#">학교 소개</a></li>
-	                <li><a href="/#">입학 안내</a></li>
-	                <li><a href="/#">학과 소개</a></li>
-	                <li><a href="/#">문의하기</a></li>
-	            </ul>
-	        </div>
-	        <div class="footer-section contact">
-	            <h3>연락처 정보</h3>
-	            <p>주소: 서울특별시</p>
-	            <p>전화: (02) 1234-5678</p>
-	            <p>이메일: info@university.ac.kr</p>
-	        </div>
-	        <div class="footer-section social">
-	            <h3>소셜 미디어</h3>
-	            <a href="#"><img src="facebook.png" alt="페이스북"></a>
-	            <a href="#"><img src="twitter.png" alt="트위터"></a>
-	            <a href="#"><img src="instagram.png" alt="인스타그램"></a>
-	        </div>
-	    </div>
-	</footer>
-	
-	<div class="chatbot-icon" onclick="toggleChatbot()">
-	        <img src="/images/common/chatbot-icon.png" alt="Chatbot">
-	    </div>
-	    <div class="chatbot-window" id="chatbotWindow">
-	        <div class="chatbot-header">챗봇 나리
-				<span class="close-btn" onclick="toggleChatbot()">✕</span>
+		<div class="footer-container">
+			<div class="footer-section logo">
+				<img src="/images/common/main-logo.png" alt="대학교 로고">
+				<p>우리 대학교는 최고의 교육과 연구를 통해 미래를 선도하는 인재를 양성합니다.</p>
 			</div>
-	        <div class="chatbot-body">
-	            <!-- 챗봇 대화 내용이 여기에 표시됩니다. -->
-	        </div>
-	        <div class="chatbot-footer">
-	            <input type="text" class="question" id="question" placeholder="질문을 입력하세요">
-	            <button class="btn-send" onclick="btnMsgSendClicked()">전송</button>
-	        </div>
-	    </div>
+			<div class="footer-section links">
+				<h3>유용한 링크</h3>
+				<ul>
+					<li><a href="/#">학교 소개</a></li>
+					<li><a href="/#">입학 안내</a></li>
+					<li><a href="/#">학과 소개</a></li>
+					<li><a href="/#">문의하기</a></li>
+				</ul>
+			</div>
+			<div class="footer-section contact">
+				<h3>연락처 정보</h3>
+				<p>주소: 서울특별시</p>
+				<p>전화: (02) 1234-5678</p>
+				<p>이메일: info@university.ac.kr</p>
+			</div>
+			<div class="footer-section social">
+				<h3>소셜 미디어</h3>
+				<a href="#"><img src="facebook.png" alt="페이스북"></a>
+				<a href="#"><img src="twitter.png" alt="트위터"></a>
+				<a href="#"><img src="instagram.png" alt="인스타그램"></a>
+			</div>
+		</div>
+	</footer>
+
+	<div class="chatbot-icon" onclick="toggleChatbot()">
+		<img src="/images/common/chatbot-icon.png" alt="Chatbot">
+	</div>
+	<div class="chatbot-window" id="chatbotWindow">
+		<div class="chatbot-header">챗봇 나리
+			<span class="close-btn" onclick="toggleChatbot()">✕</span>
+		</div>
+		<div class="chatbot-body">
+			<!-- 챗봇 대화 내용이 여기에 표시됩니다. -->
+		</div>
+		<div class="chatbot-footer">
+			<input type="text" class="question" id="question" placeholder="질문을 입력하세요">
+			<button class="btn-send" onclick="btnMsgSendClicked()">전송</button>
+		</div>
+	</div>
 </body>
+
 </html>
