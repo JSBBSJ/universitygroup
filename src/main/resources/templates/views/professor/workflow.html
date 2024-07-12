@@ -6,41 +6,60 @@
 </head>
 
 
-	<main >
-		
-		<section class="w-container">
-		       <div class="w-menu">
-		            <h2>전자결재</h2>
-					<div class="w-approval">
-						<button onclick="approvalOnoff()">결재 상신함 </button>
-						<div id="y">
+<main>
+
+	<section class="w-container">
+		<div class="w-menu">
+			<span>전자결재</span>
+			<div class="ww-btn">
+				<button onclick="ToWritingPage()" class="w-btn">결제 작성하기</button>
+			</div>
+
+			<div class="w-update">
+				<span onclick="approvalOnoff('a')">▼ 결재 상신함 </span>
+				<div id="a">
+					<ul>
+						<li>결재 진행함</li>
 						<li>결재 완료함</li>
-						<li>결재 진행중</li>
 						<li>임시 저장</li>
-						</div>
-					</div>
-					<div class="w-receiver">
-						<button onclick="receiverOnoff()">결재 수신함</button>
-						<div id="f">
+					</ul>
+				</div>
+			</div>
+			<div class="w-recive">
+				<span onclick="approvalOnoff('b')">▼ 결재 수신함</span>
+				<div id="b">
+					<ul>
 						<li>결재 요청</li>
 						<li>결재 내역</li>
 						<li>검토 내역</li>
 						<li>대리 결재</li>
-					</div>
+					</ul>
 				</div>
-						
-				
-				
-				
-				 </div>
-		          
-				    
-		           <div class="w-main">
-					
-				   </div>
-		  </section>
 
-	</main>
+			</div>
+
+			<div class="w-file">
+				<span onclick="approvalOnoff('c')">▼ 개인 보관함</span>
+				<div id="c">
+					<ul>
+						<li>공유 폴더</li>
+						<li>개인 보관함</li>
+						<li>00과 보관함</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="w-cont">
+				<span>▼ 결재 설정</span>
+			</div>
+		</div>
+
+
+		<div class="w-main"></div>
+	</section>
+
+</main>
+
 
 
 </html>
