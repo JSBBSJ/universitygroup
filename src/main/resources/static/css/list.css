@@ -150,42 +150,48 @@ footer {
 }
 
 .class {
-	border: 1px solid #ccc;
-	grid-column: 2/span 1;
-	grid-row: 1/span 2;
-	display: flex;
-	flex-direction: column;
-	gap: 5em;
-	padding: 1em;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    grid-column: 2/span 1;
+    grid-row: 1/span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
 }
 
-ul.class {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+.class span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    background-color: var(--main-color);
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.class ul {
+    margin: 0;
+    padding: 0;
 }
 
 .class li {
-	height: 20px;
-	background-color: #e3f2fd;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 1em;
-	list-style: none;
-	cursor: pointer;
-	transition: background-color 0.3s;
-	font-size: 2rem;
+    padding: 1em;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s;
+    font-size: 1.6rem; /* 글꼴 크기 조정 */
 }
 
-.class>span {
-	font-size: 2rem;
+.class li:last-child {
+    border-bottom: none;
 }
 
 .class li:hover {
-	background-color: #bbdefb;
+    background-color: #f0f0f0;
 }
+
 
 .footer-container {
 	display: flex;

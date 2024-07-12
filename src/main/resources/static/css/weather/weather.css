@@ -1,62 +1,57 @@
 @charset "UTF-8";
 
 .weather {
-	display: flex;
-	transition: background 0.5s ease;
+    display: flex;
+    transition: background 0.5s ease;
+    color: white;
+    position: relative;
+    overflow: hidden;
 }
 
-.weather-info {
-	width: 250px;
-	height: 280px;
-	margin: 20px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+.weather::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5; 
+    animation: moveBackground 10s linear infinite;
 }
 
-.weather-info img {
-	display: block;
-	width: 150px;
-	height: 150px;
-	width: 150px;
+/* Specific weather backgrounds */
+.clear::before {
+    background-image: url('/images/weather/clear-day.jpg');
 }
 
-.clear-day {
-	background: url('images/weather/clear-day.jpg') no-repeat center center
-		fixed;
-	background-size: cover;
+.weather .weather-info {
+    position: relative;
+    z-index: 2; 
 }
 
-.clear-night {
-	background: url('images/weather/clear-night.jpg') no-repeat center
-		center fixed;
-	background-size: cover;
+
+@keyframes moveBackground {
+    0% {
+        transform: scale(1) translate(0, 0);
+        transform-origin: 50% 50%;
+    }
+    50% {
+        transform: scale(1.1) translate(-5px, -5px); /* Slight zoom out and move */
+        transform-origin: 50% 50%;
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
+        transform-origin: 50% 50%;
+    }
 }
 
-.cloudy {
-	display:block;
-	background: url('images/weather/cloudy.jpg') no-repeat center center
-		fixed;
-	background-size: cover;
-}
 
-.rain {
-	background: url('images/weather/rain.jpg') no-repeat center center fixed;
-	background-size: cover;
-}
-
-.storm {
-	background: url('images/weather/storm.jpg') no-repeat center center
-		fixed;
-	background-size: cover;
-}
-
-.snow {
-	background: url('images/weather/snow.jpg') no-repeat center center fixed;
-	background-size: cover;
-}
-
-.mist {
-	background: url('images/weather/mist.jpg') no-repeat center center fixed;
-	background-size: cover;
+.weather-info i {
+    display: inline-block;
+    width: 50px; 
+    height: 50px;
+    background-size: cover;
 }
