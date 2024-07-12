@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-body, html {
-    height: 100%;
-    margin: 0;
+body{
+   /*  height: 100%; */
+    /* margin: 0; */
     overflow: hidden; 
     background-color: #ffcdcd; /* 전체 배경색 추가 */
 }
