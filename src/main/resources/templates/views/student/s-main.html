@@ -3,24 +3,14 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
-	<meta charset="UTF-8">
-	<title>라라대학교</title>
 	<link rel="stylesheet" href="/css/s-main/s-main.css">
 	<link rel="stylesheet" href="/css/ps-common/ps-common.css">
 	
-	<link href='/js/s-main/packages/core/main.css' rel='stylesheet' />
-	<link href='/js/s-main//packages/daygrid/main.css' rel='stylesheet' />
-	<link href='/js/s-main/packages/timegrid/main.css' rel='stylesheet' />
-	<link href='/js/s-main/packages/list/main.css' rel='stylesheet' />
-	
-	
-	
-	<script src='/js/s-main/packages/core/main.js'></script>
-	<script src='/js/s-main/packages/interaction/main.js'></script>
-	<script src='/js/s-main/packages/daygrid/main.js'></script>
-	<script src='/js/s-main/packages/timegrid/main.js'></script>
-	<script src='/js/s-main/packages/list/main.js'></script>
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+	 
 	<script src=' /js/s-main/calendar.js'></script>
 	
 </head>
@@ -28,7 +18,7 @@
 
 	<body>
 
-	<main class="main">
+	<main class="s-main">
 		<section class="container">
 
 			<div class="profile">
