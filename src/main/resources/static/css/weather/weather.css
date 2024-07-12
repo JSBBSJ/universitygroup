@@ -26,7 +26,18 @@
 .clear::before {
     background-image: url('/images/weather/clear-day.jpg');
 }
-
+.clouds::before {
+    background-image: url('/images/weather/cloudy.jpg');
+}
+.rain::before {
+    background-image: url('/images/weather/clear-day.jpg');
+}
+.snow::before {
+    background-image: url('/images/weather/clear-day.jpg');
+}
+.thunderstorm::before {
+    background-image: url('/images/weather/clear-day.jpg');
+}
 .weather .weather-info {
     position: relative;
     z-index: 2; 
@@ -39,7 +50,7 @@
         transform-origin: 50% 50%;
     }
     50% {
-        transform: scale(1.1) translate(-5px, -5px); /* Slight zoom out and move */
+        transform: scale(1.2) translate(-5px, -5px); 
         transform-origin: 50% 50%;
     }
     100% {
@@ -47,11 +58,24 @@
         transform-origin: 50% 50%;
     }
 }
+.weather-info{
+	display: flex;
+	flex-direction: column;
+}
 
 
-.weather-info i {
+.weather-text{
+	font-size: 2rem;
+}
+
+#weather-icon {
     display: inline-block;
-    width: 50px; 
+    width: 50px;
     height: 50px;
     background-size: cover;
+    background-position: center;
+}
+
+.weather-detail{
+	font-size: 1.2rem;
 }

@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="/webjars/jquery/jquery.min.js"></script>
-<link rel="stylesheet" href="/css/common.css" />
-<link rel="stylesheet" href="/css/list.css" />
-<link rel="stylesheet" href="/css/bot/bot.css" />
-<link rel="stylesheet" href="/css/weather/weather.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<script src="/js/bot/bot.js"></script>
-<script src="/js/weather/weather.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<link rel="stylesheet" href="/css/common.css" />
+	<link rel="stylesheet" href="/css/list.css" />
+	<link rel="stylesheet" href="/css/bot/bot.css" />
+	<link rel="stylesheet" href="/css/weather/weather.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<script src="/js/bot/bot.js"></script>
+	<script src="/js/weather/weather.js"></script>
 </head>
 
 <body>
@@ -41,17 +40,19 @@
 
 		<section class="weather">
 			<div class="weather-info">
-				<i id="weather-icon"></i>
-				<h2 id="city-name"></h2>
-				<p id="temperature"></p>
-				<p id="humidity">현재 습도:</p>
-				<p id="weather">날씨:</p>
-				<p id="weather-description">상세 날씨 설명:</p>
-				<p id="wind-speed">바람 속도:</p>
-				<p id="cloudiness">구름:</p>
+				<div id="weather-icon"></div>
+				<div class="weather-text">
+					<h2 id="city-name"></h2>
+					<p id="temperature"></p>
+					<div class="weather-detail">
+						<p id="humidity">현재 습도:</p>
+						<p id="weather">날씨:</p>
+						<p id="wind-speed">풍속:</p>
+					</div>
+				</div>
 			</div>
 		</section>
-		
+
 		<section class="class">
 			<span>이번학기 강좌 목록</span>
 			<ul>
@@ -87,9 +88,8 @@
 			</div>
 			<div class="footer-section social">
 				<h3>소셜 미디어</h3>
-				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a
-					href="#"><img src="twitter.png" alt="트위터"></a> <a href="#"><img
-					src="instagram.png" alt="인스타그램"></a>
+				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a href="#"><img src="twitter.png" alt="트위터"></a> <a
+					href="#"><img src="instagram.png" alt="인스타그램"></a>
 			</div>
 		</div>
 	</footer>
@@ -105,8 +105,7 @@
 			<!-- 챗봇 대화 내용이 여기에 표시됩니다. -->
 		</div>
 		<div class="chatbot-footer">
-			<input type="text" class="question" id="question"
-				placeholder="질문을 입력하세요">
+			<input type="text" class="question" id="question" placeholder="질문을 입력하세요">
 			<button class="btn-send" onclick="btnMsgSendClicked()">전송</button>
 		</div>
 	</div>
