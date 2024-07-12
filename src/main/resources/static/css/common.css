@@ -4,7 +4,7 @@
 공통으로 사용할 class, 변수(공통 컬러)
 !!! 담당자 이외에 수정하지 마세요 !!!
  */
- 
+
  html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -30,9 +30,14 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
-	 font-family: noto, dotum, "돋움", Verdana, Geneva, sans-serif;
+	font-family: noto, dotum, "돋움", Verdana, Geneva, sans-serif;
+	margin: 0;
+	display: grid;
+	height: 100vh;
+	background-color: var(--bg-body);
 }
 ol, ul {
 	list-style: none;
@@ -49,8 +54,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-/* 색상 변수 */
+ /* 색상 변수 */
 :root {
     --main-color: #944E63;
     --text-black: #191919;
@@ -91,6 +95,5 @@ body {
     background-color: var(--main-color);
     color: var(--text-white);
 }
-
 
 
