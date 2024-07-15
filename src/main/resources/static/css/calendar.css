@@ -1,35 +1,124 @@
 @charset "UTF-8";
 
- .calendar-main {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+/* 전체 레이아웃 그리드 설정 */
+main {
+    display: grid;
+    grid-template-columns: 1fr 4fr; /* 사이드바와 캘린더의 비율 */
+    gap: 20px; /* 사이드바와 캘린더 사이의 공백 */
+    grid-template-areas:
+        "sidebar calendar"; /* 그리드 영역 배치 */
+    height: 100vh; /* 전체 높이 */
+    padding: 20px; /* 그리드 컨테이너의 여백 */
+}
+
+/* 사이드바 스타일 */
+#sidebar {
+    background-color: #944e63; /* 메뉴 배경색 */
+    padding: 20px; /* 사이드바 내 여백 */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    grid-area: sidebar; /* 그리드 영역 설정 */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+    flex-direction: column;
+    gap: 10px;
+    
 }
 
-#calendar {
-    width: 80%;
-    max-width: 900px;
-    margin: 0 auto;
+/* 사이드바 메뉴 스타일 */
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-#event-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-#event-modal input {
-    display: block;
+.sidebar-menu li {
     margin: 10px 0;
 }
- 
+
+.sidebar-menu a {
+    display: block;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-menu a:hover {
+    background-color: #6a3c4c; /* 호버 시 배경색 */
+}
+
+/* 캘린더 컨테이너 */
+#calendar-container {
+    padding: 20px; /* 캘린더 컨테이너 내 여백 */
+    grid-area: calendar; /* 그리드 영역 설정 */
+}
+
+/* 캘린더 메인 스타일 */
+.calendar-main {
+    max-width: 100%; /* 최대 너비 */
+}
+
+/* 모달 창 */
+#event-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001; /* 사이드바와 캘린더 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; /* 너비를 줄임 */
+    max-width: 80%; /* 최대 너비를 설정하여 작은 화면에서도 적절히 보이도록 함 */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ddd;
+}
+
+textarea {
+    height: 100px; /* 텍스트 영역의 높이 설정 */
+}
+
+button {
+    margin: 5px;
+    background-color: #944e63; /* 버튼 배경색 */
+    color: white; /* 버튼 글씨 색상 */
+    border: none; /* 버튼 테두리 제거 */
+    padding: 10px 15px; /* 버튼 여백 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    cursor: pointer; /* 클릭 시 커서 변경 */
+}
+
+button:hover {
+    background-color: #6a3c4c; /* 버튼 호버 색상 */
+}
