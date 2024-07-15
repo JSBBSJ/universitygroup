@@ -1,8 +1,8 @@
 @charset "UTF-8";
-body, html {
+/* body, html {
     margin: 0;
     padding: 0;
-}
+} */
 
 header {
     width: 100%; 
@@ -60,7 +60,7 @@ nav {
     display: flex;
     flex-direction: row; 
     align-items: center; 
-    gap: 30px;
+    gap: 40px;
 }
 
 .menu li {
@@ -98,5 +98,3 @@ nav {
 .signout:hover img {
     filter: brightness(0.8); /* 호버 시 아이콘의 밝기를 줄여 효과를 줌 */
 }
-
-

@@ -1,3 +1,46 @@
+$(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+		
+        header: {
+            left: 'prev,next today',
+
+            center: 'title',
+
+            right: 'month,agendaWeek,agendaDay'
+
+        },
+
+        editable: true,
+        events: [
+            {
+                title: 'Event1',
+
+                start: '2023-07-10'
+
+            },
+
+            {
+                title: 'Event2',
+
+                start: '2023-07-12',
+
+                end: '2023-07-15'
+
+            }
+
+        ]
+
+    });
+
+});
+
+
+
+
+/*
+
+
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
@@ -8,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      defaultDate: '2020-02-12',
+      defaultDate: '2024-02-12',
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
       editable: true,
@@ -67,4 +110,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     calendar.render();
-  });
+  });*/
