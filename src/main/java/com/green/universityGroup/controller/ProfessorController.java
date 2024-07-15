@@ -21,10 +21,31 @@ public class ProfessorController {
 	}
 	
 	
-	@GetMapping("/professor/new")
-	public String write() {
-		return "/views/professor/wirte";
+	@GetMapping("/professor/view")
+	public String view() {
+		return "/views/professor/view";
 	}
+	
+	@GetMapping("/professor/write")
+	public String write() {
+		return "/views/professor/write";
+	}
+	
+	@GetMapping("/professor/edit")
+	public String edit() {
+		return "/views/professor/edit";
+	}
+	
+	@GetMapping("/mail")
+	public String mail() {
+		return "/views/professor/mail";
+	}
+	
+	@GetMapping("/professor/mail-view")
+	public String mail_view() {
+		return "/views/professor/mail-view";
+	}
+	
 	
 	@GetMapping("/professor/{no}")
 	public String detail(@PathVariable("no") long no) {
