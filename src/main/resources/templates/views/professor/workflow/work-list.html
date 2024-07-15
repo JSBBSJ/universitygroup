@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
+
+<head>
+
+<link rel="stylesheet" href="/css/p-main/workflow/work-lists.css"> 
+
+<script src=' /js/p-main/workflow/workflow.js'></script>
+
+<script src=' /js/p-main/workflow/work-forms.js'></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+
+
+
+<!--<작성하기 눌렀을떄 넘어가는 양식함 화면>-->
+
+
+
+<main class="w-mains">
+
+
+
+	<section class="work-container">
+
+		<section class="w-w-menu">
+
+			<a href="/workflow">전자결재</a>
+
+			
+
+
+
+			<div class="w-update">
+
+				<span onclick="approvalOnoff('a')">▼ 결재 상신함 </span>
+
+				<div id="a">
+
+					<ul>
+
+						<li><a href="/work-save">결재 진행함</a></li>
+
+						<li>결재 완료함</li>
+
+						<li>임시 저장</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="w-recive">
+
+				<span onclick="approvalOnoff('b')">▼ 결재 수신함</span>
+
+				<div id="b">
+
+					<ul>
+
+						<li>결재 요청</li>
+
+						<li>결재 내역</li>
+
+						<li>검토 내역</li>
+
+						<li>대리 결재</li>
+
+					</ul>
+
+				</div>
+
+
+
+			</div>
+
+
+
+			<div class="w-file">
+
+				<span onclick="approvalOnoff('c')">▼ 개인 보관함</span>
+
+				<div id="c">
+
+					<ul>
+
+						<li>공유 폴더</li>
+
+						<li>개인 보관함</li>
+
+						<li>00과 보관함</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+
+
+			<div class="w-cont">
+
+				<span>▼ 결재 설정</span>
+
+			</div>
+
+		
+
+	</section>
+
+
+
+	
+
+	 <!--비동기로 진행하기 떄문에 연차신청서, 지출결의서등 따로 화면페이지 없이 띄워짐-->
+
+		<section class="w-w-main">
+
+			<div class="w-w-main-top"><a href="/work-list"> 전자결재 양식함</a></div>
+
+			<div class="w-w-form-all" id ='form-form'> </div>
+
+			<div class="w-w-form-list" id ='form-h'>
+
+				<ul class="w-w-lists">
+
+					<li onclick="formlists('vacationapplicationform')" id="vacationapplicationform">연차신청서</li>
+
+					<li onclick="formlists('reportform')" id="reportform">회의록</li>
+
+					<li onclick="formlists('letterofapproval')" id="letterofapproval">품의서</li> <!--//해당 폼도 띄우고 싶을경우 html이름과 동일하게 아이디 주고 해당 아이디 태워서 보내기-->
+
+					<li >지출결의서</li>		<!--//해당 폼도 띄우고 싶을경우 html이름과 동일하게 아이디 주고 해당 아이디 태워서 보내기-->
+
+					<li >구매요청서</li>
+
+					<li >퇴직원</li>
+
+				</ul>
+
+				
+
+			</div>
+
+					
+
+			<div class="favorite-wlist" id="f-form-list">자주사용하는 양식함</div>
+
+			
+
+			
+
+				</ul>
+
+		
+
+			
+
+		</section>
+
+		
+
+	</section>
+
+
+
+</main>
+
+
+
+
+
+
+
+</html>
