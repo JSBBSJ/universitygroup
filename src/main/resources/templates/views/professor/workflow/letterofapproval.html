@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<!--//내가 만든 품의서 폼///-->
+<head>
+ <style>
+ .leaveform{
+	
+	padding: 1em;
+	width: 100%;
+	height: 100%
+  
+}
+
+.leave-title{
+
+	padding-bottom: 20px;
+}
+
+
+.leave-title > h1{
+	justify-content: center;
+	font-size: 25px;
+}
+
+
+.leave-menu{
+
+	border: 1px solid #191919;
+	width: 270px;
+	height: 90px;
+	
+}
+
+.leave-menus{
+	width: 100%;
+	height: 30px;
+	border-bottom: 1px solid #191919;
+}
+
+.leave-menus:last-child{
+	border-bottom:none;
+}
+
+.munus-name{
+	display: inline-block;
+	padding-right: 20px;
+	width: 60px;
+	height: 100%;
+	border-right: 1px solid #191919;
+	
+}
+
+.menus-input{
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.leave-menus > input{
+	display: inline-block;
+
+}
+
+.leave-top{
+	padding-bottom: 30px;
+}
+
+.leave-body{
+	border: 1px solid #191919;
+	width: 550px;
+	height: 400px;
+
+}
+
+.leave-reson-menu{
+
+	
+   height: 340px;
+   width: 100%;
+   display: flex; 
+   align-items: center; 
+
+}
+.reason-input textarea {
+  width: 100%; /* 원하는 너비로 조정 */
+  height: 100%; /* 원하는 높이로 조정 */
+  resize: none; /* 사용자가 사이즈 조절 못하게 설정 */
+
+}
+
+.munus-reason{
+	
+	display: flex;
+   align-items: center; /* 세로 가운데 정렬 */
+   justify-content: center; /* 가로 가운데 정렬 */
+   height: 100%;
+   text-align: center;
+   padding-right: 20px;
+   border-right: 1px solid #191919;
+ 
+  
+}
+
+.reason-input{
+	padding-left: 10px;
+}
+
+
+ </style>
+
+ </head>
+
+<!--work flow 메인화면-->
+
+<body>
+	
+	<section class="leaveform">
+	<section class="leave-top">
+		
+	<header class="leave-header">
+		
+		<div class="leave-title">
+			<h1>품의서</h1>
+			<div class="btns-work">
+			<button onclick="window.open('http://localhost:8080/w-pageup','결제선지정','width=550,height=400,top=350, left=1100,location=no,status=no,scrollbars=no,toolbar=no');" >결제선 지정</button>
+			<button>결제 상신</button>
+		   </div>
+		 </div>
+		 <div class="leave-menu">
+			<div class="leave-menus"><div class="munus-name">기안자</div><div class="menus-input" ><input placeholder="기안자"/></div></div>
+			<div class="leave-menus"><div class="munus-name">학과명</div><div class="menus-input" ><input placeholder="학과"/></div></div>
+			<div class="leave-menus"><div class="munus-name">기안일</div><div class="menus-input" ><input placeholder="기안자"/></div></div>
+		
+		 </div>
+	 </header>
+	</section>
+	
+	<section class="leave-body">
+		<main class="leave-main">	
+			<div class="leave-body-menu">
+				
+				<div class="leave-menus"><div class="munus-name">합의 </div><div class="menus-input" ><input placeholder="일간일시"/> </div></div>
+				<div class="leave-menus"><div class="munus-name">제목  </div><div class="menus-input" ><input placeholder="일간일시"/> </div></div>
+				<div class="leave-reson-menu"><div class="reason-input" ><textarea placeholder="내용"  rows="20" cols="70"></textarea></div></div>
+			</div>
+		</main>	
+	</section>
+	
+	</section>
+</body>

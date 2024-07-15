@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
+
+<head>
+
+
+
+<link rel="stylesheet" href="/css/p-main/workflow/work-save.css"> 
+
+<script src=' /js/p-main/workflow/workflow.js'></script>
+
+
+
+</head>
+
+
+
+<!--<작성하기 눌렀을떄 넘어가는 양식함 화면>-->
+
+
+
+<main class="w-saves">
+
+
+
+	<section class="work-container">
+
+		<section class="w-s-menu">
+
+			<a href="/workflow">전자결재</a>
+
+			
+
+
+
+			<div class="w-update">
+
+				<span onclick="approvalOnoff('a')">▼ 결재 상신함 </span>
+
+				<div id="a">
+
+					<ul>
+
+						<li><a href="/work-save">결재 진행함</a></li>
+
+						<li>결재 완료함</li>
+
+						<li>임시 저장</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="w-recive">
+
+				<span onclick="approvalOnoff('b')">▼ 결재 수신함</span>
+
+				<div id="b">
+
+					<ul>
+
+						<li>결재 요청</li>
+
+						<li>결재 내역</li>
+
+						<li>검토 내역</li>
+
+						<li>대리 결재</li>
+
+					</ul>
+
+				</div>
+
+
+
+			</div>
+
+
+
+			<div class="w-file">
+
+				<span onclick="approvalOnoff('c')">▼ 개인 보관함</span>
+
+				<div id="c">
+
+					<ul>
+
+						<li>공유 폴더</li>
+
+						<li>개인 보관함</li>
+
+						<li>00과 보관함</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+
+
+			<div class="w-cont">
+
+				<span>▼ 결재 설정</span>
+
+			</div>
+
+		
+
+	</section>
+
+
+
+	
+
+	 <!--비동기로 진행하기 떄문에 연차신청서, 지출결의서등 따로 화면페이지 없이 띄워짐-->
+
+		<section class="w-s-main">
+
+			
+
+			
+
+			<div class="w-s-savelist">
+
+							<div class="w-s-savelist-top">
+
+								전자결재 진행 목록
+
+							</div>
+
+							<div class="w-s-savelist-l">
+
+								<ul>
+
+									<li class="w-s-savelist-title">
+
+										<div >번호</div>
+
+										<div >제목</div>
+
+										<div >기안자</div>
+
+										<div >승인자</div>
+
+										<div >기안일자</div>
+
+										<div >승인일자</div>
+
+									</li>
+
+									
+
+								</ul>
+
+							</div>
+
+							
+
+						</div>
+
+					
+
+			
+
+		
+
+	</section>
+
+
+
+</main>
+
+
+
+
+
+
+
+</html>

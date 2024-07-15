@@ -1,0 +1,425 @@
+.w-mains {
+
+  
+
+  max-width: 1700px; 
+
+  margin: 0 auto; 
+
+  
+
+}
+
+
+
+.work-container{
+
+	
+
+	display: grid;
+
+	grid-template-columns:1fr 2fr 2fr;
+
+	grid-auto-rows:850px;
+
+	padding: 10px;
+
+	grid-gap:20px;
+
+	grid-template-areas:
+
+	'w-menu w-main w-main'
+
+	
+
+}
+
+
+
+.w-menu, .w-main{
+
+	
+
+	
+
+	background-color: #ffffff;
+
+}
+
+
+
+
+
+.w-menu{
+
+	
+
+	display: flex;
+
+ 	flex-direction:column;
+
+	border-radius: 1em;
+
+	grid-area: w-menu;
+
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	position: relative;
+
+	
+
+}
+
+
+
+.w-main{
+
+	
+
+	display: flex;
+
+ 	flex-direction:column;
+
+	background-color: #ffffff;
+
+	border-radius: 1em;
+
+	grid-area: w-main;
+
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	
+
+}
+
+
+
+/* //////////////////////////////////화면 구성 끝///////////////////////// */
+
+
+
+/* //////////왼쪽 menu 바 구성///// */
+
+.w-menu{
+	
+	border-radius: 1em;
+}
+
+
+
+
+.w-menu > a {
+
+	
+	display: block;
+	font-size: 20px;
+	padding: 1em;
+	background-color: #944e63;
+	text-decoration: none;
+	color:#ffffff;
+	border-top-left-radius:15px;
+	border-top-right-radius: 15px;
+	
+	
+
+}
+
+
+
+.ww-btn{
+
+	
+
+	padding: 1em;
+
+	margin: 0 auto;
+
+	border-bottom: 1px solid #f3f3f3;
+
+}
+
+
+
+/* //버튼태그 공통 css에 있는걸로 바꿔주기// */
+
+.btn{
+
+	
+
+	width:200px;
+
+	padding: 1em;
+
+	color: #191919;
+
+	background-color: #ffffff;
+
+}
+
+.btn:hover{
+	
+	background-color: #f3f3f3;
+}
+
+
+
+
+
+
+.w-update, .w-recive, .w-file, .w-cont > span{
+
+
+
+	font-size: 18px;
+
+	cursor: pointer;
+
+}
+
+
+
+
+
+
+
+#a,#b,#c >ul >li{
+
+	font-size: 16px;
+
+	line-height: 2.5;
+
+	cursor: pointer;
+
+}
+
+
+
+
+
+
+
+#a > ul> li> a{
+
+	
+
+	text-decoration: none;
+
+	color: #191919;
+
+}
+
+
+
+
+
+.w-update, .w-recive, .w-file, .w-cont{
+
+	padding: 1em;
+
+	border-bottom: 1px solid #f3f3f3;
+
+}
+
+
+
+.w-update{
+
+	
+
+	border-bottom: 1px solid #f3f3f3;
+
+}
+
+
+
+
+
+
+
+#a , #b ,#c{  /* 자바스크립트 최초 숨기는 옵션 */
+
+	
+
+	display: none;
+
+	
+
+}
+
+
+
+
+
+
+
+
+
+/* ///////////////////////////////w-menu(왼쪽바)종료////////////////////// */
+
+
+
+.w-t-name {
+
+	width: 100%;
+
+	padding: 1em;
+
+	border-bottom:1px solid #f3f3f3;
+
+	font-weight: 500;
+	
+	font-size: 20px;
+	
+	
+	
+
+}
+
+
+
+.w-title{
+
+	
+
+	display: flex;
+
+	margin: 20px;
+
+	gap: 10px;
+
+	border-bottom:1px solid #f3f3f3;
+
+	
+
+}
+
+.w-boxs{
+
+	width: 35%;
+
+	text-align: center;
+
+	border: 1px solid #f3f3f3;
+
+	line-height: 2;
+
+	
+
+	
+
+}
+
+
+
+
+
+.w-boxs >div{
+
+	width: 100%;
+
+	height: 35px;
+
+	border-bottom:1px solid #f3f3f3;
+
+	background-color:#944e63 ;
+	
+	color: #ffffff;
+
+}
+
+
+
+
+
+
+
+
+
+/*////////////////////////////////메인하단////////////////*/
+
+
+
+
+
+.w-t-c-name{
+
+	
+
+	margin: 20px;
+
+	background-color:#944e63 ;
+
+	height: 35px;
+
+	border: 1px solid #f3f3f3;
+	
+	color: #ffffff;
+
+}
+
+
+
+.w-t-contents{
+
+	padding-top: 20px;
+
+}
+
+
+
+
+
+.w-t-c-name >span{
+
+	padding-left: 10px;
+
+	text-align: center;
+
+	line-height: 2;
+
+	
+
+}
+
+
+
+.w-s-contents-l > ul{
+
+	padding: 0;
+
+	list-style-type: none;
+
+}
+
+
+
+.w-s-contenstl-title{
+
+	display: flex;
+
+	justify-content: center;
+
+	padding-top: 10px;
+
+		
+
+}
+
+
+
+
+
+.w-s-contenstl-title > div{
+
+	  
+
+	flex: 1; /* 동일한 너비로 나누기 */
+
+	  text-align: center; /* 가운데 정렬 */
+
+	  border-bottom: 1px solid #ccc; /* 아래쪽 테두리 설정 */
+
+	  padding: 10px 0; /* 위아래 여백 설정 */
+
+}
+
