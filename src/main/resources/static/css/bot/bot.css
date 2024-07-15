@@ -7,7 +7,7 @@
     right: 20px;
     width: 60px;
     height: 60px;
-    background-color: #944E63;
+    background-color: var(--main-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -49,7 +49,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #944E63;
+    background-color: var(--main-color);
     color: white;
     padding: 10px;
     border-top-left-radius: 10px;
@@ -67,6 +67,8 @@
 }
 
 .chatbot-body {
+	display:flex;
+	flex-direction:column;
     padding: 10px;
     height: 370px;
     overflow-y: auto;
@@ -81,7 +83,7 @@
 .chatbot-footer button {
     width: 20%;
     height: 100%;
-    background-color: #944E63;
+    background-color: var(--main-color);
     color: white;
     border: none;
     padding: 5px 10px;
@@ -89,7 +91,7 @@
     cursor: pointer;
 }
 
-.question {
+.input {
     width: 100%;
     border: none;
     outline: none;
@@ -154,4 +156,40 @@
     font-size: 0.7em;
     color: #888;
     margin-top: 5px;
+}
+
+.message-wrapper.user {
+    text-align: left; /* 텍스트 오른쪽 정렬 */
+}
+
+.message-bubble.user {
+    background-color: #DCF8C6; /* 사용자 메시지의 배경색 */
+    margin-left: auto; /* 오른쪽 정렬 */
+    margin-right: 10px; /* 오른쪽 여백 */
+}
+
+/* 버튼 스타일링 */
+.buttons {
+    display: flex;
+    flex-wrap: wrap; /* 필요에 따라 버튼을 여러 줄로 감쌀 수 있도록 설정 */
+    justify-content: space-between; /* 가로 방향으로 공간을 균등하게 배치 */
+    margin-top: 10px;
+}
+
+.btn-category {
+    width: calc(50% - 10px); /* 버튼 너비를 50%로 설정하고 간격을 고려한 계산 */
+    height: 50px; /* 버튼 높이 설정 */
+    margin-bottom: 10px; /* 버튼 아래쪽 여백 설정 */
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비/높이 설정 */
+}
+
+.btn-category:hover {
+    background-color: #732D49; /* 마우스를 갖다 대었을 때 배경색 변경 */
 }
