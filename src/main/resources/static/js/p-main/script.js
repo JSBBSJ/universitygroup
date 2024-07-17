@@ -1,0 +1,54 @@
+
+document.addEventListener("DOMContentLoaded", function() {
+    // 현재 날짜 객체 생성
+    var currentDate = new Date();
+
+    // 월 이름 배열
+    var monthNames = [
+        "1월", "2월", "3월", "4월", "5월", "6월",
+        "7월", "8월", "9월", "10월", "11월", "12월"
+    ];
+
+    // 현재 월과 년도 가져오기
+    var currentMonth = currentDate.getMonth();
+    var currentYear = currentDate.getFullYear();
+
+    // 현재 달력의 시작 요일을 구하기 위해 현재 월의 첫째 날을 구함
+    var firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+    var startingDay = firstDayOfMonth.getDay(); // 0 (일요일) ~ 6 (토요일)
+
+    // 월과 연도를 표시
+    document.getElementById("currentMonth").textContent = monthNames[currentMonth] + " " + currentYear;
+
+    var daysContainer = document.querySelector(".days");
+
+    // 이전 월의 날짜가 표시될 부분을 비우기 위해 초기화
+    daysContainer.innerHTML = "";
+
+    // 이전 월의 빈 칸 생성
+    for (var i = 0; i < startingDay; i++) {
+        var emptyDay = document.createElement("div");
+        emptyDay.classList.add("day", "empty");
+        daysContainer.appendChild(emptyDay);
+    }
+
+    // 현재 월의 마지막 날짜 가져오기
+    var lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
+    var daysInMonth = lastDayOfMonth.getDate();
+
+    // 현재 월의 날짜 생성
+    for (var date = 1; date <= daysInMonth; date++) {
+        var day = document.createElement("div");
+        day.textContent = date;
+        day.classList.add("day");
+        daysContainer.appendChild(day);
+    }
+
+    // 남은 빈 칸을 채우기 위해 빈 div 추가
+    var remainingDays = 7 - (daysContainer.children.length % 7);
+    for (var i = 0; i < remainingDays; i++) {
+        var emptyDay = document.createElement("div");
+        emptyDay.classList.add("day", "empty");
+        daysContainer.appendChild(emptyDay);
+    }
+});

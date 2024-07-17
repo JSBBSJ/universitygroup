@@ -1,33 +1,166 @@
+body {
+	margin: 0;
+}
 
 .container {
 	display: grid;
-	height:100vh;
-	grid-template-areas: 
-		'profile mypage' 
-		'calendar mypage';
-	grid-template-columns:1fr 2fr;
-	grid-gap: 20px; /* 각 그리드 아이템 사이의 간격 */
+	height: 100vh; /* 화면의 높이를 100%로 설정 */
+	box-sizing: border-box; /* 패딩이나 보더의 크기를 포함하도록 설정 */
+	grid-template-areas: 'profile mypage' 'weather mypage';
+	grid-template-columns: minmax(300px, 400px) 1fr;
+	/* 왼쪽 영역의 최소 300px, 최대 400px */
+	grid-template-rows: auto auto;
+	grid-gap: 1rem; /* 각 그리드 아이템 사이의 간격 */
+	background-color: #f3f3f3;
 }
-.profile, .calendar {
-	width: 400px;
+
+.profile, .weather {
+	width: auto; /* 부모의 너비를 따르도록 설정 */
 }
-.profile{
+
+.profile {
 	grid-area: profile;
-}
-.calendar {
-	grid-area: calendar;
 	background-color: #ffffff;
 	border-radius: 1em;
+	border: 2px solid #ccc; /* border 추가 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 20px;
+	box-sizing: border-box; /* 패딩이나 보더의 크기를 포함하도록 설정 */
+}
+
+.weather {
+	grid-area: weather;
+	background-color: var(--fg-body);
+	border-radius: 1em;
+	border: 2px solid #ccc; /* border 추가 */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	box-sizing: border-box; /* 패딩이나 보더의 크기를 포함하도록 설정 */
 }
 
 .mypage {
 	grid-area: mypage;
-	background-color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	background-color: var(--fg-body);
 	border-radius: 1em;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	border: 2px solid #ccc; /* border 추가 */
 	padding: 20px;
+	box-sizing: border-box; /* 패딩이나 보더의 크기를 포함하도록 설정 */
 }
 
+#icon01 {
+	background-image: url("/images/s-main/학점.png");
+}
+
+#icon02 {
+	background-image: url("/images/s-main/상담 11.png");
+}
+
+#icon03 {
+	background-image: url("/images/s-main/마일리지.png");
+}
+
+#icon04 {
+	background-image: url("/images/s-main/출결.png");
+}
+
+.user-info {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: space-between;
+}
+
+.user-photo img {
+	width: 200px;
+	height: 200px;
+	border-radius: 15%;
+	margin-right: 20px;
+}
+
+.user-details p {
+	margin: 0;
+	padding: 5px 0;
+}
+
+.user-details ul {
+	list-style-type: none;
+	padding: 0;
+	margin-top: 5rem;
+}
+
+.user-details ul li {
+	display: block;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 10px;
+	background-color: #f9f9f9;
+	transition: box-shadow 0.3s ease;
+}
+
+/* li 요소에 마우스를 올렸을 때 */
+.user-details ul li:hover {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 마우스 오버 시 그림자 효과 */
+}
+
+.edit-button {
+	display: inline-block;
+	padding: 10px 20px;
+	margin-top: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #944E63;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+	background-color: #9c4d65;
+}
+
+.user-photo input {
+	margin-top: 10px;
+}
+
+.user-details ul li input[type="password"] {
+	width: calc(100% - 1rem);
+	padding: 0.5rem;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.save-button, .cancel-button {
+	display: inline-block;
+	padding: 10px 20px;
+	margin-top: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #000000;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.save-button:hover {
+	background-color: #030303;
+}
+
+.cancel-button {
+	color: #000000;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-left: 10px;
+	background-color: var(--fg-body);
+}
+
+.cancel-button:hover {
+	background-color: var(--bg-body);
+}

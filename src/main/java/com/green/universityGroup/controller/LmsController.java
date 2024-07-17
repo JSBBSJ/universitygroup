@@ -14,8 +14,14 @@ public class LmsController {
 	}
 	
 	@GetMapping("/mypage")
-	public String Info() {
+	public String professorMypage() {
 		return "views/commons/mypage";
+	}
+	
+	
+	@GetMapping("/course-detail")
+	public String courseList() {
+		return "views/lms/course-detail";
 	}
 	
 }
