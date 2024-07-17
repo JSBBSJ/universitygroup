@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
-
 <head>
-    <link rel="stylesheet" href="/css/calendar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script src="/js/calendar/calendar.js" defer></script>
+	<link rel="stylesheet" href="/css/p-main/calendar.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+	<script src="/js/s-main/calendar.js" defer></script>
 </head>
-
 <body>
-    <main>
-        <div id="sidebar">
-            <ul class="sidebar-menu">
-                <li><a href="/my-schedule" title="나의 일정 페이지로 이동">나의 일정</a></li>
-                <li><a href="/academic-schedule" title="학사 일정 페이지로 이동">학사 일정</a></li>
-                <li><a href="/all-schedules" title="전체 일정 페이지로 이동">전체 일정</a></li>
-            </ul>
-        </div>
-        <div id="calendar-container">
-            <div class="calendar-main">
-                <div id="calendar"></div>
-            </div>
-        </div>
-        <div id="event-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <input type="text" id="event-title" placeholder="일정 제목">
-                <input type="date" id="event-start">
-                <input type="date" id="event-end">
-                <textarea id="event-description" placeholder="일정 설명"></textarea>
-                <button id="save-event">저장</button>
-                <button id="delete-event">삭제</button>
-            </div>
-        </div>
-    </main>
+	<main>
+		<div id="sidebar">
+			<ul class="sidebar-menu">
+				<li><a href="/my-schedule" title="나의 일정 페이지로 이동">나의 일정</a></li>
+				<li><a href="/academic-schedule" title="학사 일정 페이지로 이동">학사 일정</a></li>
+				<li><a href="/all-schedules" title="전체 일정 페이지로 이동">전체 일정</a></li>
+			</ul>
+		</div>
+		<div id="calendar-container">
+			<div class="calendar-main">
+				<div id="calendar"></div>
+			</div>
+		</div>
+		<div id="event-modal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<input type="text" id="event-title" placeholder="일정 제목">
+				<input type="date" id="event-start">
+				<input type="date" id="event-end">
+				<textarea id="event-description" placeholder="일정 설명"></textarea>
+				<button id="save-event">저장</button>
+				<button id="delete-event">삭제</button>
+			</div>
+		</div>
+</main>
 </body>
+
+
 
 </html>

@@ -20,12 +20,12 @@ main {
 
 
 
-.calendar {
+/* .calendar {
 	background-color: #ffffff;
 	border-radius: 1em;
 	grid-area: calendar;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .board1 {
 	display: flex;
@@ -70,41 +70,70 @@ main {
 	background-image: url("/images/common/professor/pro4.png");
 }
 
+/* ============캘린더=============== */
+
+.cal_top{
+	display:flex;
+	justify-content: space-between;
+	height:30px;
+}
+
+.calendar {
+    max-width: 1000px;
+    margin: 0 auto;
+    height:250px;
+    background-color: #ffffff;
+	border-radius: 1em;
+	grid-area: calendar;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .month {
-    font-size: 1.2rem;
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 20px;
-    margin-left: 10px; 
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .days {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7개의 열을 가진 그리드 생성 */
-    gap: 5px;
+    grid-template-columns: repeat(7, 1fr);
+
+}
+
+
+.daaa{
+		display:flex;
+		margin-left:13px;
+		justify-content: space-between;
+		
 }
 
 .day {
-    
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    line-height: 25px;
-    margin: auto;
-    cursor: pointer; /* 클릭 가능하도록 커서 설정 */
+	display:flex;
+	flex-direction: column;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
 }
 
-.day:nth-child(n+8) {
-    color: #999; /* 주말은 회색으로 표시 */
+.day1{
+	padding: 7px;
+	margin-right: 10px;
 }
 
-/* 오늘 날짜 스타일링 */
 .day.today {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #f0f0f0; 
     font-weight: bold;
+    color: #333; 
+}
+
+.day.empty {
+    visibility: hidden;
 }
 
 
+/* ===================게시판========================= */
 .board_name {
  	flex: 1;
 	justify-content: center;

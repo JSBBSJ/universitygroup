@@ -30,13 +30,13 @@
     background-image: url('/images/weather/cloudy.jpg');
 }
 .rain::before {
-    background-image: url('/images/weather/clear-day.jpg');
+    background-image: url('/images/weather/cloudy.jpg');
 }
 .snow::before {
     background-image: url('/images/weather/clear-day.jpg');
 }
 .thunderstorm::before {
-    background-image: url('/images/weather/clear-day.jpg');
+    background-image: url('/images/weather/cloudy.jpg');
 }
 .weather .weather-info {
     position: relative;

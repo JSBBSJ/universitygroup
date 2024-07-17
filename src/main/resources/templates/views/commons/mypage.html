@@ -1,25 +1,116 @@
 <!DOCTYPE html>
 
-<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
--->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
-	<link rel="stylesheet" href="/css/mypage.css">
+	<link rel="stylesheet" href="css/commons/common.css">
+	<link rel="stylesheet" href="css/ps-common/ps-common.css">
+	<link rel="stylesheet" href="css/commons/mypage.css">
+	<link rel="stylesheet" href="css/weather/weather.css">
+	<link rel="stylesheet" href="css/bot/bot.css" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/common/mypage.js"></script>
+	<script src="/js/bot/bot.js"></script>
+	<script src="js/weather/weather.js"></script>
 </head>
 
-<main>
-	<section class="container">
-		<div class="profile">
-			프로필입니다
-		</div>
-		<div class="calendar">
-			캘린더입니다.
-		</div>
-		<div class="mypage">
-			마이페이지 입니다.
-		</div>
-	</section>
+<body>
+	<main>
+		<section class="container">
+			<div class="profile">
+				<div class="pro-back">
+					<img src="/images/common/professor/profile.jpg" id="img">
+				</div>
 
-</main>
+				<div class="name">
+					<p>김라라 (2024001795)</p>
+					<span>컴퓨터공학과</span><br> <span>접속IP:</span>
+				</div>
 
-</html>
+				<div class="btn-box">
+					<div class="box1">
+						<a href="#">마이페이지</a>
+					</div>
+				</div>
+
+				<div class="info">
+					<div class="icons">
+						<div class="co">
+							<span class="icon" id="icon01"></span> <br> <span id="Cnt1">준비중</span>
+							상담
+						</div>
+						<div class="co">
+							<span class="icon" id="icon02"></span> <br> <span id="Cnt2">-</span>
+							문서함
+						</div>
+						<div class="co">
+							<span class="icon" id="icon03"></span> <br> <span id="Cnt3">미등록</span>
+							학점관리
+						</div>
+						<div class="co">
+							<span class="icon" id="icon04"></span> <br> <span id="Cnt4">-</span>
+							출결관리
+						</div>
+					</div>
+				</div>
+			</div>
+			<section class="weather">
+				<div class="weather-info">
+					<div id="weather-icon"></div>
+					<div class="weather-text">
+						<h2 id="city-name"></h2>
+						<p id="temperature"></p>
+						<div class="weather-detail">
+							<p id="humidity">현재 습도:</p>
+							<p id="weather">날씨:</p>
+							<p id="wind-speed">풍속:</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="mypage" id="viewSection">
+				<div class="user-info">
+					<div class="user-photo">
+						<img src="/images/common/professor/profile.jpg" alt="사용자 사진">
+					</div>
+					<div class="user-details">
+						<ul>
+							<li><strong>아이디:</strong> <span>user123</span></li>
+							<li><strong>이름:</strong> <span>홍길동</span></li>
+							<li><strong>비밀번호:</strong> <span>********</span></li>
+							<li><strong>학번:</strong> <span>20241234</span></li>
+						</ul>
+					</div>
+					<button class="edit-button" onclick="toggleEditMode()">정보
+						수정</button>
+				</div>
+			</div>
+
+			<div id="editSection" class="mypage" style="display: none;">
+				<!-- <form action="/updateProfile" method="post"> -->
+				<input type="hidden" name="username" value="user123" /> <input type="hidden" name="studentId"
+					value="20241234" />
+
+				<div class="user-info">
+					<div class="user-photo">
+						<input type="file" name="newPhoto" id="newPhoto" accept="image/*">
+					</div>
+					<div class="user-details">
+						<ul>
+							<li><strong>아이디:</strong> <span>user123</span></li>
+							<li><strong>이름:</strong> <span>홍길동</span></li>
+							<li><strong>새 비밀번호:</strong> <input type="password" name="newPassword" id="newPassword"
+									placeholder="새 비밀번호"></li>
+							<li><strong>학번:</strong> <span>20241234</span></li>
+						</ul>
+					</div>
+				</div>
+				<button class="save-button" type="submit">저장</button>
+				<button type="button" class="cancel-button" onclick="toggleEditMode()">취소</button>
+				</form>
+			</div>
+		</section>
+		<article th:insert="~{views/bot/bot.html}"></article>
+	</main>
+
+</body>

@@ -2,15 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<link rel="stylesheet" href="/css/commons/common.css" />
-	<link rel="stylesheet" href="/css/lms/list.css" />
-	<link rel="stylesheet" href="/css/bot/bot.css" />
-	<link rel="stylesheet" href="/css/weather/weather.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	<script src="/js/bot/bot.js"></script>
-	<script src="/js/weather/weather.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/commons/common.css" />
+<link rel="stylesheet" href="/css/lms/list.css" />
+<link rel="stylesheet" href="/css/bot/bot.css" />
+<link rel="stylesheet" href="/css/weather/weather.css" />
+<script src="/js/weather/weather.js"></script>
+<script src="/js/bot/bot.js"></script>
 </head>
 
 <body>
@@ -34,7 +33,7 @@
 				</div>
 				<div class="menu-box">
 					<div class="menu-item">안읽은 메일</div>
-					<div class="menu-item"><a href="/mypage">내 정보</a></div>
+					<div class="menu-item">내 정보</div>
 					<!-- 추가 항목은 여기에 추가 -->
 				</div>
 			</div>
@@ -56,46 +55,39 @@
 		</section>
 
 		<section class="class">
-			<span>이번학기 강좌 목록</span>
+			<span>자바 프로그래밍 과제</span>
 			<ul>
 				<li>
-					<section id="class-profile">
-						<div id="professor-profile">
-							<img src="/images/common/professor/profile.jpg">
+					<div>
+						<div class="week-number">1주차</div>
+						<div class="assignment-link">
+							<a href="week1_assignment.pdf">변수 및 데이터 유형</a>
 						</div>
-						<div id="name">
-							이진웅 교수
-						</div>
-					</section>
-
-					<div id="course-name">
-						Java Programming
 					</div>
 				</li>
 				<li>
-					<section id="class-profile">
-						<div id="class-info">
-							<div id="course-name">Python</div>
-						</div>
-					</section>
+					<div class="week-number">2주차</div>
+					<div class="assignment-link">
+						<a href="week2_assignment.pdf">제어문</a>
+					</div>
 				</li>
-				<li>
-					<section id="class-profile">
-						<div id="class-info">
-							<div id="course-name">C언어</div>
-						</div>
-					</section>
-				</li>
-				<li>강좌 4</li>
-				<li>강좌 5</li>
-				<li>강좌 6</li>
 			</ul>
 		</section>
+	<!--	
+      <section class="class">
+            <span th:text="${courseName}">Java Programming</span>
+            <ul>
+                <li th:each="weekNumber : ${#numbers.sequence(1, 15)}">
+                    <a th:href="@{/viewFile/{courseName}/{weekNumber}(courseName=${courseName}, weekNumber=${weekNumber})}" th:text="'Week ' + ${weekNumber}"></a>
+                </li>
+            </ul>
+        </section>-->
 	</main>
 	<footer>
 		<div class="footer-container">
 			<div class="footer-section logo">
 				<img src="/images/common/main-logo.png" alt="대학교 로고">
+				<p>우리 대학교는 최고의 교육과 연구를 통해 미래를 선도하는 인재를 양성합니다.</p>
 			</div>
 			<div class="footer-section links">
 				<h3>유용한 링크</h3>
@@ -112,15 +104,9 @@
 				<p>전화: (02) 1234-5678</p>
 				<p>이메일: info@university.ac.kr</p>
 			</div>
-			<div class="footer-section social">
-				<h3>소셜 미디어</h3>
-				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a href="#"><img src="twitter.png" alt="트위터"></a> <a
-					href="#"><img src="instagram.png" alt="인스타그램"></a>
-			</div>
 		</div>
 	</footer>
 	<article th:insert="~{views/bot/bot.html}"></article>
-
 </body>
 
 </html>

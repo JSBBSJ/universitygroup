@@ -1,121 +1,294 @@
 .w-mains {
+
   
   max-width: 1700px; 
+
   margin: 0 auto; 
-  
+ 
 }
 
-.w-container{
-	
+
+
+.work-container{
+
+
 	display: grid;
+
 	grid-template-columns:1fr 2fr 2fr;
-	grid-auto-rows:900px;
+
+	grid-auto-rows:850px;
+
 	padding: 10px;
+
 	grid-gap:20px;
+
 	grid-template-areas:
-	'w-menu w-main w-main'
+
+	'w-w-menu w-w-main w-w-main'
 	
+
 }
 
-.w-menu, .w-main{
+
+
+.w-w-menu, .w-w-main{
+
 	
+
 	
+
 	background-color: #ffffff;
+
 }
 
 
-.w-menu{
+
+
+
+.w-w-menu{
+
 	
+
 	display: flex;
+
  	flex-direction:column;
+
 	border-radius: 1em;
-	grid-area: w-menu;
+
+	grid-area: w-w-menu;
+
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 	position: relative;
+
 	
+
 }
 
-.w-main{
+
+
+.w-w-main{
+
 	
+
 	display: flex;
+
  	flex-direction:column;
+
 	background-color: #ffffff;
+
 	border-radius: 1em;
-	grid-area: w-main;
+
+	grid-area: w-w-main;
+
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 	
+
 }
+
+
 
 /* //////////////////////////////////화면 구성 끝///////////////////////// */
+
+
 
 /* //////////왼쪽 menu 바 구성///// */
 
 
-.w-menu > span {
+
+
+
+.w-w-menu >a {
+
 	
+
 	font-size: 20px;
+
 	padding: 1em;
-	background-color: #e9e9e9;
+
+	background-color: #944e63;
+
+	text-decoration: none;
+
+	color: #ffffff;
 	
+	border-top-left-radius:15px;
+	border-top-right-radius: 15px;
+
+	
+
 }
 
-.ww-btn{
-	
-	padding: 1em;
-	margin: 0 auto;
-	border-bottom: 1px solid #f3f3f3;
-}
 
-/* //버튼태그 공통 css에 있는걸로 바꿔주기// */
-.btn{
-	
-	width:200px;
-	padding: 1em;
-	color: #191919;
-	background-color: #ffffff;
-}
 
 
 
 .w-update, .w-recive, .w-file, .w-cont > span{
 
+
+
 	font-size: 18px;
+
 	cursor: pointer;
+
 }
 
+
+
 #a,#b,#c >ul>li{
+
 	font-size: 16px;
-	line-height:2;
+
+	line-height: 2.5;
+
 	cursor: pointer;
+
 }
+
+
+
+#a > ul> li> a{
+
+	
+
+	text-decoration: none;
+
+	color: #191919;
+
+}
+
+
+
 
 
 .w-update, .w-recive, .w-file, .w-cont{
+
 	padding: 1em;
+
 	border-bottom: 1px solid #f3f3f3;
+
 }
 
+
+
 .w-update{
+
 	
+
 	border-bottom: 1px solid #f3f3f3;
+
 }
+
+
+
+
 
 
 
 #a , #b ,#c{  /* 자바스크립트 최초 숨기는 옵션 */
+
 	
+
 	display: none;
+
 	
+
 }
+
+
+
+
+
 
 
 
 
 /* ///////////////////////////////w-menu(왼쪽바)종료////////////////////// */
 
-.w-t-name{
-	width: 100%;
+
+
+
+
+/*/////오른쪽 메인화면///////*/
+
+
+
+.w-w-main-top{
+
 	padding: 1em;
+
+	border-bottom:1px solid #f3f3f3;
+
+	font-size: 20px;
+
+	padding: 1em;
+
+	background-color: #944e63;
+	border-top-left-radius:15px;
+	border-top-right-radius: 15px;
 	
+	
+	
+
+}
+
+
+
+.w-w-main-top > a {
+
+	
+
+	text-decoration: none;
+
+	color: #ffffff;
+}
+
+
+
+
+
+.w-w-list{
+
+	
+
+	display: absolute;
+
+	top: 30%;
+
+	border: 1px solid #f3f3f3;
+
+	padding: 2em;
+
+	
+
+}
+
+
+
+.w-w-lists > li{
+
+	
+
+	padding: 10px;
+
+	cursor: pointer;
+
+	color: #191919;
+
+}
+
+
+
+
+
+.favorite-wlist{
+
+	padding: 1em;
+
+	border-bottom:1px solid #f3f3f3;
+
+	font-weight: 600;
+
 }
 

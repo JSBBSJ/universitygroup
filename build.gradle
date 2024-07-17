@@ -21,24 +21,47 @@ configurations {
 
 repositories {
 	mavenCentral()
+	//코모란 jitpack(Github의 소스코드를 직접 자바라이브러리로 변환해주는 서비스)
+	maven { url 'https://jitpack.io' }
+
+}
+ext {
+	set('springCloudVersion', "2023.0.2")
 }
 
 dependencies {
+	//java로 작성된 SSH2 구현 라이브러리
+	implementation 'com.github.mwiede:jsch:0.2.18' 
 
-	//webjars --- (나중에 소켓등 넣을거임)
+	//코모란 의존성 추가
+	implementation 'com.github.shin285:KOMORAN:3.3.9'
+	
 	implementation 'org.webjars:webjars-locator-core:0.59'
 	implementation 'org.webjars:jquery:3.7.1'
-
+	implementation 'org.webjars:sockjs-client:1.5.1'
+	implementation 'org.webjars:stomp-websocket:2.3.4'
+	//AMQP 지원을 쉽게하고
+	//주로 RabbitMQ와 같은 메시지 브로커와 통합할때 사용
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }

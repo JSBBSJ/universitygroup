@@ -17,14 +17,36 @@ public class ProfessorController {
 	
 	@GetMapping("/board")
 	public String board() {
-		return "/views/professor/board";
+		return "/views/professor/board/board";
 	}
 	
 	
-	@GetMapping("/professor/new")
+	@GetMapping("/professor/view")
+	public String view() {
+		return "/views/professor/board/view";
+	}
+	
+	@GetMapping("/professor/write")
 	public String write() {
-		return "/views/professor/wirte";
+		return "/views/professor/board/write";
 	}
+	
+	@GetMapping("/professor/edit")
+	public String edit() {
+		return "/views/professor/board/edit";
+	}
+	
+	
+	@GetMapping("/mail")
+	public String mail() {
+		return "/views/professor/mail/mail";
+	}
+	
+	@GetMapping("/professor/mail-view")
+	public String mail_view() {
+		return "/views/professor/mail/mail-view";
+	}
+	
 	
 	@GetMapping("/professor/{no}")
 	public String detail(@PathVariable("no") long no) {
