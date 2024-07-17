@@ -71,6 +71,13 @@ main {
 }
 
 /* ============캘린더=============== */
+
+.cal_top{
+	display:flex;
+	justify-content: space-between;
+	height:30px;
+}
+
 .calendar {
     max-width: 1000px;
     margin: 0 auto;
@@ -91,30 +98,42 @@ main {
 .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-	
 
 }
 
 
 .daaa{
 		display:flex;
+		margin-left:13px;
+		justify-content: space-between;
+		
 }
 
 .day {
 	display:flex;
 	flex-direction: column;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     border-radius: 4px;
 }
 
+.day1{
+	padding: 7px;
+	margin-right: 10px;
+}
 
+.day.today {
+    background-color: #f0f0f0; 
+    font-weight: bold;
+    color: #333; 
+}
 
 .day.empty {
     visibility: hidden;
 }
 
 
+/* ===================게시판========================= */
 .board_name {
  	flex: 1;
 	justify-content: center;
