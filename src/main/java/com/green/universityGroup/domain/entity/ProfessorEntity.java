@@ -34,7 +34,7 @@ public class ProfessorEntity {
 	private long professor_number;
 	
 	@OneToOne  //일대일
-  @JoinColumn(name = "user_no", referencedColumnName = "user_no")
+    @JoinColumn(name = "user_no", referencedColumnName = "user_no")
 	private UserEntity user;
 	
 	@ManyToOne //다대일
