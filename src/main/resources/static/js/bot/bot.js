@@ -1,20 +1,20 @@
 $(document).ready(function() {
-    var client;
-    var key;
-    let flag = false;
+    var client; // WebSocket 클라이언트
+    var key; // 고유 키
+    let flag = false; // 챗봇 창의 열림 상태 플래그
 
-    // 브라우저가 WebSocket을 지원하는지 확인하는 함수
+    // WebSocket 지원 여부 확인
     function isWebSocketSupported() {
         return 'WebSocket' in window;
     }
 
-    // WebSocket 지원 여부를 출력
     if (isWebSocketSupported()) {
         console.log("이 브라우저는 WebSocket을 지원합니다.");
     } else {
         console.log("이 브라우저는 WebSocket을 지원하지 않습니다.");
     }
 
+    // 현재 시간을 형식화하는 함수
     function formatTime() {
         var now = new Date();
         var ampm = (now.getHours() > 11) ? "오후" : "오전";
@@ -23,6 +23,7 @@ $(document).ready(function() {
         return `${ampm} ${hour}:${minute}`;
     }
 
+    // 현재 날짜를 형식화하는 함수
     function formatDate(now) {
         const year = now.getFullYear();
         const month = now.getMonth() + 1;
@@ -32,21 +33,23 @@ $(document).ready(function() {
         return `${year}년 ${month}월 ${date}일 ${days[dayOfWeek]}`;
     }
 
+    // 메시지를 화면에 표시하는 함수
     function showMessage(tag, prepend = false) {
         if (prepend) {
-            $(".chatbot-body").prepend(tag);
+            $(".chatbot-body").prepend(tag); // 맨 앞에 추가
         } else {
-            $(".chatbot-body").append(tag);
+            $(".chatbot-body").append(tag); // 맨 뒤에 추가
         }
         $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight); // 스크롤을 맨 아래로 이동
     }
 
-    //웹소켓 연결후 인삿말 출력
-    //여기의 subscribe와 botcontroller 의 convertAndSend와 위치가 일치해야함
+    // WebSocket에 연결하고 초기 인삿말 전송
     function connect() {
         client = Stomp.over(new SockJS('/rara-bot'));
         client.connect({}, (frame) => {
-            key = new Date().getTime();
+            key = new Date().getTime(); // 고유 키 생성
+
+            // 서버로부터 메시지 수신
             client.subscribe(`/topic/bot/${key}`, (answer) => {
                 var msgObj = JSON.parse(answer.body);
                 var now = new Date();
@@ -60,61 +63,57 @@ $(document).ready(function() {
                                 <img src="/images/common/chatbot-icon.png" alt="챗봇 아이콘">
                             </div>
                             <div class="message-content">
-                                <p>${msgObj.content}</p>
+                                <p>${msgObj.answer}</p> <!-- 서버 응답의 answer 필드 사용 -->
                                 <span class="message-time">${time}</span>
                             </div>
                         </div>
                     </div>
                 `;
-                showMessage(tag);
+                showMessage(tag); // 메시지 표시
             });
-            var data = {
-                key: key,
-                content: "hello",
-                name: "guest"
-            };
-            client.send("/bot/hello", {}, JSON.stringify(data));
+
+            // 초기 인삿말 전송
+            client.send("/bot/hello", {}, JSON.stringify({ key: key })); // key만 전송
         });
     }
 
-    //소켓 종료
+    // WebSocket 연결 종료
     function disconnect() {
         client.disconnect(() => {
-            console.log("Disconnected...");
+            console.log("Disconnected..."); // 종료 메시지 출력
         });
     }
 
-    //종료(x) 클릭시 이벤트
+    // 종료 버튼 클릭 이벤트
     function btnCloseClicked() {
-        $("#chatbotWindow").hide();
-        //대화창 리셋
-        $("#chatbot-body").html("");
-        disconnect();
-        flag = false;
+        $("#chatbotWindow").hide(); // 챗봇 창 숨김
+        $("#chatbot-body").html(""); // 대화 내용 리셋
+        disconnect(); // WebSocket 종료
+        flag = false; // 상태 플래그 초기화
     }
 
+    // 전송 버튼 클릭 이벤트
     $(".btn-send").click(function() {
-        var inputVal = $("#input").val();
+        var inputVal = $("#input").val(); // 입력값 가져오기
         if (inputVal.trim() !== "") {
-            displayUserMessage(inputVal);
+            displayUserMessage(inputVal); // 사용자 메시지 표시
+            sendMessageToServer(inputVal); // 서버로 메시지 전송
             $("#input").val(""); // 입력값 초기화
         }
     });
 
-    //챗봇 시작 버튼 이벤트
+    // 챗봇 시작 버튼 클릭 이벤트
     function btnBotClicked() {
-        if (flag) return;
+        if (flag) return; // 이미 열려있으면 반환
 
-        //1. 소켓 접속
-        $("#chatbotWindow").show();
-        connect();
-        flag = true;
+        $("#chatbotWindow").show(); // 챗봇 창 표시
+        connect(); // WebSocket 연결
+        flag = true; // 상태 플래그 설정
     }
 
     // 사용자 메시지를 표시하는 함수
     function displayUserMessage(message) {
         var time = formatTime();
-
         var userMessage = `
             <div class="message-wrapper user">
                 <div class="message-bubble user">
@@ -125,10 +124,18 @@ $(document).ready(function() {
                 </div>
             </div>
         `;
-
-        // 사용자 메시지를 오른쪽 정렬로 챗봇 창의 가장 아래에 추가
-        $(".chatbot-body").append(userMessage);
+        $(".chatbot-body").append(userMessage); // 사용자 메시지 추가
         $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight); // 스크롤을 맨 아래로 이동
+    }
+
+    // 서버로 메시지를 전송하는 함수
+    function sendMessageToServer(message) {
+        var data = {
+            key: key,
+            content: message, // 사용자 입력 메시지
+            name: "guest" // 필요한 경우 사용자 이름 추가
+        };
+        client.send("/bot/question", {}, JSON.stringify(data)); // 질문 전송
     }
 
     // 전역으로 함수 노출

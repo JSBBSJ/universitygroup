@@ -2,16 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/js/bot/bot.js"></script>
-	<link rel="stylesheet" href="/css/commons/common.css" />
-	<link rel="stylesheet" href="/css/lms/list.css" />
-	<link rel="stylesheet" href="/css/bot/bot.css" />
-	<link rel="stylesheet" href="/css/weather/weather.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	
-	<script src="/js/weather/weather.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+<script src="/js/bot/bot.js"></script>
+<link rel="stylesheet" href="/css/commons/common.css" />
+<link rel="stylesheet" href="/css/lms/list.css" />
+<link rel="stylesheet" href="/css/bot/bot.css" />
+<link rel="stylesheet" href="/css/weather/weather.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script src="/js/weather/weather.js"></script>
 </head>
 
 <body>
@@ -35,7 +39,9 @@
 				</div>
 				<div class="menu-box">
 					<div class="menu-item">안읽은 메일</div>
-					<div class="menu-item"><a href="/mypage">내 정보</a></div>
+					<div class="menu-item">
+						<a href="/mypage">내 정보</a>
+					</div>
 					<!-- 추가 항목은 여기에 추가 -->
 				</div>
 			</div>
@@ -64,14 +70,10 @@
 						<div id="professor-profile">
 							<img src="/images/common/professor/profile.jpg">
 						</div>
-						<div id="name">
-							이진웅 교수
-						</div>
+						<div id="name">이진웅 교수</div>
 					</section>
 
-					<div id="course-name">
-						Java Programming
-					</div>
+					<div id="course-name">Java Programming</div>
 				</li>
 				<li>
 					<section id="class-profile">
@@ -115,8 +117,9 @@
 			</div>
 			<div class="footer-section social">
 				<h3>소셜 미디어</h3>
-				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a href="#"><img src="twitter.png" alt="트위터"></a> <a
-					href="#"><img src="instagram.png" alt="인스타그램"></a>
+				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a
+					href="#"><img src="twitter.png" alt="트위터"></a> <a href="#"><img
+					src="instagram.png" alt="인스타그램"></a>
 			</div>
 		</div>
 	</footer>
