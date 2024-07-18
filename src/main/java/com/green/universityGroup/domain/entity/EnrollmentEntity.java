@@ -1,7 +1,9 @@
 package com.green.universityGroup.domain.entity;
 
+import java.time.LocalDateTime;
+
 import org.hibernate.annotations.DynamicUpdate;
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,28 +20,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @DynamicUpdate
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Builder
 @Getter
-@Table(name="course")
+@Table(name = "enrollment")
 @Entity
-public class CourseEntity {
+public class EnrollmentEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long course_no;
+	private long enrollment_no;
 	
-	@Column(nullable = false, unique = true)
-	private String course_name;
-	
-	@Column (nullable = false)
-	private long credit;
-	
-	@JoinColumn(name = "professor_no" ,referencedColumnName = "professor_no")
 	@ManyToOne
-	private ProfessorEntity professor;
+	@JoinColumn(name = "student_no", referencedColumnName = "student_no")
+	private StudentEntity student;
 	
-	@OneToMany(mappedBy = "course_no", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<EnrollmentEntity> enrollment;
+	@ManyToOne
+	@JoinColumn(name = "course_no", referencedColumnName = "course_no")
+	private CourseEntity course;
 }

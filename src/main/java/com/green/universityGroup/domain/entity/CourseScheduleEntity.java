@@ -4,7 +4,6 @@ package com.green.universityGroup.domain.entity;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.DynamicUpdate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
