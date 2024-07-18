@@ -1,15 +1,16 @@
 <div class="chatbot-icon" onclick="btnBotClicked()">
-    <img src="/images/common/chatbot-icon.png" alt="Chatbot">
+	<img src="/images/common/chatbot-icon.png" alt="챗봇">
 </div>
-<div class="chatbot-window" id="chatbotWindow" style="display:none;"> <!-- 초기 상태: 숨김 -->
-    <div class="chatbot-header">
-        챗봇 나리 <span class="close-btn" onclick="btnCloseClicked()">✕</span>
-    </div>
-    <div class="chatbot-body" id="chatbot-body">
-        <!-- 대화 내용이 여기에 추가됩니다 -->
-    </div>
-    <div class="chatbot-footer">
-        <input type="text" class="input" id="input" placeholder="질문을 입력하세요">
-        <button class="btn-send">전송</button>
-    </div>
+<div class="chatbot-window" id="chatbotWindow">
+	<div class="chatbot-header">
+		챗봇 나리 <span class="close-btn" onclick="btnCloseClicked()">✕</span>
+	</div>
+	<div class="chatbot-body" id="chatbot-body">
+		<!-- Chat titles will be appended here as buttons -->
+	</div>
+	<div class="chatbot-footer">
+		<input type="text" class="input" id="input" placeholder="질문을 입력하세요">
+		<button class="btn-send" onclick="sendMessage()">전송</button>
+	</div>
 </div>
+>>>>>>> develop
