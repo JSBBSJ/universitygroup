@@ -1,23 +1,19 @@
 $(document).ready(function() {
+    var client;
+    var key;
     let flag = false;
 
-    var answers = {
-        'chatbot': '챗봇 기능을 이용할 수 있습니다.',
-        'contacts': '교내 연락처는 홈페이지에서 확인할 수 있습니다.',
-        'menu': '학식 메뉴는 매일 업데이트되니 확인해주세요.',
-        'scholarship': '장학금 관련 문의는 학생처에서 도와드립니다.'
-    };
+    // 브라우저가 WebSocket을 지원하는지 확인하는 함수
+    function isWebSocketSupported() {
+        return 'WebSocket' in window;
+    }
 
-    // 버튼 클릭을 처리하는 이벤트 리스너를 추가합니다
-    $('.btn-category').on('click', function() {
-        var category = $(this).data('category');
-        var question = $(this).text();
-        var answer = answers[category];
-        displayUserMessage(question);
-        setTimeout(function() {
-            displayAnswer(answer);
-        }, 500); // 0.5초 후에 챗봇 답변을 표시
-    });
+    // WebSocket 지원 여부를 출력
+    if (isWebSocketSupported()) {
+        console.log("이 브라우저는 WebSocket을 지원합니다.");
+    } else {
+        console.log("이 브라우저는 WebSocket을 지원하지 않습니다.");
+    }
 
     function formatTime() {
         var now = new Date();
@@ -45,34 +41,56 @@ $(document).ready(function() {
         $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight); // 스크롤을 맨 아래로 이동
     }
 
-    function toggleChatbot() {
-        var chatbotWindow = $('#chatbotWindow');
-        chatbotWindow.toggle();
-
-        if (chatbotWindow.is(':visible') && !flag) {
-            flag = true;
-            var now = new Date();
-            var date = formatDate(now);
-            var time = formatTime();
-            var msgObj = "안녕하세요! 무엇을 도와드릴까요?";
-
-            var tag = `
-                <div class="message-wrapper">
-                    <div class="message-date flex center date">${date}</div>
-                    <div class="message-bubble">
-                        <div class="message-icon">
-                            <img src="/images/common/chatbot-icon.png" alt="챗봇 아이콘">
-                        </div>
-                        <div class="message-content">
-                            <p>${msgObj}</p>
-                            <span class="message-time">${time}</span>
+    //웹소켓 연결후 인삿말 출력
+    //여기의 subscribe와 botcontroller 의 convertAndSend와 위치가 일치해야함
+    function connect() {
+        client = Stomp.over(new SockJS('/rara-bot'));
+        client.connect({}, (frame) => {
+            key = new Date().getTime();
+            client.subscribe(`/topic/bot/${key}`, (answer) => {
+                var msgObj = JSON.parse(answer.body);
+                var now = new Date();
+                var time = formatTime();
+                var date = formatDate(now);
+                var tag = `
+                    <div class="message-wrapper">
+                        <div class="message-date flex center date">${date}</div>
+                        <div class="message-bubble">
+                            <div class="message-icon">
+                                <img src="/images/common/chatbot-icon.png" alt="챗봇 아이콘">
+                            </div>
+                            <div class="message-content">
+                                <p>${msgObj.content}</p>
+                                <span class="message-time">${time}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+                showMessage(tag);
+            });
+            var data = {
+                key: key,
+                content: "hello",
+                name: "guest"
+            };
+            client.send("/bot/hello", {}, JSON.stringify(data));
+        });
+    }
 
-            showMessage(tag, true); // 인삿말은 prepend
-        }
+    //소켓 종료
+    function disconnect() {
+        client.disconnect(() => {
+            console.log("Disconnected...");
+        });
+    }
+
+    //종료(x) 클릭시 이벤트
+    function btnCloseClicked() {
+        $("#chatbotWindow").hide();
+        //대화창 리셋
+        $("#chatbot-body").html("");
+        disconnect();
+        flag = false;
     }
 
     $(".btn-send").click(function() {
@@ -83,7 +101,17 @@ $(document).ready(function() {
         }
     });
 
-    // 사용자 메시지를 표시하는 함수입니다
+    //챗봇 시작 버튼 이벤트
+    function btnBotClicked() {
+        if (flag) return;
+
+        //1. 소켓 접속
+        $("#chatbotWindow").show();
+        connect();
+        flag = true;
+    }
+
+    // 사용자 메시지를 표시하는 함수
     function displayUserMessage(message) {
         var time = formatTime();
 
@@ -102,27 +130,8 @@ $(document).ready(function() {
         $(".chatbot-body").append(userMessage);
         $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight); // 스크롤을 맨 아래로 이동
     }
-    
-    // 질문에 대한 답변을 표시하는 함수입니다
-    function displayAnswer(answer) {
-        var time = formatTime();
 
-        var botMessage = `
-            <div class="message-wrapper">
-                <div class="message-bubble">
-                    <div class="message-icon">
-                        <img src="/images/common/chatbot-icon.png" alt="챗봇 아이콘">
-                    </div>
-                    <div class="message-content">
-                        <p>${answer}</p>
-                        <span class="message-time">${time}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        showMessage(botMessage); // 챗봇 답변은 append
-    }
-
-    window.toggleChatbot = toggleChatbot;
+    // 전역으로 함수 노출
+    window.btnBotClicked = btnBotClicked;
+    window.btnCloseClicked = btnCloseClicked;
 });
