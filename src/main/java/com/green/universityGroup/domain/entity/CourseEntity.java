@@ -44,6 +44,6 @@ public class CourseEntity {
 	@ManyToOne
 	private ProfessorEntity professor;
 	
-	@OneToMany(mappedBy = "course_no", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "enrollment_no", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EnrollmentEntity> enrollment;
 }

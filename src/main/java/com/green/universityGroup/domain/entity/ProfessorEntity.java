@@ -29,7 +29,7 @@ public class ProfessorEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
-	private long professor_id;
+	private long professor_no;
 	
 	private long professor_number;
 	
@@ -38,7 +38,7 @@ public class ProfessorEntity {
 	private UserEntity user;
 	
 	@ManyToOne //다대일
-    @JoinColumn(name = "department_id", referencedColumnName = "department_id")
+    @JoinColumn(name = "department_no", referencedColumnName = "department_no")
 	private DepartmentEntity dep;
 	
 	

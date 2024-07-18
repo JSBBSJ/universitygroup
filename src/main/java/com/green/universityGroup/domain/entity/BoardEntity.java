@@ -56,6 +56,6 @@ public class BoardEntity {
 	@JoinColumn(name = "user_no", referencedColumnName = "user_no")
 	private UserEntity user;
 
-	@OneToMany(mappedBy = "board_no")
+	@OneToMany(mappedBy = "comment_no")
 	private List<CommentEntity> comments;
 }

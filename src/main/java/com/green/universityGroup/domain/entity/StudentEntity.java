@@ -46,7 +46,7 @@ public class StudentEntity  {
    @JoinColumn(name = "department_no", referencedColumnName = "department_no")
 	private DepartmentEntity department;
 	
-	@OneToMany(mappedBy = "student_no", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "enrollment_no", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EnrollmentEntity> enrollment;
 	
 	
