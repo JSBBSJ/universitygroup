@@ -48,3 +48,6 @@ public class StudentEntity  {
 	
 	@OneToMany(mappedBy = "student_no", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EnrollmentEntity> enrollment;
+	
+	
+}
