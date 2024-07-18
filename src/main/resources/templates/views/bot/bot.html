@@ -1,17 +1,11 @@
-<div class="chatbot-icon" onclick="toggleChatbot()">
+<div class="chatbot-icon" onclick="btnBotClicked()">
 	<img src="/images/common/chatbot-icon.png" alt="Chatbot">
 </div>
 <div class="chatbot-window" id="chatbotWindow">
 	<div class="chatbot-header">
-		챗봇 나리 <span class="close-btn" onclick="toggleChatbot()">✕</span>
+		챗봇 나리 <span class="close-btn" onclick="btnCloseClicked()">✕</span>
 	</div>
-	<div class="chatbot-body">
-		<div class="buttons">
-			<button class="btn-category" data-category="chatbot">챗봇</button>
-			<button class="btn-category" data-category="contacts">교내 연락처</button>
-			<button class="btn-category" data-category="menu">학식 메뉴</button>
-			<button class="btn-category" data-category="scholarship">장학금</button>
-		</div>
+	<div class="chatbot-body" id="chatbot-body">
 	</div>
 	<div class="chatbot-footer">
 		<input type="text" class="input" id="input" placeholder="질문을 입력하세요">
