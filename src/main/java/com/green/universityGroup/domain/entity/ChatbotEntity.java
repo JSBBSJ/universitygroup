@@ -32,4 +32,6 @@ public class ChatbotEntity {
 	
 	@Column(columnDefinition = "text", nullable = false)
 	private String chat_content;
+
+
 }
