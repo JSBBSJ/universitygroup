@@ -25,23 +25,11 @@ public class ProfessorController {
 	}
 	
 
-	
-	
-	@GetMapping("/board")
-	public String board() {
-		return "/views/professor/board/board";
-	}
-	
-	
 	@GetMapping("/professor/view")
 	public String view() {
 		return "/views/professor/board/view";
 	}
 	
-	@GetMapping("/professor/write")
-	public String write() {
-		return "/views/professor/board/write";
-	}
 	
 	@GetMapping("/professor/edit")
 	public String edit() {
