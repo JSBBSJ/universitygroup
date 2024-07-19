@@ -21,8 +21,9 @@ public class CalendarDTO {
 	private String title;
 	private LocalDateTime start_date;
 	private LocalDateTime end_date;
-	private String deseription;
+	private String description;
 	private Boolean is_all_day;
 	private UserEntity user;
+	 
 	
 }

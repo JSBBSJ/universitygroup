@@ -29,7 +29,7 @@ public class CalendarServiceProcess implements CalendarService{
 	                .title(calendarDTO.getTitle())
 	                .start_date(calendarDTO.getEnd_date())
 	                .end_date(calendarDTO.getEnd_date())
-	                .description(calendarDTO.getDeseription())
+	                .description(calendarDTO.getDescription())
 	                .is_all_day(calendarDTO.getIs_all_day())
 	                .build();
 	        calendarRepository.save(calendarEntity);
