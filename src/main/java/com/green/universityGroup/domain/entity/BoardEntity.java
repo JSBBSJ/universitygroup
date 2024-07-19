@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.green.universityGroup.domain.dto.BoardListDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -58,4 +60,21 @@ public class BoardEntity {
 
 	@OneToMany(mappedBy = "comment_no")
 	private List<CommentEntity> comments;
+	
+	
+	public BoardListDTO toListDTO() {
+		return BoardListDTO.builder()
+				.board_no(board_no)
+				.title(title)
+				.createdAt(createdAt)
+				.username(user.getUsername())
+				.division(division)
+				.build();
+		
+		
+		
+	}
+	
+	
+	
 }

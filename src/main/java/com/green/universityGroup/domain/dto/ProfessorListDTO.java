@@ -9,6 +9,7 @@ public class ProfessorListDTO {
 	
 	
 	private long professor_number;
-	private long Professor_no;
+	private String username;
+	private String department_name;
 	
 }

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="/css/p-main/board.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	
+
 </head>
 
 <!--
@@ -15,7 +15,7 @@
 </header>-->
 
 <main>
-	<section class="container">
+	<section class="container" th:each="dto:${list}">
 		<div class="content-bo"></div>
 		<div class="content-left">
 			<div class="tit">
@@ -25,32 +25,31 @@
 			<div class="lnb">
 				<dl>
 					<dt>
-						<a>자유게시판</a>
+						<a href="/board/1">자유게시판</a>
+					<dd></dd>
+				</dl>
+
+				<dl>
+					<dt>
+						<a href="/board/2">학과공지</a>
 					</dt>
 					<dd></dd>
 				</dl>
 
 				<dl>
 					<dt>
-						<a>학과공지</a>
+						<a href="/board/3">학사공지</a>
 					</dt>
 					<dd></dd>
 				</dl>
 
-				<dl>
-					<dt>
-						<a>학생공지</a>
-					</dt>
-					<dd></dd>
-				</dl>
 			</div>
 
 		</div>
 
 		<div class="content">
 			<div class="board_title2">
-				<strong>게시판</strong>
-				<p>학과공지</p>
+				<strong th:text="${dto.division}"></strong>
 			</div>
 
 			<div class="board_list_wrap">
@@ -63,47 +62,33 @@
 						<div class="count">조회</div>
 					</div>
 
-					<div>
-						<div class="num">3</div>
-						<div class="title"><a href="/professor/view">이치방팀 공지</a></div>
-						<div class="writer">조승범</div>
-						<div class="date">2024.07.12</div>
+					<div th:each="dto:${list}">
+						<div class="num"><span th:text="${dto.board_no}"></div>
+						<div class="title"><a href="/professor/view"><span th:text="${dto.title}"></a></div>
+						<div class="writer"><span th:text="${dto.username}"></span></div>
+						<div class="date"><span th:text="${dto.createdAt}"></div>
 						<div class="count">3</div>
 					</div>
-					
-					<div>
-						<div class="num">2</div>
-						<div class="title"><a href="/professor/view">글제목들어감</a></div>
-						<div class="writer">조승범</div>
-						<div class="date">2024.07.12</div>
-						<div class="count">3</div>
-					</div>
-					
-					<div>
-						<div class="num">1</div>
-						<div class="title"><a href="/professor/view">글제목들어감</a></div>
-						<div class="writer">조승범</div>
-						<div class="date">2024.07.12</div>
-						<div class="count">3</div>
-					</div>
+				</div>
 
-				</div>
-				<div class="board_page">
-				<a href="#" class="bt first"><<</a>
-				<a href="#" class="bt prev"><</a>
-				<a href="#" class="num2">1</a>
-				<a href="#" class="num1">2</a>
-				<a href="#" class="num1">3</a>
-				<a href="#" class="num1">4</a>
-				<a href="#" class="num1">5</a>
-				<a href="#" class="bt next">></a>
-				<a href="#" class="bt last">>></a>
-				</div>
-				<div class="bt_wrap">
-					<a href="/professor/write" class="on">글쓰기</a>
-				
-				</div>
+
 			</div>
+			<div class="board_page">
+				<a href="#" class="bt first"><</a>			
+						<a href="#" class="bt prev"><<</a>
+								<a href="#" class="num2">1</a>
+								<a href="#" class="num1">2</a>
+								<a href="#" class="num1">3</a>
+								<a href="#" class="num1">4</a>
+								<a href="#" class="num1">5</a>
+								<a href="#" class="bt next">></a>
+								<a href="#" class="bt last">>></a>
+			</div>
+			<div class="bt_wrap">
+				<a href="/board/write" class="on">글쓰기</a>
+
+			</div>
+		</div>
 		</div>
 
 	</section>

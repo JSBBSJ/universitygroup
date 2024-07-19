@@ -16,9 +16,9 @@
 			</div>
 
 			<div class="name" th:each="dto:${list}">
-					<li th:text="${dto.professor_no}">이름</li>
-				<span>컴퓨터공학과</span><br>
-				<span>접속IP:</span>
+					<span th:text="${dto.username}"></span><br>
+				<span th:text="${dto.department_name}"></span><br>
+				
 			</div>
 
 			<div class="btn-box">
