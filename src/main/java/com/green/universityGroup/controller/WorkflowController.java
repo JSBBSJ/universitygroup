@@ -1,12 +1,17 @@
 package com.green.universityGroup.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.green.universityGroup.service.WorkflowService;
 
 
 @Controller
 public class WorkflowController {
+	
+	//private final WorkflowService service;
 
 	@GetMapping("/workflow")
 	public String list() {
@@ -29,12 +34,14 @@ public class WorkflowController {
 		}
 		
 		
-		//결제선 지정 버튼 클릭시 새 팝업창 뜨게 하는 컨트롤러
-		@GetMapping("/w-pageup")
-		public String wPageup() {
-			
-			return "/views/professor/workflow/w-pageup"; //이것도 경로가 달라지면 수정 필요//이건 양식폼 버튼태그
-		}
+		/*//workpageup 컨트롤러가 따로 있어서 주석 처리
+		 * //결제선 지정 버튼 클릭시 새 팝업창 뜨게 하는 컨트롤러
+		 * 
+		 * @GetMapping("/w-pageup") public String wPageup() {
+		 * 
+		 * return "/views/professor/workflow/w-pageup"; //이것도 경로가 달라지면 수정 필요//이건 양식폼
+		 * 버튼태그 }
+		 */
 		
 		@GetMapping("/work-save")
 		public String report() {
@@ -42,6 +49,7 @@ public class WorkflowController {
 			return "/views/professor/workflow/work-save"; //이것도 경로가 달라지면 수정 필요//이건 양식폼 버튼태그
 		}
 		
+	
 		
 	
 }

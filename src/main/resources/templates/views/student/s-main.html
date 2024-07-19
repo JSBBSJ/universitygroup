@@ -27,10 +27,10 @@
 					<img src="/images/s-main/프로필 사진.jpg" id="img">
 				</div>
 
-				<div class="name">
-					<p>김라라	(2024001795)</p>
-					<span>컴퓨터공학과라라</span><br>
-					<span>접속IP:</span>
+				<div class="name" th:each="dto : ${list}">
+				    <p th:text="${dto.username}"></p>
+				    <span th:text="${dto.department_name}"></span><br>
+				    <span>접속IP:</span>
 				</div>
 
 				<div class="btn-box">
