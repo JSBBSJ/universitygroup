@@ -55,7 +55,6 @@
 }
 
 
-
 .w-chart > ul{
 
 	margin:0;
@@ -73,15 +72,12 @@
 	line-height: 2;
 
 	border-bottom: 1px solid #f3f3f3;
-
 	
 
 }
 
 
-
 .w-chart2{
-
 
 
 	line-height: 2;
@@ -91,7 +87,6 @@
 
 
 }
-
 
 
 .w-right-menu{
@@ -110,18 +105,13 @@
 
 
 
-
-
 </style>
-
 
 
 </head>
 
 
-
 <!--결제서지정 버튼 클릭시 나오는 화면-->
-
 
 
 <main>
@@ -136,20 +126,17 @@
 
 		<div class="w-chart">
 
-			<ul class="w-chart1"> ▼ 행정부
+			<div th:each="dto:${list}">
+				
+				<div th:text="${dto.oranization_field}"></div>
+				
+				
+					<div th:text="${dto.oranization_name}"></div>
+				
 
-				<li>
-
-					<div>김몽 차장</div>
-
-					<div>김여름 과장</div>
-
-					<div>김여름 대리</div>
-
-				</li>
-
-			</ul>
-
+			
+			</div>
+			
 			<ul class="w-chart2">▼  사무부
 
 				<li>
