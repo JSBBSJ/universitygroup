@@ -2,13 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/css/commons/signin.css" />
-	<!--<script src="script.js"></script>  스크립트 파일 추가 -->
 </head>
 <body>
     <main>
-        <div class="signin">        
+        <div class="signin">
             <h1>라라대학교 Signin</h1>
-            <form action="/signin" method="post">
+            <form th:action="@{/signin}" method="post">
                 <label for="username">아이디</label>
                 <input id="username" type="text" name="username" placeholder="아이디를 입력하세요" required>
                 
@@ -16,8 +15,8 @@
                 <input id="password" type="password" name="password" placeholder="비밀번호를 입력하세요" required>
                 
                 <button type="submit">로그인</button>
-                <a href="/help"><button type="button">아이디/비밀번호 찾기</button></a>
-            </form>        
+                <a th:href="@{/help}"><button type="button">아이디/비밀번호 찾기</button></a>
+            </form>
         </div>
     </main>
 </body>
