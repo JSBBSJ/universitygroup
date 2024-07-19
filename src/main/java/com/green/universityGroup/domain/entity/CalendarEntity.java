@@ -10,8 +10,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -47,9 +49,15 @@ public class CalendarEntity {
 	    @Column(nullable = false)
 	    private Boolean is_all_day;
 	    
-	    @OneToOne
-		@JoinColumn(name = "user_no", referencedColumnName = "user_no")
+	    @ManyToOne
+	    @JoinColumn(name = "user_no")
 	    private UserEntity user;
-
+	    
+	    @PrePersist
+	    public void prePersist() {
+	        if (this.is_all_day == null) {
+	            this.is_all_day = false;
+	        }
+	    }
 	    
 	}
