@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LmsController {
 
-	@GetMapping("/lms")
+	@GetMapping("/student/lms")
 	public String list() {
 		return "views/lms/list";
 	}

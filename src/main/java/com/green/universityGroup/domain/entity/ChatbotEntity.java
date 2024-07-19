@@ -26,10 +26,14 @@ public class ChatbotEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long chatbot_no;
-	
+
 	@Column(columnDefinition = "varchar(100)", nullable = false)
-	private String chat_title;
-	
+	private String chatTitle;
+
 	@Column(columnDefinition = "text", nullable = false)
-	private String chat_content;
+
+	private String chatContent; // 데이터베이스와 맞추기 위해 필드 이름은 'chat_content'로 유지
+
+	@Column(columnDefinition = "text")
+	private String chatAnswer; // 질문에 대한 답변
 }

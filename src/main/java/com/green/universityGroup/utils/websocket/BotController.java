@@ -1,37 +1,34 @@
 package com.green.universityGroup.utils.websocket;
 
-
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
+import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.green.universityGroup.domain.entity.ChatbotEntity;
+import com.green.universityGroup.service.ChatbotEntityService;
+
+@RestController
 @RequiredArgsConstructor
 public class BotController {
-	
-	private final SimpMessagingTemplate messagingTemplate;
 
-	@MessageMapping("/chat.sendMessage")
-	@SendTo
-	public String sendMessage(String message) {
-		return message;
-	}
+    private final SimpMessagingTemplate messagingTemplate;
+    private final ChatbotEntityService service;
 
-	@MessageMapping("/hello")
-	public void handleHello(String message) {
-		// 여기서 초기 인삿말 메시지를 처리할 수 있습니다.
-		// 예를 들어, 특정 클라이언트에게 환영 메시지를 보낼 수 있습니다.
-		messagingTemplate.convertAndSend("/topic/bot/" + message, "안녕하세요! 무엇을 도와드릴까요?");
-	}
-	
-	@MessageMapping("/question")
-    public void handleQuestion(String message) {
-        // 여기서 질문 메시지를 처리할 수 있습니다.
-        // 예를 들어, 질문에 대한 답변을 생성하여 클라이언트에게 보낼 수 있습니다.
-        messagingTemplate.convertAndSend("/topic/bot/" + message, "질문에 대한 답변입니다.");
+    @GetMapping("/chats")
+    public List<ChatbotEntity> getAllQuestions() {
+        return service.getAllChatbotEntries();
+    }
+
+    @MessageMapping("/answer/{questionId}")
+    public void handleAnswer(@DestinationVariable Long questionId) {
+        String answer = service.getAnswerByQuestionId(questionId);
+        messagingTemplate.convertAndSend("/topic/bot/response", answer);
+
     }
 }
