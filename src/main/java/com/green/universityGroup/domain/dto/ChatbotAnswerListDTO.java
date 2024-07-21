@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class ChatMessageDto {
+public class ChatbotAnswerListDTO {
 
-	private String key;
+	private long chatbot_no;
 	private String chatTitle;
 	private String chatContent;
-	private String chatAnswer;
+	private String category;
 }
