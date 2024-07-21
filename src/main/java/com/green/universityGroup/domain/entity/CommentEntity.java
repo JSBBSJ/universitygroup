@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.green.universityGroup.domain.dto.BoardListDTO;
+import com.green.universityGroup.domain.dto.CommentDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,5 +47,16 @@ public class CommentEntity {
 	@ManyToOne
 	@JoinColumn(name = "board_no", referencedColumnName = "board_no")
 	private BoardEntity board;
-
+	
+	
+	public CommentDTO toListDTO() {
+		return CommentDTO.builder()
+				.text(text)
+				.comment_no(comment_no)
+				.comment_user(comment_user)
+				.createdAt(createdAt)
+				.board_no(board.getBoard_no())
+				.build();
+	}
+	
 }

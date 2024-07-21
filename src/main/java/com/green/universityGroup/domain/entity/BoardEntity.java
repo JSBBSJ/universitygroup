@@ -7,7 +7,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.green.universityGroup.domain.dto.BoardDetailDTO;
 import com.green.universityGroup.domain.dto.BoardListDTO;
+import com.green.universityGroup.domain.dto.BoardUpdateDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -70,11 +72,26 @@ public class BoardEntity {
 				.username(user.getUsername())
 				.division(division)
 				.build();
+	}
+	
+	public BoardDetailDTO toProcessDTO() {
+		return BoardDetailDTO.builder()
+				.board_no(board_no)
+				.division(division)
+				.title(title)
+				.text(text)
+				.createdAt(createdAt)
+				.username(user.getUsername())
+				.build();
+	}
+
+	public BoardEntity update(BoardUpdateDTO dto) {
+		this.title=dto.getTitle();
+		this.text=dto.getText();
+		return this;
 		
-		
+	}
 		
 	}
 	
 	
-	
-}

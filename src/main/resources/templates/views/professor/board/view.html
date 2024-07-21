@@ -4,7 +4,14 @@
 
 <head>
 	<link rel="stylesheet" href="/css/p-main/board.css">
+		<script type="text/javascript">
+    function confirmDelete() {
+        return confirm("정말로 삭제하시겠습니까?"); // 확인 메시지
+    }
+</script>
 </head>
+
+
 
 <main>
 	<section class="container">
@@ -17,21 +24,21 @@
 			<div class="lnb">
 				<dl>
 					<dt>
-						<a>자유게시판</a>
+						<a href="/board/1">자유게시판</a>
 					</dt>
 					<dd></dd>
 				</dl>
 
 				<dl>
 					<dt>
-						<a>학과공지</a>
+						<a href="/board/2">학과공지</a>
 					</dt>
 					<dd></dd>
 				</dl>
 
 				<dl>
 					<dt>
-						<a>학생공지</a>
+						<a href="/board/3">학사공지</a>
 					</dt>
 					<dd></dd>
 				</dl>
@@ -41,28 +48,30 @@
 
 
 		<div class="content">
-			<div class="board_title2">
-				<strong>공지사항</strong>
-				<p>공지사항 안내</p>
+			<div class="board_title2" >
+			
+				<strong th:text="${detail.division}">공지사항</strong>
+				
 			</div>
-
+			
+			
 			<div class="board_view_wrap">
-				<div class="board_view">
-					<div class="title">이치방팀 공지</div>
+				<div class="board_view" id="default-mode">
+					<div class="title" th:text="${detail.title}"></div>
 					<div class="info">
 						<dl>
 							<dt>번호</dt>
-							<dd>1</dd>
+							<dd th:text="${detail.board_no}"></dd>
 						</dl>
 
 						<dl>
-							<dt>글쓴이</dt>
-							<dd>조승범</dd>
+							<dt>작성자</dt>
+							<dd th:text="${detail.username}"></dd>
 						</dl>
 
 						<dl>
 							<dt>작성일</dt>
-							<dd>2024.07.13</dd>
+							<dd th:text="${#temporals.format(detail.createdAt, 'yyyy-MM-dd')}"></dd>
 						</dl>
 
 						<dl>
@@ -70,23 +79,45 @@
 							<dd>14</dd>
 						</dl>
 					</div>
-					<div class="cont">
-						대학교 그룹웨어 프로젝트 마무리 기간 안내<br>
+					<div class="cont" th:text="${detail.text}">						
 					</div>
 				</div>
+				
 
-				<div class="comment">
-					<h2>댓글</h2>
-					<input type="text" placeholder="댓글을 입력하세요...">
-					<button type="submit">댓글 등록</button>
-				</div>
+                <form action="/add" method="post">
+                    <input type="hidden" name="board_no" th:value="${detail.board_no}"/> 
+                    <div class="comment">
+                        <h2>댓글</h2>
+                        <input type="text" name="comment_user" placeholder="작성자" />
+                        <textarea name="text" placeholder="댓글을 입력하세요..."></textarea>
+                        <button type="submit">댓글 등록</button>
+                    </div>
+                
 
+
+                <div class="comments-list">
+                    <h2>댓글 목록</h2>
+                    <div th:each="comment : ${comments}">
+                        <div class="comment-item">
+                            <p th:text="${comment.comment_user}"></p>
+                            <p th:text="${comment.text}"></p>
+                            <small th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></small>
+                        </div>
+                    </div>
+                </div>
+                </form>
 				<div class="bt_wrap">
-					<a href="/board" class="on">목록</a>
-					<a href="/professor/edit">수정</a>
+					<a th:href="|/professor/edit/${detail.board_no}|">수정</a>
+					<form th:action="|/professor/view/${board_no}" method="post">
+					<input type="hidden" name="_method" value="delete">
+					<button type="submit" onclick="confirmDelete()">삭제</button>
+					</form>
 				</div>
 			</div>
+			
 		</div>
+
+	
 	</section>
 
 

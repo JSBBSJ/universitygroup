@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.green.universityGroup.domain.dto.BoardListDTO;
 import com.green.universityGroup.domain.dto.BoardSaveDTO;
+import com.green.universityGroup.domain.dto.BoardUpdateDTO;
 import com.green.universityGroup.domain.entity.BoardEntity;
 import com.green.universityGroup.domain.repository.BoardEntityRepository;
 import com.green.universityGroup.service.BoardService;
@@ -46,6 +48,40 @@ public class BoardServiceProcess implements BoardService {
 		@Override
 		public void saveProcess(BoardSaveDTO dto) {
 			repository.save(dto.toEntity());
+			
+		}
+
+
+		@Override
+		public void detailProcess(long board_no, Model model) {
+			model.addAttribute("detail", repository.findById(board_no)
+					.map(BoardEntity::toProcessDTO)
+					.orElseThrow());
+			
+		}
+
+
+		@Override
+		@Transactional
+		public void updateProcess(long board_no, BoardUpdateDTO dto) {
+			
+			repository.findById(board_no).orElseThrow().update(dto);
+			
+		}
+
+
+		@Override
+		public void editProcess(long board_no, Model model) {
+			model.addAttribute("detail", repository.findById(board_no)
+					.map(BoardEntity::toProcessDTO)
+					.orElseThrow());
+			
+		}
+
+
+		@Override
+		public void deleteProcess(long board_no) {
+			repository.deleteById(board_no);
 			
 		}
 		}
