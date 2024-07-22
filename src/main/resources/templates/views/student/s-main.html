@@ -29,7 +29,8 @@
 
 					<div class="name">
 						<span th:text="${#authentication.principal.name}">이름</span><br>
-						
+						<span th:text="${#authentication.principal.studentDTO.student_number}">교번</span>
+						<span th:text="${#authentication.principal.studentDTO.department_name}">학과</span>
 					</div>
 				</div>
 			</div>
