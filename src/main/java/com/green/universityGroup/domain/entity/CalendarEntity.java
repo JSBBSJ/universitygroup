@@ -1,8 +1,6 @@
 package com.green.universityGroup.domain.entity;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.green.universityGroup.domain.dto.CalendarDTO;
@@ -13,7 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -48,18 +45,23 @@ public class CalendarEntity {
 	    private String description;
 
 	    @Column(nullable = false)
-	    private Boolean is_all_day;
+	    private Boolean is_all_day = false;
 	    
 	    @OneToOne
-		  @JoinColumn(name = "user_no", referencedColumnName = "user_no")
+		@JoinColumn(name = "user_no", referencedColumnName = "user_no")
 	    private UserEntity user;
 
 		
-
-		public CalendarEntity update(CalendarDTO calendarDTO) {
-			return this;
-			
-		}
-
+	    public CalendarEntity update(CalendarDTO calendarDTO) {
+	        this.title = calendarDTO.getTitle();
+	        this.start_date = calendarDTO.getStart_date();
+	        this.end_date = calendarDTO.getEnd_date();
+	        this.description = calendarDTO.getDescription();
+	        this.is_all_day = calendarDTO.getIs_all_day() != null ? calendarDTO.getIs_all_day() : false;
+	        return this;
+	    }
 	    
 	}
+
+	    
+	
