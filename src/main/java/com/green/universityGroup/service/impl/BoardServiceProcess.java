@@ -11,6 +11,7 @@ import com.green.universityGroup.domain.dto.BoardListDTO;
 import com.green.universityGroup.domain.dto.BoardSaveDTO;
 import com.green.universityGroup.domain.dto.BoardUpdateDTO;
 import com.green.universityGroup.domain.entity.BoardEntity;
+import com.green.universityGroup.domain.entity.UserEntity;
 import com.green.universityGroup.domain.repository.BoardEntityRepository;
 import com.green.universityGroup.domain.repository.UserEntityRepository;
 import com.green.universityGroup.service.BoardService;
@@ -22,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceProcess implements BoardService {
 	
 	private final BoardEntityRepository repository;
+	
+	private final UserEntityRepository userrepository;
 	
 		
 		 public void listProcess(int _division, Model model) {
@@ -48,8 +51,9 @@ public class BoardServiceProcess implements BoardService {
 
 		@Override
 		public void saveProcess(BoardSaveDTO dto) {
-			repository.save(dto.toEntity());
-			
+			UserEntity user = userrepository.findById(dto.getUser_no())
+					.orElseThrow(() -> new IllegalArgumentException("Invalid board_no: " + dto.getUser_no()));
+			repository.save(dto.toSaveEntity(user));
 		}
 
 

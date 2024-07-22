@@ -3,10 +3,11 @@ package com.green.universityGroup.domain.dto;
 import com.green.universityGroup.domain.entity.BoardEntity;
 import com.green.universityGroup.domain.entity.UserEntity;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
+@Getter
 @ToString
 @Setter
 public class BoardSaveDTO {
@@ -16,13 +17,14 @@ public class BoardSaveDTO {
 	private String text;
 	private String division;
 	private long user_no; 
-	private UserEntity user;
 
-	public BoardEntity toEntity() {
+
+	public BoardEntity toSaveEntity(UserEntity user) {
 	    return BoardEntity.builder()
 	            .title(title)
 	            .text(text)
 	            .division(division)
+	            .user(user)
 	            .build();
 	}
 }
