@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>내가 만든 보고서 폼</title>
     <style>
 		
@@ -42,7 +44,15 @@
 		
     </style>
 	<script>
-		
+		// CSRF 토큰을 가져오는 함수
+		       function getCsrfToken() {
+		           return document.querySelector('meta[name="_csrf"]').getAttribute('content');
+		       }
+
+		       // CSRF 헤더 이름을 가져오는 함수
+		       function getCsrfHeader() {
+		           return document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+		       }
 		function extractAndCreateHTML() {
 					debugger;
 				    // 폼 요소의 HTML 문자열을 추출
@@ -94,27 +104,29 @@
 					
 					debugger;
 				    // AJAX를 사용하여 post 컨트롤러 호출
-				    $.ajax({
-				        url: 'http://localhost:8080/saveDoc',
-				        type: 'POST',
-				        contentType: 'application/json',
-				        data: JSON.stringify({ htmlContent: htmlString, 
-											 sub :sub, dra:dra, appr:appr,
-							 				 depart:depart, content:content}), // htmlContent 필드로 JSON 데이터 전송
-				       
-							 success: function(response) {
-							
-						window.location.href = 'http://localhost:8080/work-save'; ///완료 후에 save 진행함으로 이동
-							
-				        },
-				        error: function(xhr, status, error) {
-				            console.error('서버에 HTML 데이터를 저장하는 도중 오류가 발생했습니다.');
-				            // 오류 발생 시 처리할 내용 추가
-				        }
-				    });
-					
-					
-				}
+					$.ajax({
+					                url: 'http://localhost:8080/saveDoc',
+					                type: 'POST',
+					                contentType: 'application/json',
+					                headers: {
+					                    [getCsrfHeader()]: getCsrfToken() // CSRF 토큰 헤더 추가
+					                },
+					                data: JSON.stringify({
+					                    htmlContent: htmlString,
+					                    sub: sub,
+					                    dra: dra,
+					                    appr: appr,
+					                    depart: depart,
+					                    content: content
+					                }), // HTML 콘텐츠와 기타 데이터 전송
+					                success: function(response) {
+					                    window.location.href = 'http://localhost:8080/work-save'; // 완료 후 페이지 이동
+					                },
+					                error: function(xhr, status, error) {
+					                    console.error('서버에 HTML 데이터를 저장하는 도중 오류가 발생했습니다.');
+					                }
+					            });
+					        }
 	        // 모달 열기 함수
 	        function openModal() {
 	            const modal = document.getElementById('myModal');
@@ -164,7 +176,6 @@
 				<label for="draftsman" readonly>결제자</label>
 				<input type="text" id="myInput" readonly><br>
                 <button type="button" onclick="extractAndCreateHTML()">결제 상신</button>
-				
             </div>
 			
             <div class="w-top">

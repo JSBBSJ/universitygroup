@@ -30,8 +30,9 @@ public class SecurityConfig {
 				.authorizeHttpRequests(authorize -> authorize
 						.requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
 						.requestMatchers("/signin").permitAll() // 로그인 및 헬프 페이지 접근 허용
-						.requestMatchers("/student/**").hasRole("STUDENT").requestMatchers("/professor/**")
-						.hasRole("PROFESSOR").anyRequest().authenticated())
+						.requestMatchers("/student/**").hasRole("STUDENT")
+						.requestMatchers("/professor/**").hasRole("PROFESSOR")
+						.anyRequest().authenticated())
 				.formLogin(login -> login.loginPage("/signin") // 로그인 페이지 설정
 						// .defaultSuccessUrl("/student/lms", true) // 로그인 성공 후 리다이렉트 URL
 						// .usernameParameter("username") // 폼 필드 이름과 일치해야 함

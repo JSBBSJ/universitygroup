@@ -59,7 +59,6 @@ public class StudentEntity {
 		
 		
 		return StudentlistDTO.builder()
-				.student_no(student_no)
 				.student_number(student_number)
 				.username(user.getUsername())
 				.department_name(department.getDepartment_name())
