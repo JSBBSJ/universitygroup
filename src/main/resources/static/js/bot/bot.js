@@ -1,41 +1,54 @@
 $(document).ready(function() {
-    var stompClient;
-    var isConnected = false;
+    let stompClient;
+    let isBotClicked = false;
+    let isConnected = false;
 
-    // AJAX를 사용하여 서버에서 데이터를 불러오는 함수
-    function fetchDataFromDB() {
+    const fetchDataFromDB = () => {
         $.ajax({
-            url: '/chats', // 백엔드 엔드포인트 URL
-            type: 'GET', // HTTP 요청 방식 설정
+            url: '/chats',
+            type: 'GET',
             success: function(data) {
-                // 성공적으로 데이터를 불러왔을 때 수행할 작업
-                // data 변수에 서버에서 받아온 데이터가 들어있음
-                displayChatTitles(data); // 데이터를 표시하는 함수 호출
+                displayCategories(data);
             },
             error: function() {
-                // 데이터를 불러오는데 실패했을 때 수행할 작업
                 console.log('Failed to fetch data from the server.');
             }
         });
     }
 
-    // 서버에서 받아온 chat_title 데이터를 버튼으로 표시하는 함수
-    function displayChatTitles(chats) {
-        chats.forEach(function(chat) {
-            var button = $('<button>')
+    const displayCategories = (chats) => {
+        const categories = chats.reduce((acc, chat) => {
+            acc[chat.category] = acc[chat.category] || [];
+            acc[chat.category].push(chat);
+            return acc;
+        }, {});
+
+        for (const category in categories) {
+            const button = $('<button>')
+                .text(category)
+                .addClass('category-button')
+                .on('click', () => displayChatTitles(categories[category]));
+
+            $("#chatbot-body").append(button);
+        }
+    }
+
+    const displayChatTitles = (chats) => {
+        $("#chatbot-body button").remove();
+
+        chats.forEach(chat => {
+            const button = $('<button>')
                 .text(chat.chatTitle)
                 .addClass('chat-title-btn')
-                .on('click', function() {
-                    displayChatContent(chat.chatContent);
-                });
+                .on('click', () => displayChatContent(chat.chatContent));
+
             $("#chatbot-body").append(button);
         });
     }
 
-    // chat_content를 표시하는 함수
-    function displayChatContent(content) {
-        var time = new Date().toLocaleTimeString();
-        var chatMessage = `
+    const displayChatContent = (content) => {
+        const time = new Date().toLocaleTimeString();
+        const chatMessage = `
             <div class="message-wrapper bot">
                 <div class="message-bubble bot">
                     <div class="message-content">
@@ -45,29 +58,20 @@ $(document).ready(function() {
                 </div>
             </div>
         `;
-        $(".chatbot-body").append(chatMessage);
-        $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight);
+        $(".chatbot-body").append(chatMessage).scrollTop($(".chatbot-body")[0].scrollHeight);
     }
 
-    // 페이지 로드 시 DB에서 데이터 불러오기
-    fetchDataFromDB();
-
-    function isWebSocketSupported() {
-        return 'WebSocket' in window;
-    }
-
-    function connectToWebSocket() {
-        var socket = new SockJS('/rara-bot');
+    const connectToWebSocket = () => {
+        const socket = new SockJS('/rara-bot');
         stompClient = Stomp.over(socket);
-        stompClient.connect({}, function(frame) {
+        stompClient.connect({}, frame => {
             isConnected = true;
             console.log('Connected to WebSocket');
 
-            // 현재 날짜 및 시간 구하기
-            var time = new Date().toLocaleTimeString();
-            var message = "안녕하세요, 무엇을 도와드릴까요?";
-
-            var botMessage = `
+            const time = new Date().toLocaleTimeString();
+            const message = "안녕하세요, 무엇을 도와드릴까요?";
+            
+            const botMessage = `
                 <div class="message-wrapper bot">
                     <div class="message-bubble bot">
                         <div class="message-content">
@@ -82,55 +86,38 @@ $(document).ready(function() {
         });
     }
 
-    function displayBotMessage(message) {
-        var time = new Date().toLocaleTimeString();
-        var botMessage = `
-            <div class="message-wrapper bot">
-                <div class="message-bubble bot">
-                    <div class="message-content">
-                        <p>${message}</p>
-                        <span class="message-time">${time}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-        $(".chatbot-body").append(botMessage);
-        $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight);
-    }
-
-    function disconnectWebSocket() {
-        stompClient.disconnect(function() {
-            isConnected = false;
-            console.log('Disconnected from WebSocket');
-        });
-    }
-
-    function toggleWebSocketConnection() {
-        if (isConnected) {
-            disconnectWebSocket();
-        } else {
+    const btnBotClicked = () => {
+        if (!isBotClicked) {
+            isBotClicked = true;
             connectToWebSocket();
         }
     }
 
-    window.btnBotClicked = function() {
-        toggleWebSocketConnection();
-    };
-
-    window.btnCloseClicked = function() {
+    const btnCloseClicked = () => {
+        isBotClicked = false;
         $("#chatbotWindow").css("display", "none");
-        if (isConnected) {
-            disconnectWebSocket();
-        }
-    };
+        disconnectWebSocket();
+    }
 
-    window.sendMessage = function() {
-        var message = $("#input").val();
-        if (message.trim() === "") {
-            return;
-        }
-        var time = new Date().toLocaleTimeString();
-        var userMessage = `
+    $(".chatbot-icon").on('click', btnBotClicked);
+	$(".close-btn").on('click', btnCloseClicked);
+	
+	$(".chatbot-icon").click(function() {
+	       if (!isBotClicked) {
+	           openChatbot();
+	           isBotClicked = true;
+	       } else {
+	           isBotClicked = false;
+	           closeChatbot();
+	       }
+	   });
+
+    window.sendMessage = () => {
+        const message = $("#input").val().trim();
+        if (message === "") return;
+
+        const time = new Date().toLocaleTimeString();
+        const userMessage = `
             <div class="message-wrapper user">
                 <div class="message-bubble user">
                     <div class="message-content">
@@ -140,29 +127,21 @@ $(document).ready(function() {
                 </div>
             </div>
         `;
-        $(".chatbot-body").append(userMessage);
-        $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight);
+        $(".chatbot-body").append(userMessage).scrollTop($(".chatbot-body")[0].scrollHeight);
 
-        // WebSocket을 통해 서버로 메시지 전송
         if (isConnected) {
             stompClient.send("/app/sendMessage", {}, JSON.stringify({ content: message }));
         }
         $("#input").val("");
-    };
+    }
 
-    // Chatbot icon 클릭 이벤트 핸들러 연결
-    $(".chatbot-icon").on('click', btnBotClicked);
+    $(".btn-send").on('click', window.sendMessage);
 
-    // Send 버튼 클릭 이벤트 핸들러 연결
-    $(".btn-send").on('click', sendMessage);
-
-    // Enter 키를 눌렀을 때 메시지 전송
     $("#input").on('keypress', function(e) {
-        if (e.which == 13) {
-            sendMessage();
-        }
+        if (e.which === 13) window.sendMessage();
     });
 
-    // chatbotWindow 초기에 숨기기
     $("#chatbotWindow").addClass("hidden");
+
+    fetchDataFromDB();
 });

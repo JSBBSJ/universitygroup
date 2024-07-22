@@ -1,12 +1,22 @@
 package com.green.universityGroup.domain.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.green.universityGroup.domain.dto.ChatbotAnswerListDTO;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -31,9 +41,18 @@ public class ChatbotEntity {
 	private String chatTitle;
 
 	@Column(columnDefinition = "text", nullable = false)
+	private String chatContent; 
+	
+	@Column(columnDefinition = "varchar(100)", nullable = false)
+	private String category;
 
-	private String chatContent; // 데이터베이스와 맞추기 위해 필드 이름은 'chat_content'로 유지
-
-	@Column(columnDefinition = "text")
-	private String chatAnswer; // 질문에 대한 답변
+	public ChatbotAnswerListDTO toListDTO() {
+	    return ChatbotAnswerListDTO
+	            .builder()
+	            .chatbot_no(chatbot_no) // chatbot_no 필드 사용
+	            .chatTitle(chatTitle)
+	            .chatContent(chatContent)
+	            .category(category)
+	            .build();
+	}
 }

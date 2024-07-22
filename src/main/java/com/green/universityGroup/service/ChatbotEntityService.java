@@ -2,13 +2,15 @@ package com.green.universityGroup.service;
 
 import java.util.List;
 
-import com.green.universityGroup.domain.entity.ChatbotEntity;
+import com.green.universityGroup.domain.dto.ChatbotAnswerListDTO;
 
 public interface ChatbotEntityService {
 
-	List<ChatbotEntity> getAllChatbotEntries();
+	List<ChatbotAnswerListDTO> getCategoryListProcess(String category);
 
-	String getAnswerByQuestionId(Long questionId);
+	ChatbotAnswerListDTO getChatbotContentListProcess(Long chatbot_no);
+
+	List<ChatbotAnswerListDTO> getAllChatbotEntries();
 
 
 }
