@@ -25,6 +25,7 @@ public class BoardSaveDTO {
 	            .text(text)
 	            .division(division)
 	            .user(user)
+	            .board_no(board_no)
 	            .build();
 	}
 }
