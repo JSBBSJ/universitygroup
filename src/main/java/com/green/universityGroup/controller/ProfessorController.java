@@ -24,17 +24,11 @@ public class ProfessorController {
 		return "views/professor/p-main";
 	}
 	
-
-	@GetMapping("/professor/view")
-	public String view() {
-		return "/views/professor/board/view";
-	}
-	
-	
-	@GetMapping("/professor/edit")
-	public String edit() {
-		return "/views/professor/board/edit";
-	}
+	  @GetMapping("/professor/edit")
+	  public String edit() { 
+		  return  "/views/professor/board/edit"; 
+		  }
+	 
 	
 	
 	@GetMapping("/mail")
