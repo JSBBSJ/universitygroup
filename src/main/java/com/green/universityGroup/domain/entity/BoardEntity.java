@@ -71,7 +71,7 @@ public class BoardEntity {
 				.title(title)
 				.createdAt(createdAt)
 				.username(user.getUsername())
-				.user_no(user.getUser_no())
+				 .user_no(user.getUser_no()) 
 				.division(division)
 				.build();
 	}

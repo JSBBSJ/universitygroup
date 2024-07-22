@@ -51,8 +51,10 @@ public class BoardServiceProcess implements BoardService {
 
 		@Override
 		public void saveProcess(BoardSaveDTO dto) {
+			
 			UserEntity user = userrepository.findById(dto.getUser_no())
-					.orElseThrow(() -> new IllegalArgumentException("Invalid board_no: " + dto.getUser_no()));
+					 .orElseThrow(() -> new IllegalArgumentException("Invalid user_no: " + dto.getUser_no()));
+			
 			repository.save(dto.toSaveEntity(user));
 		}
 
