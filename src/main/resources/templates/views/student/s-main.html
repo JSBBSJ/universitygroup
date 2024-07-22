@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
 	<link rel="stylesheet" href="/css/s-main/s-main.css">
 	<link rel="stylesheet" href="/css/ps-common/ps-common.css">
-	
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-	 
+
 	<script src=' /js/s-main/calendar.js'></script>
-	
+
 </head>
 
 
-	<body>
+<body>
 
 	<main class="s-main">
 		<section class="container">
+			<div sec:authorize="isAuthenticated()">
+				<div class="profile">
+					<div class="pro-back">
+						<img src="/images/s-main/프로필 사진.jpg" id="img">
+					</div>
 
-			<div class="profile">
-
-				<div class="pro-back">
-					<img src="/images/s-main/프로필 사진.jpg" id="img">
+					<div class="name">
+						<span th:text="${#authentication.principal.name}">이름</span><br>
+					</div>
 				</div>
-
-				<div class="name" th:each="dto : ${list}">
-				    <p th:text="${dto.username}"></p>
-				    <span th:text="${dto.department_name}"></span><br>
-				    <span>접속IP:</span>
-				</div>
-
+			</div>
 				<div class="btn-box">
 					<div class="box1">
 						<a href="#">마이페이지</a>
@@ -41,7 +40,7 @@
 
 				<div class="info">
 					<div class="icons">
-						
+
 						<div class="co">
 							<span class="icon" id="icon01"></span>
 							<br>
@@ -50,7 +49,7 @@
 						</div>
 
 						<div class="co">
-							<span 	class="icon"id="icon02"></span>
+							<span class="icon" id="icon02"></span>
 							<br>
 							<span id="Cnt2">준비중</span>
 							상담
@@ -65,7 +64,7 @@
 
 
 						<div class="co">
-							<span class="icon" 	id="icon04"></span>
+							<span class="icon" id="icon04"></span>
 							<br>
 							<span id="Cnt4">-</span>
 							인증현황
@@ -81,19 +80,19 @@
 					<a href="#">오늘날씨</a>
 				</div>
 			</div>
-			
-			<div class="shed">	
+
+			<div class="shed">
 				<div id='calendar'>
 				</div>
-		 </div>
-		 
-		 
-			<div class="board">		
+			</div>
+
+
+			<div class="board">
 				<div class="board-top">
 					<a href="#">게시판</a>
 				</div>
 				<div class="board-bot">
-					<ul >
+					<ul>
 						<li class="board-menu">
 							<div>번호</div>
 							<div>제목</div>
@@ -103,26 +102,26 @@
 					</ul>
 				</div>
 			</div>
-			
-			
+
+
 			<div class="class-list">
 				<div class="class-list-top">
 					<a href="#">수강목록</a>
 				</div>
 				<div class="class-list-bot">
-					<ul >
+					<ul>
 						<li class="class-list-menu">
 							<div>수강과목</div>
 							<div>교수명</div>
 							<div>강의실</div>
-							
+
 						</li>
 					</ul>
-			</div>
+				</div>
 		</section>
 
 	</main>
-	</body>
+</body>
 
 
 

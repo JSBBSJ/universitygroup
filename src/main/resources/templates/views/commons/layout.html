@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(pMain,pHead)">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:fragment="layout(pMain,pHead)">
 <head>
-	
-	
-	<link rel="stylesheet" href="/css/commons/header.css">
-	
-	
-	<meta charset="UTF-8">
-	<title>라라대학교</title>
-	<th:block th:insert="${pHead}" />
+<link rel="stylesheet" href="/css/commons/header.css">
+<meta charset="UTF-8">
+<title>라라대학교</title>
+<th:block th:insert="${pHead}" />
 </head>
 <body>
-	<header th:replace="~{views/commons/header}" ></header>
-	<main 	th:replace="${pMain}">메인태그가 치환됩니다.</main>
+	<header th:replace="~{views/commons/header}"></header>
+	<main th:replace="${pMain}">메인태그가 치환됩니다.</main>
 </body>
 </html>

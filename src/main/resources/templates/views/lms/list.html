@@ -2,20 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="/webjars/jquery/jquery.min.js"></script>
-<!-- Stomp.js 라이브러리 추가 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
-<script src="/js/bot/bot.js"></script>
-<link rel="stylesheet" href="/css/commons/common.css" />
-<link rel="stylesheet" href="/css/lms/list.css" />
-<link rel="stylesheet" href="/css/bot/bot.css" />
-<link rel="stylesheet" href="/css/weather/weather.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!-- Stomp.js 라이브러리 추가 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+	<script src="/js/bot/bot.js"></script>
+	<link rel="stylesheet" href="/css/commons/common.css" />
+	<link rel="stylesheet" href="/css/lms/list.css" />
+	<link rel="stylesheet" href="/css/bot/bot.css" />
+	<link rel="stylesheet" href="/css/weather/weather.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<script src="/js/weather/weather.js"></script>
+	<script src="/js/weather/weather.js"></script>
 </head>
 
 <body>
@@ -24,6 +23,14 @@
 			<div class="logo-img"></div>
 			<div class="logo-text">
 				<a href="/lms">라라대학교</a>
+			</div>
+			<div class="signout">
+				<form action="/logout" method="post">
+					<button type="submit" title="로그아웃">
+						<img src="/images/common/logout-icon.png" alt="로그아웃 아이콘">
+					</button>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				</form>
 			</div>
 		</section>
 	</header>
@@ -117,9 +124,8 @@
 			</div>
 			<div class="footer-section social">
 				<h3>소셜 미디어</h3>
-				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a
-					href="#"><img src="twitter.png" alt="트위터"></a> <a href="#"><img
-					src="instagram.png" alt="인스타그램"></a>
+				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a href="#"><img src="twitter.png" alt="트위터"></a> <a
+					href="#"><img src="instagram.png" alt="인스타그램"></a>
 			</div>
 		</div>
 	</footer>
