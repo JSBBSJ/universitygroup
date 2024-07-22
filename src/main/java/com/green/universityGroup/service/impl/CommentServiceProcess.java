@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 
 
 import com.green.universityGroup.domain.dto.CommentDTO;
+import com.green.universityGroup.domain.dto.CommentListDTO;
 import com.green.universityGroup.domain.entity.BoardEntity;
 import com.green.universityGroup.domain.entity.CommentEntity;
+
 import com.green.universityGroup.domain.repository.BoardEntityRepository;
 import com.green.universityGroup.domain.repository.CommentEntityRepository;
 import com.green.universityGroup.service.CommentService;
@@ -32,7 +34,7 @@ public class CommentServiceProcess implements CommentService {
 		BoardEntity board = boardRepository.findById(dto.getBoard_no())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid board_no: " + dto.getBoard_no()));
 
-        // Convert CommentDTO to CommentEntity using the fetched BoardEntity
+
         repository.save(dto.toCommentEntity(board));
     }
 	
@@ -40,11 +42,16 @@ public class CommentServiceProcess implements CommentService {
 	@Override
 	public void commentlistProcess(long board_no, Model model) {
 		
-        List<CommentDTO> comments = repository.findAll()
-                .stream()
-                .map(CommentEntity::toListDTO)
-                .collect(Collectors.toList());
-        
-        model.addAttribute("comments", comments);
+		/*
+		 * model.addAttribute("comments", repository.findAll().stream()
+		 * .map(CommentEntity::toListDTO) .collect(Collectors.toList()));
+		 */
+		
+		
+		  List<CommentListDTO> comments = repository.findAll() .stream()
+		  .map(CommentEntity::toListDTO)
+		  .collect(Collectors.toList());
+		  model.addAttribute("comments", comments);
+		 
 	}
 }

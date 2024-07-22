@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import com.green.universityGroup.domain.dto.BoardListDTO;
 import com.green.universityGroup.domain.dto.CommentDTO;
+import com.green.universityGroup.domain.dto.CommentListDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,8 +50,8 @@ public class CommentEntity {
 	private BoardEntity board;
 	
 	
-	public CommentDTO toListDTO() {
-		return CommentDTO.builder()
+	public CommentListDTO toListDTO() {
+		return CommentListDTO.builder()
 				.text(text)
 				.comment_no(comment_no)
 				.comment_user(comment_user)
