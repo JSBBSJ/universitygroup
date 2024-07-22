@@ -20,12 +20,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @DynamicUpdate
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name="calendar")
 public class CalendarEntity {
@@ -37,10 +39,10 @@ public class CalendarEntity {
 	    @Column(nullable = false)
 	    private String title;
 
-	    @Column(columnDefinition = "timestamp")
+	    @Column//(columnDefinition = "timestamp")
 	    private LocalDateTime start_date;
 
-	    @Column(columnDefinition = "timestamp")
+	    @Column//(columnDefinition = "timestamp")
 	    private LocalDateTime end_date;
 
 	    @Column(columnDefinition = "TEXT")
