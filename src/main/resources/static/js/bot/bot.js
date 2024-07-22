@@ -1,151 +1,104 @@
-$(document).ready(function() {
-    let stompClient;
-    let isBotClicked = false;
-    let isConnected = false;
+var stompClient = null;
 
-    const fetchDataFromDB = () => {
-        $.ajax({
-            url: '/chats',
-            type: 'GET',
-            success: function(data) {
-                displayCategories(data);
-            },
-            error: function() {
-                console.log('Failed to fetch data from the server.');
+function connect() {
+    var socket = new SockJS('/rara-bot');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function(frame) {
+        console.log('Connected: ' + frame);
+
+        // 메시지 구독
+        stompClient.subscribe('/topic/messages', function(messageOutput) {
+            var message = messageOutput.body;
+
+            if (message.includes(", ")) {
+                if (message.split(":").length === 1) {
+                    // 카테고리 목록일 때
+                    showCategoryButtons(message);
+                } else {
+                    // 질문 목록일 때
+                    showQuestionButtons(message);
+                }
+            } else {
+                // 답변일 때
+                showMessageOutput(message);
             }
         });
-    }
 
-    const displayCategories = (chats) => {
-        const categories = chats.reduce((acc, chat) => {
-            acc[chat.category] = acc[chat.category] || [];
-            acc[chat.category].push(chat);
-            return acc;
-        }, {});
-
-        for (const category in categories) {
-            const button = $('<button>')
-                .text(category)
-                .addClass('category-button')
-                .on('click', () => displayChatTitles(categories[category]));
-
-            $("#chatbot-body").append(button);
-        }
-    }
-
-    const displayChatTitles = (chats) => {
-        $("#chatbot-body button").remove();
-
-        chats.forEach(chat => {
-            const button = $('<button>')
-                .text(chat.chatTitle)
-                .addClass('chat-title-btn')
-                .on('click', () => displayChatContent(chat.chatContent));
-
-            $("#chatbot-body").append(button);
-        });
-    }
-
-    const displayChatContent = (content) => {
-        const time = new Date().toLocaleTimeString();
-        const chatMessage = `
-            <div class="message-wrapper bot">
-                <div class="message-bubble bot">
-                    <div class="message-content">
-                        <p>${content}</p>
-                        <span class="message-time">${time}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-        $(".chatbot-body").append(chatMessage).scrollTop($(".chatbot-body")[0].scrollHeight);
-    }
-
-    const connectToWebSocket = () => {
-        const socket = new SockJS('/rara-bot');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, frame => {
-            isConnected = true;
-            console.log('Connected to WebSocket');
-             console.log('Frame received:', frame); // frame 정보 출력
-
-            const time = new Date().toLocaleTimeString();
-            const message = "안녕하세요, 무엇을 도와드릴까요?";
-
-            const botMessage = `
-                <div class="message-wrapper bot">
-                    <div class="message-bubble bot">
-                        <div class="message-content">
-                            <p>${message}</p>
-                            <span class="message-time">${time}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            $(".chatbot-body").append(botMessage);
-            $("#chatbotWindow").css("display", "flex");
-        }, error => {
-            console.error('WebSocket 연결 오류:', error);
-        });
-    }
-
-    const btnBotClicked = () => {
-        if (!isBotClicked) {
-            isBotClicked = true;
-            $("#chatbot-body").empty(); // 챗봇 창 내용을 초기화
-            fetchDataFromDB(); // 데이터를 다시 가져와 버튼을 추가
-            connectToWebSocket();
-        }
-    }
-
-    const btnCloseClicked = () => {
-        isBotClicked = false;
-        $("#chatbotWindow").css("display", "none");
-        disconnectWebSocket(); // 이 함수가 정의되어 있는지 확인하세요
-    }
-
-    const disconnectWebSocket = () => {
-        if (stompClient && isConnected) {
-            stompClient.disconnect(() => {
-                console.log('Disconnected from WebSocket');
-                isConnected = false;
-            });
-        }
-    }
-
-    $(".chatbot-icon").on('click', btnBotClicked);
-    $(".close-btn").on('click', btnCloseClicked);
-
-    window.sendMessage = () => {
-        const message = $("#input").val().trim();
-        if (message === "") return;
-
-        const time = new Date().toLocaleTimeString();
-        const userMessage = `
-            <div class="message-wrapper user">
-                <div class="message-bubble user">
-                    <div class="message-content">
-                        <p>${message}</p>
-                        <span class="message-time">${time}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-        $(".chatbot-body").append(userMessage).scrollTop($(".chatbot-body")[0].scrollHeight);
-
-        if (isConnected) {
-            stompClient.send("/app/sendMessage", {}, JSON.stringify({ content: message }));
-        }
-        $("#input").val("");
-    }
-
-    $(".btn-send").on('click', window.sendMessage);
-
-    $("#input").on('keypress', function(e) {
-        if (e.which === 13) window.sendMessage();
+        // 기본 카테고리 가져오기
+        stompClient.send("/app/chat", {}, "GET_TOPICS");
     });
+}
 
-    $("#chatbotWindow").addClass("hidden");
 
-    fetchDataFromDB();
-});
+function btnBotClicked() {
+    document.getElementById('chatbotWindow').style.display = 'block';
+}
+
+function btnCloseClicked() {
+    document.getElementById('chatbotWindow').style.display = 'none';
+}
+
+function sendMessage() {
+    var inputElem = document.getElementById('input');
+    var message = inputElem.value.trim();
+    if (message) {
+        stompClient.send("/app/chat", {}, message);
+        inputElem.value = ''; // 입력 필드 초기화
+    }
+}
+
+function showCategoryButtons(message) {
+    var chatbotBody = document.getElementById('chatbot-body');
+    chatbotBody.innerHTML = '';
+
+    var categories = message.split(', ');
+    categories.forEach(function(category) {
+        var button = document.createElement('button');
+        button.textContent = category;
+        button.onclick = function() {
+            stompClient.send("/app/chat", {}, category);
+        };
+        chatbotBody.appendChild(button);
+    });
+}
+
+function showQuestionButtons(message) {
+    var chatbotBody = document.getElementById('chatbot-body');
+    chatbotBody.innerHTML = '';
+
+    // 메시지를 ':'로 분리하여 카테고리와 질문을 추출
+    var messagesParts = message.split(":");
+    if (messagesParts.length === 2) {
+        var category = messagesParts[0].trim();
+        var questions = messagesParts[1].split(', ');
+
+        questions.forEach(function(question) {
+            var button = document.createElement('button');
+            button.textContent = question; // 카테고리 정보를 제외하고 질문만 표시
+            button.onclick = function() {
+                stompClient.send("/app/chat", {}, category + ": " + question); // 서버로 질문 전송
+            };
+            chatbotBody.appendChild(button);
+        });
+    } else {
+        console.error('Unexpected message format for questions:', message);
+    }
+}
+
+
+
+function showMessageOutput(message) {
+    var chatbotBody = document.getElementById('chatbot-body');
+    chatbotBody.innerHTML = ''; // 기존 내용을 지우고
+
+    // 답변 메시지를 표시합니다.
+    var messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    chatbotBody.appendChild(messageElement);
+
+    // 선택 사항: 스크롤을 아래로 이동시켜 최신 메시지를 볼 수 있게 합니다.
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+}
+
+
+connect(); // 페이지 로드 시 웹소켓 연결
