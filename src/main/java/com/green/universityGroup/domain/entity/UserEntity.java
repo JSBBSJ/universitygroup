@@ -4,6 +4,8 @@ import java.util.Set;
 import java.util.HashSet;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.green.universityGroup.domain.dto.UserUpdateDTO;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -79,5 +81,12 @@ public class UserEntity {
 			}
 		}
 		return this;
+	}
+
+	public UserEntity update(UserUpdateDTO dto) {
+		this.profile_image=dto.getProfile_image();
+		return this;
+		
+		
 	}
 }
