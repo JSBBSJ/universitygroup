@@ -16,7 +16,7 @@
 
 	grid-template-columns:1fr 2fr 2fr;
 
-	grid-auto-rows:850px;
+	grid-auto-rows:900px;
 
 	padding: 10px;
 
@@ -291,4 +291,3 @@
 	font-weight: 600;
 
 }
-
