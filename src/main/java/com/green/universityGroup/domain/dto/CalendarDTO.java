@@ -2,6 +2,7 @@ package com.green.universityGroup.domain.dto;
 
 import java.time.LocalDateTime;
 
+import com.green.universityGroup.domain.entity.CalendarEntity.CalendarEntityBuilder;
 import com.green.universityGroup.domain.entity.UserEntity;
 
 import lombok.AllArgsConstructor;

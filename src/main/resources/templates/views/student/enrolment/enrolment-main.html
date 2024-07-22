@@ -1,147 +1,61 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
-
-<link rel="stylesheet" href="/css/s-main/enrolment-main.css"> 
-
-<script src=' '></script>
-
+	<link rel="stylesheet" href="/css/s-main/enrolment-main.css">
+	<script src=' '></script>
 </head>
-
-
-
 <!--work flow 메인화면-->
-
-
-
 <main class="enrolment-mains">
-
-
-
 	<section class="enrolment-container">
-
 		<section class="enrolment-menu">
-
 			<div class="enrolment-title">수강신청</div>
 
-			 
-
 			<div class="enrolment-lists">
-
 				<!--ㄴ눌렀을때 lms랑 연동되게끔 주소 넣어주기-->
-
-				<div><a href="/lms">내 수강 목록</a></div>
-
+				<div><a href="#">내 수강 목록</a></div>
 				<div class="e-period">
-
 					<span>수강신청 기간</span><br>
-
 					<span>2024년 7월 29일 ~ </span><br>
-
 					<span>2024년 8월 29일</span>
-
 				</div>
-
 			</div>
-
-				
 
 			<div class="e-guide">
+				<div class="e-g-title">안내사항</div>
 
-					<div class="e-g-title">안내사항</div>
-
-					
-
-					<div class="e-guide-con">
-
+				<div class="e-guide-con">
 					<span>신청기간 내 취소 불가</span><br>
-
 					<span>정정기간 내 취소 가능</span><br>
-
-					</div>
-
-					<div class="e-guide-con">
-
+				</div>
+				<div class="e-guide-con">
 					<strong>수강 신청 정정기간</strong><br>
-
 					<span>2024년 8월 30일 ~ </span><br>
-
 					<span>2024년 9월 04일</span>
-
-					</div>
-
-			</div>	
-
-			
-
-	</section>
-
-
-
-		<section class="enrolment-main">
-
-			<div class="e-sub">
-
-				<div class="e-sub-top">
-
-					수강신청 과목 목록
-
 				</div>
-
-				<div class="e-sub-list">
-
-					<ul>
-
-						<li class="e-sub-list-title">
-
-							<div >번호</div>
-
-							<div >신청</div>
-
-							<div >교과목명</div>
-
-							<div >강의실</div>
-
-							<div >교수명</div>
-
-							<div >학점</div>
-
-							<div >개설학과</div>
-
-							<div >시간표 요약</div>
-
-						</li>
-
-						
-
-					</ul>
-
-				</div>
-
-				
-
 			</div>
-
-		
-
-			
-
 		</section>
-
-		
-
+		<section class="enrolment-main">
+			<div class="e-sub">
+				<div class="e-sub-top">
+					수강신청 과목 목록
+				</div>
+				<div class="e-sub-list">
+					<ul>
+						<li class="e-sub-list-title">
+							<div>번호</div>
+							<div>신청</div>
+							<div>교과목명</div>
+							<div>강의실</div>
+							<div>교수명</div>
+							<div>학점</div>
+							<div>개설학과</div>
+							<div>시간표 요약</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
 	</section>
-
-
-
 </main>
-
-
-
-
-
-
-
 </html>

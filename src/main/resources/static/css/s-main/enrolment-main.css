@@ -1,46 +1,47 @@
 .enrolment-mains {
 
-  
 
-  max-width: 1700px;
 
-  margin: 0 auto; 
+	max-width: 1700px;
 
-  
+	margin: 0 auto;
+
+
 
 }
 
 
 
-.enrolment-container{
+.enrolment-container {
 
-	
+
 
 	display: grid;
 
-	grid-template-columns:1fr 2fr 2fr;
+	grid-template-columns: 1fr 2fr 2fr;
 
-	grid-auto-rows:900px;
+	grid-auto-rows: 900px;
 
 	padding: 10px;
 
-	grid-gap:20px;
+	grid-gap: 20px;
 
 	grid-template-areas:
 
-	'enrolment-menu enrolment-main enrolment-main'
+		'enrolment-menu enrolment-main enrolment-main'
 
-	
+
 
 }
 
 
 
-.enrolment-container, .enrolment-main{
+.enrolment-container,
+.enrolment-main {
 
-	
 
-	
+
+
 
 	background-color: #ffffff;
 
@@ -50,13 +51,13 @@
 
 
 
-.enrolment-menu{
+.enrolment-menu {
 
-	
+
 
 	display: flex;
 
- 	flex-direction:column;
+	flex-direction: column;
 
 	border-radius: 1em;
 
@@ -66,19 +67,19 @@
 
 	position: relative;
 
-	
+
 
 }
 
 
 
-.enrolment-main{
+.enrolment-main {
 
-	
+
 
 	display: flex;
 
- 	flex-direction:column;
+	flex-direction: column;
 
 	background-color: #ffffff;
 
@@ -88,7 +89,7 @@
 
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-	
+
 
 }
 
@@ -104,9 +105,10 @@
 
 
 
-.enrolment-title , .e-g-title{
+.enrolment-title,
+.e-g-title {
 
-	
+
 
 	font-size: 20px;
 
@@ -117,13 +119,13 @@
 	color: #ffffff;
 
 
-	
+
 
 }
 
 
 
-.enrolment-lists>div{
+.enrolment-lists>div {
 
 	padding-top: 20px;
 
@@ -132,21 +134,21 @@
 	padding-bottom: 20px;
 
 	border-bottom: 1px solid #f3f3f3;
-	
-	
+
+
 
 }
 
-.enrolment-lists>div>a{
-	
+.enrolment-lists>div>a {
+
 	text-decoration: none;
-	color:#191919;
-	
+	color: #191919;
+
 }
 
-.e-period{
+.e-period {
 
-	
+
 
 	line-height: 2;
 
@@ -154,9 +156,9 @@
 
 
 
-.e-guide-con{
+.e-guide-con {
 
-	
+
 
 	padding-top: 20px;
 
@@ -170,9 +172,10 @@
 
 
 
-.e-guide-con >span, strong{
+.e-guide-con>span,
+strong {
 
-	
+
 
 	line-height: 2;
 
@@ -180,37 +183,38 @@
 
 
 
-/*/////////////////////////왼쪽 바 끝////////////////////*//*/////////////////////////왼쪽 바 끝////////////////////*/
+/*/////////////////////////왼쪽 바 끝////////////////////*/
+/*/////////////////////////왼쪽 바 끝////////////////////*/
 
 
 
-.e-sub-top{
+.e-sub-top {
 
-	
+
 
 	font-size: 20px;
 
 	padding: 1em;
 
 	background-color: #944e63;
-	
+
 	color: #ffffff;
 
 }
 
 
 
-.e-sub-list > ul{
+.e-sub-list>ul {
 
 	padding: 0;
 
-	 list-style-type: none;
+	list-style-type: none;
 
 }
 
 
 
-.e-sub-list-title{
+.e-sub-list-title {
 
 	display: flex;
 
@@ -222,15 +226,18 @@
 
 
 
-.e-sub-list-title > div{
+.e-sub-list-title>div {
 
-	flex: 1; /* 동일한 너비로 나누기 */
+	flex: 1;
+	/* 동일한 너비로 나누기 */
 
-	  text-align: center; /* 가운데 정렬 */
+	text-align: center;
+	/* 가운데 정렬 */
 
-	  border-bottom: 1px solid #ccc; /* 아래쪽 테두리 설정 */
+	border-bottom: 1px solid #ccc;
+	/* 아래쪽 테두리 설정 */
 
-	  padding: 10px 0; /* 위아래 여백 설정 */
+	padding: 10px 0;
+	/* 위아래 여백 설정 */
 
 }
-
