@@ -56,18 +56,8 @@ public class CalendarServiceProcess implements CalendarService{
 
 	    @Override
 	    public void updateCalendar(Long id, CalendarDTO calendarDTO) {
-	        Optional<CalendarEntity> optionalCalendar = calendarRepository.findById(id);
-	        if (optionalCalendar.isPresent()) {
-	            CalendarEntity calendarEntity = optionalCalendar.get();
-	            calendarEntity.setTitle(calendarDTO.getTitle());
-	            calendarEntity.setStart_date(calendarDTO.getStart_date());
-	            calendarEntity.setEnd_date(calendarDTO.getEnd_date());
-	            calendarEntity.setDescription(calendarDTO.getDescription());
-	            calendarEntity.setIs_all_day(calendarDTO.getIs_all_day());
-	            calendarRepository.save(calendarEntity);
-	        } else {
-	            throw new RuntimeException("일정을 찾을 수 없습니다.");
-	        }
+	       calendarRepository.findById(id).orElseThrow().update(calendarDTO);
+	        
 	    }
 
 	    @Override
@@ -79,4 +69,3 @@ public class CalendarServiceProcess implements CalendarService{
 	        }
 	    }
 	}
-

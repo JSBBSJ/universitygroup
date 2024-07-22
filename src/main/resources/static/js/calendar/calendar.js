@@ -1,15 +1,7 @@
 $(document).ready(function() {
-    // 서버에서 일정을 불러오기
-    $.ajax({
-        url: '/calendar',
-        method: 'GET',
-        success: function(events) {
-            $('#calendar').fullCalendar('addEventSource', events);
-        },
-        error: function() {
-            alert('일정을 불러오는 데 실패했습니다.');
-        }
-    });
+    // CSRF 토큰과 헤더 이름을 meta 태그에서 가져옴
+    var csrfToken = $('meta[name="_csrf"]').attr('content');
+    var csrfHeader = $('meta[name="_csrf_header"]').attr('content');
 
     // 캘린더 초기화
     $('#calendar').fullCalendar({
@@ -36,6 +28,9 @@ $(document).ready(function() {
                     $.ajax({
                         url: '/calendar',
                         method: 'POST',
+                        headers: {
+                            [csrfHeader]: csrfToken // CSRF 헤더 추가
+                        },
                         contentType: 'application/json',
                         data: JSON.stringify(newEvent),
                         success: function(event) {
@@ -44,7 +39,10 @@ $(document).ready(function() {
                             $('#event-modal').hide();
                             clearModalFields();
                         },
-                        error: function() {
+                        error: function(xhr, status, error) {
+                            console.error('AJAX 오류:', error);
+                            console.error('응답 상태 코드:', xhr.status);
+                            console.error('응답 본문:', xhr.responseText);
                             alert('일정 저장에 실패했습니다.');
                         }
                     });
@@ -69,6 +67,9 @@ $(document).ready(function() {
                     $.ajax({
                         url: `/calendar/${event.id}`,
                         method: 'PUT',
+                        headers: {
+                            [csrfHeader]: csrfToken // CSRF 헤더 추가
+                        },
                         contentType: 'application/json',
                         data: JSON.stringify(event),
                         success: function() {
@@ -76,7 +77,10 @@ $(document).ready(function() {
                             $('#event-modal').hide();
                             clearModalFields();
                         },
-                        error: function() {
+                        error: function(xhr, status, error) {
+                            console.error('AJAX 오류:', error);
+                            console.error('응답 상태 코드:', xhr.status);
+                            console.error('응답 본문:', xhr.responseText);
                             alert('일정 수정에 실패했습니다.');
                         }
                     });
@@ -88,12 +92,18 @@ $(document).ready(function() {
                     $.ajax({
                         url: `/calendar/${event.id}`,
                         method: 'DELETE',
+                        headers: {
+                            [csrfHeader]: csrfToken // CSRF 헤더 추가
+                        },
                         success: function() {
                             $('#calendar').fullCalendar('removeEvents', event.id);
                             $('#event-modal').hide();
                             clearModalFields();
                         },
-                        error: function() {
+                        error: function(xhr, status, error) {
+                            console.error('AJAX 오류:', error);
+                            console.error('응답 상태 코드:', xhr.status);
+                            console.error('응답 본문:', xhr.responseText);
                             alert('일정 삭제에 실패했습니다.');
                         }
                     });
@@ -104,12 +114,18 @@ $(document).ready(function() {
             $.ajax({
                 url: `/calendar/${event.id}`,
                 method: 'PUT',
+                headers: {
+                    [csrfHeader]: csrfToken // CSRF 헤더 추가
+                },
                 contentType: 'application/json',
                 data: JSON.stringify(event),
                 success: function() {
                     alert('일정이 수정되었습니다.');
                 },
-                error: function() {
+                error: function(xhr, status, error) {
+                    console.error('AJAX 오류:', error);
+                    console.error('응답 상태 코드:', xhr.status);
+                    console.error('응답 본문:', xhr.responseText);
                     alert('일정 수정에 실패했습니다.');
                 }
             });
@@ -118,12 +134,18 @@ $(document).ready(function() {
             $.ajax({
                 url: `/calendar/${event.id}`,
                 method: 'PUT',
+                headers: {
+                    [csrfHeader]: csrfToken // CSRF 헤더 추가
+                },
                 contentType: 'application/json',
                 data: JSON.stringify(event),
                 success: function() {
                     alert('일정이 수정되었습니다.');
                 },
-                error: function() {
+                error: function(xhr, status, error) {
+                    console.error('AJAX 오류:', error);
+                    console.error('응답 상태 코드:', xhr.status);
+                    console.error('응답 본문:', xhr.responseText);
                     alert('일정 수정에 실패했습니다.');
                 }
             });
