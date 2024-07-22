@@ -1,17 +1,14 @@
 @charset "UTF-8";
-/* body, html {
-    margin: 0;
-    padding: 0;
-} */
+
 
 header {
     width: 100%; 
+    padding-bottom: 20px;
 }
 
 .header-container {
     padding: 0px 0; 
-    background-color: #944e63;
-    color: #ffffff;
+    
     display: flex;
     flex-direction: column; 
     box-sizing: border-box; 
@@ -28,8 +25,9 @@ header {
 .logo a {
     display: flex; /* 로고와 텍스트를 가로로 정렬 */
     align-items: center; /* 세로로 가운데 정렬 */
-    color: white; /* 링크 색상 */
+    color: #356855;; /* 링크 색상 */
     text-decoration: none; /* 링크 밑줄 제거 */
+    height:60px;
 }
 
 .logo img {
@@ -50,7 +48,8 @@ nav {
     padding: 0; 
     margin: 0; 
     box-sizing: border-box; 
-    border-top: 2px solid #ffffff; 
+    border-top: 2px solid #356855; 
+    background-color: #356855;
 }
 
 .menu {
@@ -61,14 +60,16 @@ nav {
     flex-direction: row; 
     align-items: center; 
     gap: 40px;
+   
 }
 
 .menu li {
     font-weight: bold; 
+    padding-right: 70px;
 }
 
 .menu a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-size: 20px;
     display: block; 

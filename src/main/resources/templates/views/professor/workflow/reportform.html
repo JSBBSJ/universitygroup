@@ -18,9 +18,20 @@
         }
 		
 		
-        .butss {
+        .butss  {
             padding-bottom: 20px;
+			
         }
+		
+		.butss > button{
+			
+			background-color: #ffffff;
+			border: 1px solid #191919;
+
+		}
+		
+		
+		
 		
 		.w-bottom-content>textarea {
 		    resize: none; /* 사용자 크기 조절 금지 */
@@ -57,7 +68,7 @@
 					debugger;
 				    // 폼 요소의 HTML 문자열을 추출
 					const sub = $('#agreement').val(); //신청서 내 제목
-					const dra = $('#draftsman').val(); //기안자
+					const dra = $('#draftsman1').text(); //기안자  //이건 내가 user에서 가져온것
 					const appr = $('#myInput').val();  //내가 넣어준 결제자(모달창)
 					const depart = $('#department').val(); // 학과명
 					const content = $('#content').val(); // 학과명
@@ -65,7 +76,7 @@
 					
 					
 					//보통 input에 required 있으면 되지만 현재로써 hide,show떔에 안먹어 if문으로 검사 후 alert 발생
-					if (!sub || !dra || !appr || !depart || !content || !worktime) {
+					if (!sub ||  !appr || !depart || !content || !worktime) {
 					       alert('모든 부분 입력 후 결재상신 눌러주세요.');
 					       return; // 필수 입력 필드가 비어있으면 함수 종료
 					   }
@@ -76,7 +87,7 @@
 					$('#agreement1').show();
 					$('#agreement1').text(sub);
 					
-					$('#draftsman').hide();
+					
 					$('#draftsman1').show();
 					$('#draftsman1').text(dra);
 					
@@ -172,17 +183,19 @@
             </div>
             <div class="butss">
                 <!-- 모달 대화상자 열기 버튼 -->
+				<button type="button" onclick="extractAndCreateHTML()">결제 상신</button>
                 <button onclick="openModal()" type="button" >결제선 지정</button>
 				<label for="draftsman" readonly>결제자</label>
 				<input type="text" id="myInput" readonly><br>
-                <button type="button" onclick="extractAndCreateHTML()">결제 상신</button>
+               
             </div>
 			
             <div class="w-top">
 				<div class="w-top-draft">
                 <label for="draftsman">기안자:</label>
-                <input type="text" id="draftsman" name="draftsman" required >
-				<label class="none" id="draftsman1"></label>  <!--요아이 참고-->
+				<span th:text="${#authentication.principal.name}" id="draftsman1">이름</span><br>
+				<!--///해당건은 교수 네임을 가져왔기으며 span태그로 위에 js에서 val이 아닌 text로 가져가야함-->
+				
 				</div>
 				
 				<div class="w-top-depart">

@@ -1,0 +1,119 @@
+.contacts-mains {
+
+  
+
+  max-width: 1700px; 
+
+  margin: 0 auto; 
+
+  
+
+}
+
+
+
+.contacts-container{
+
+	
+
+	display: grid;
+
+	grid-template-columns:1fr 2fr 2fr;
+
+	grid-auto-rows:900px;
+
+	padding: 10px;
+
+	grid-gap:20px;
+
+	grid-template-areas:
+
+	'contacts-menu contacts-main contacts-main'
+
+	
+
+}
+
+
+
+
+
+
+.contacts-menu, .contacts-main{
+
+	
+
+	
+
+	background-color: #ffffff;
+
+}
+
+
+
+
+
+.contacts-menu{
+
+	
+
+	display: flex;
+
+ 	flex-direction:column;
+
+	border-radius: 1em;
+
+	grid-area: contacts-menu;
+
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	position: relative;
+
+	
+
+}
+
+
+
+.contacts-main{
+
+	
+
+	display: flex;
+
+ 	flex-direction:column;
+
+	background-color: #ffffff;
+
+	border-radius: 1em;
+
+	grid-area: contacts-main;
+
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	
+
+}
+
+
+/* //////////////////////////화면구성 끝///////////////// */
+
+/* ////////////왼쪽바 구성///////////////// */
+
+.contacts-menu > a {
+
+	
+	display: block;
+	font-size: 20px;
+	padding: 1em;
+	background-color: #356855;
+	text-decoration: none;
+	color:#ffffff;
+	border-top-left-radius:15px;
+	border-top-right-radius: 15px;
+	
+	
+
+}
+
+
