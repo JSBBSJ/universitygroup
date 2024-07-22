@@ -45,7 +45,7 @@ public class CustomUserDetails extends User {
 
 		if (entity.getStudent() != null) {
 			StudentEntity studentEntity = entity.getStudent();
-			this.studentDTO = StudentlistDTO.builder().student_no(studentEntity.getStudent_no())
+			this.studentDTO = StudentlistDTO.builder().student_number(studentEntity.getStudent_number())
 					.username(studentEntity.getUser().getUsername())
 					.department_name(studentEntity.getDepartment().getDepartment_name()).build();
 		}
