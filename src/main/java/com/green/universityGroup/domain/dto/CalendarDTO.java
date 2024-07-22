@@ -23,7 +23,7 @@ public class CalendarDTO {
 	private LocalDateTime start_date;
 	private LocalDateTime end_date;
 	private String description;
-	private Boolean is_all_day;
+	private Boolean is_all_day = false	;
 	private UserEntity user;
 	 
 	
