@@ -1,293 +1,115 @@
 <!DOCTYPE html>
-
-
-
-<!--//내가 만든 휴가신청서 폼///-->
-
+<html lang="en">
 <head>
-
- <style>
-
- .leaveform{
-
+    <meta charset="UTF-8">
+    <title>내가 만든 보고서 폼</title>
+    <style>
+		
+		
+        .vacation-form {
+            padding: 2em;
+        }
+        .w-top, .w-bottom {
+            border: 1px solid #e9e9e9;
+            width: 500px;
+            padding: 1em;
+            margin-bottom: 1em;
+        }
+        .butss {
+            padding-bottom: 20px;
+        }
+		
+        /* 모달 대화상자 스타일 */
+        .modal {
+            display: none; /* 초기에는 숨김 상태 */
+            position: fixed; /* 화면에 고정 */
+            left: 50%; /* 화면 가운데 정렬 */
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 20px;
+            z-index: 1000; /* 다른 요소들보다 위에 오도록 설정 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 	
-
-	padding: 1em;
-
-	width: 100%;
-
-	height: 100%
-
-  
-
-}
-
-
-
-.leave-title{
-
-
-
-	padding-bottom: 20px;
-
-}
-
-
-
-
-
-.leave-title > h1{
-
-	justify-content: center;
-
-	font-size: 25px;
-
-}
-
-
-
-
-
-.leave-menu{
-
-
-
-	border: 1px solid #191919;
-
-	width: 270px;
-
-	height: 90px;
-
-	
-
-}
-
-
-
-.leave-menus{
-
-	width: 100%;
-
-	height: 30px;
-
-	border-bottom: 1px solid #191919;
-
-}
-
-
-
-.leave-menus:last-child{
-
-	border-bottom:none;
-
-}
-
-
-
-.munus-name{
-
-	display: inline-block;
-
-	padding-right: 20px;
-
-	height: 100%;
-
-	border-right: 1px solid #191919;
-
-	
-
-}
-
-
-
-.menus-input{
-
-	display: inline-block;
-
-	padding-left: 10px;
-
-}
-
-
-
-.leave-menus > input{
-
-	display: inline-block;
-
-
-
-}
-
-
-
-.leave-top{
-
-	padding-bottom: 30px;
-
-}
-
-
-
-.leave-body{
-
-	border: 1px solid #191919;
-
-	width: 550px;
-
-	height: 400px;
-
-
-
-}
-
-
-
-.leave-reson-menu{
-
-	
-
-   height: 338px;
-
-   width: 100%;
-
-   display: flex; 
-
-   align-items: center; 
-
-
-
-}
-
-.reason-input textarea {
-
-  width: 100%; /* 원하는 너비로 조정 */
-
-  height: 100%; /* 원하는 높이로 조정 */
-
-  resize: none; /* 사용자가 사이즈 조절 못하게 설정 */
-
-
-
-}
-
-
-
-.munus-reason{
-
-	
-
-	display: flex;
-
-   align-items: center; /* 세로 가운데 정렬 */
-
-   justify-content: center; /* 가로 가운데 정렬 */
-
-   height: 100%;
-
-   text-align: center;
-
-   padding-right: 20px;
-
-   border-right: 1px solid #191919;
-
- 
-
-  
-
-}
-
-
-
-.reason-input{
-
-	padding-left: 10px;
-
-}
-
-
-
-
-
- </style>
-
-
-
- </head>
-
-
-
-
-
-
-
+	<script>
+		        // 모달 열기 함수
+		        function openModal() {
+		            const modal = document.getElementById('myModal');
+		            modal.style.display = 'block';
+					
+					
+					
+					//비동기로 컨트롤러 호출
+					$.ajax({
+						url:'http://localhost:8080/w-pageup', //컨트롤러 매핑 주소 
+						type: 'GET',  //get으로 저 url 가져오겠다
+						dataType:"html", //가져올 타입은 html
+						success : function(result){ //성공하면 결과값으로 
+							debugger;
+							if(!$('#myModal .work_chart').length > 0){
+								$('#myModal').append(result);						
+							}
+						}
+					});		
+					
+		        }
+
+		        // 모달 닫기 함수
+		        function closeModal() {
+					
+					//input 태그안에 값(approver-list 안 디아이브 값을 텍스트로 넣어줄게)
+				$('#myInput').val($('#approver-list > div').text());
+				
+				 const modal = document.getElementById('myModal');
+				 modal.style.display = 'none';
+			  
+			  }
+					
+				
+		        
+		    </script>
+</head>
 <body>
+    <div class="vacation-form">
+        <!--<form id="vacation" action="" method="POST">-->
+			<form id="vacation">
+            <div class="w-titles">
+                <h2>휴가신청서</h2>
+            </div>
+            <div class="butss">
+                <!-- 모달 대화상자 열기 버튼 -->
+                <button onclick="openModal()">결제선 지정</button>
+                <button >결제 상신</button>
+				<label for="draftsman" readonly>결제자</label>
+                <input type="text" id="myInput" readonly><br>
+            </div>
+            <div class="w-top">
+                <label for="draftsman">기안자:</label>
+                <input type="text" id="draftsman" name="draftsman" required><br>
+                <label for="department">학과명:</label>
+                <input type="text" id="department" name="department" required><br>
+                <label for="draftDate">기안일:</label>
+                <input type="date" id="draftDate" name="draftDate" required><br>
+            </div>
+            <div class="w-bottom">
+                <label for="agreement">휴가종류:</label>
+                <input type="text" id="agreement" name="agreement" required><br>
+                <label for="content">휴가사유</label><br>
+                <textarea id="content" name="content" rows="20" cols="60" required></textarea><br><br>
+            </div>
+        </form>
+    </div>
 
-	
-
-	<section class="leaveform">
-
-	<section class="leave-top">
-
-		
-
-	<header class="leave-header">
-
-		
-
-		<div class="leave-title">
-
-			<h1>연차 신청서</h1>
-
-			<div class="btns-work">
-
-				<!--<첫번째에는 html 경로, 팝업창 이름, width 넓이, height 높이, top 위에서 얼마나 띄울거진, 왼쪽에서 얼마나 띄울건지, location: 주소창 유무 ,status 상태 표지줄 유무,scrollbars 스크롤바 생성 유뮤, toolbar 툴바 유무>			-->
-
-			<button  onclick="window.open('http://localhost:8080/w-pageup','결제선지정','width=550,height=400,top=350, left=1100,status=no,toolbar=no,scrollbars=no');" >결제선 지정</button>
-
-			<button>결제 상신</button>
-
-		   </div>
-
-		 </div>
-
-		 <div class="leave-menu">
-
-			<div class="leave-menus"><div class="munus-name">기안자</div><div class="menus-input" ><input placeholder="기안자"/></div></div>
-
-			<div class="leave-menus"><div class="munus-name">학과명</div><div class="menus-input" ><input placeholder="학과"/></div></div>
-
-			<div class="leave-menus"><div class="munus-name">기안일</div><div class="menus-input" ><input placeholder="기안자"/></div></div>
-
-		
-
-		 </div>
-
-	 </header>
-
-	</section>
-
-	
-
-	<section class="leave-body">
-
-		<main class="leave-main">	
-
-			<div class="leave-body-menu">
-
-				<div class="leave-menus"><div class="munus-name">휴가종류</div><div class="menus-input">연차</div></div>
-
-				<div class="leave-menus"><div class="munus-name">기안일시</div><div class="menus-input" ><input placeholder="일간일시"/> ~ <input placeholder="일간일시"/></div></div>
-
-				<div class="leave-reson-menu"><div class="munus-reason">휴가사유</div><div class="reason-input" ><textarea placeholder="휴가사유"  rows="20" cols="58"></textarea></div></div>
-
-			</div>
-
-		</main>	
-
-	</section>
-
-	
-
-	</section>
-
+    <!-- 모달 대화상자 -->
+    <div id="myModal" class="modal">
+        <!-- 모달 내용 -->
+        <h2>조직도</h2>
+        <p></p>
+        <!-- 모달 닫기 버튼 -->
+        <button onclick="closeModal()">저장</button>
+    </div>
 </body>
+</html>

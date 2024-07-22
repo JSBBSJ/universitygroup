@@ -29,3 +29,6 @@ function approvalOnoff(id) { //코드가 중복되어 id로 가져와서 뿌리�
        }
 
    }
+   
+   
+  

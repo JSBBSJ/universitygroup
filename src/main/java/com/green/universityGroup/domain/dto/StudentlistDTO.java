@@ -11,9 +11,9 @@ public class StudentlistDTO {
 	private long student_no; //student entity
 	//private String username; //user entity
 	private long student_number; //student entity
-	//private String department_name; //department entity
+	private String department_name; //department entity
 	
 	//private long user_no;
-	//private String username;
+	private String username;
 
 }

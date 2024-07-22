@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.HashSet;
 import org.hibernate.annotations.DynamicUpdate;
 
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -17,13 +16,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 
 @DynamicUpdate
 @Getter
@@ -50,9 +49,14 @@ public class UserEntity {
 	@Column(nullable = false)
 	private String profile_image;
 
-	@ManyToOne
-	@JoinColumn(name = "chatbot_no", referencedColumnName = "chatbot_no")
-	private ChatbotEntity chatbot;
+	// StudentEntity와의 관계
+	@OneToOne(mappedBy = "user")
+	private StudentEntity student;
+
+	// ProfessorEntity와의 관계
+	@OneToOne(mappedBy = "user")
+	private ProfessorEntity professor;
+
 	@Enumerated(EnumType.STRING) // DB저장 데이터타입 문자로 저장 : default 숫자로 저장
 	@CollectionTable(name = "role", // RoleEntity 이름
 			joinColumns = @JoinColumn(name = "no")) // 선택:자동으로 만들어주지만 fk컬럼명

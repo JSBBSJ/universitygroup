@@ -4,13 +4,16 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!-- Stomp.js 라이브러리 추가 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
 	<script src="/js/bot/bot.js"></script>
 	<link rel="stylesheet" href="/css/commons/common.css" />
 	<link rel="stylesheet" href="/css/lms/list.css" />
 	<link rel="stylesheet" href="/css/bot/bot.css" />
 	<link rel="stylesheet" href="/css/weather/weather.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	
+
 	<script src="/js/weather/weather.js"></script>
 </head>
 
@@ -20,6 +23,14 @@
 			<div class="logo-img"></div>
 			<div class="logo-text">
 				<a href="/lms">라라대학교</a>
+			</div>
+			<div class="signout">
+				<form action="/logout" method="post">
+					<button type="submit" title="로그아웃">
+						<img src="/images/common/logout-icon.png" alt="로그아웃 아이콘">
+					</button>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				</form>
 			</div>
 		</section>
 	</header>
@@ -35,7 +46,9 @@
 				</div>
 				<div class="menu-box">
 					<div class="menu-item">안읽은 메일</div>
-					<div class="menu-item"><a href="/mypage">내 정보</a></div>
+					<div class="menu-item">
+						<a href="/mypage">내 정보</a>
+					</div>
 					<!-- 추가 항목은 여기에 추가 -->
 				</div>
 			</div>
@@ -64,14 +77,10 @@
 						<div id="professor-profile">
 							<img src="/images/common/professor/profile.jpg">
 						</div>
-						<div id="name">
-							이진웅 교수
-						</div>
+						<div id="name">이진웅 교수</div>
 					</section>
 
-					<div id="course-name">
-						Java Programming
-					</div>
+					<div id="course-name">Java Programming</div>
 				</li>
 				<li>
 					<section id="class-profile">

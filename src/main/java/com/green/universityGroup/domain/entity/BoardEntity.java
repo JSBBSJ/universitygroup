@@ -7,6 +7,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.green.universityGroup.domain.dto.BoardDetailDTO;
+import com.green.universityGroup.domain.dto.BoardListDTO;
+import com.green.universityGroup.domain.dto.BoardSaveDTO;
+import com.green.universityGroup.domain.dto.BoardUpdateDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -56,6 +61,39 @@ public class BoardEntity {
 	@JoinColumn(name = "user_no", referencedColumnName = "user_no")
 	private UserEntity user;
 
-	@OneToMany(mappedBy = "comment_no")
+	@OneToMany(mappedBy = "board")
 	private List<CommentEntity> comments;
-}
+	
+
+	public BoardListDTO toListDTO() {
+		return BoardListDTO.builder()
+				.board_no(board_no)
+				.title(title)
+				.createdAt(createdAt)
+				.username(user.getUsername())
+				.user_no(user.getUser_no())
+				.division(division)
+				.build();
+	}
+	
+	public BoardDetailDTO toProcessDTO() {
+		return BoardDetailDTO.builder()
+				.board_no(board_no)
+				.division(division)
+				.title(title)
+				.text(text)
+				.createdAt(createdAt)
+				.username(user.getUsername())
+				.build();
+	}
+
+	public BoardEntity update(BoardUpdateDTO dto) {
+		this.title=dto.getTitle();
+		this.text=dto.getText();
+		return this;
+		
+	}
+		
+	}
+	
+	

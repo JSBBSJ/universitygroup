@@ -48,7 +48,8 @@ public class ProfessorEntity{
 	public ProfessorListDTO toListDTO() {
 		return ProfessorListDTO.builder()
 				.professor_number(professor_number)
-				.Professor_no(professor_no)
+				.username(user.getUsername())
+				.department_name(dep.getDepartment_name())
 				.build();
 	
 	}

@@ -1,7 +1,5 @@
 package com.green.universityGroup.domain.entity;
 
-import java.time.LocalDateTime;
-
 import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.Column;
@@ -10,8 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -25,15 +22,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "approval")
-public class ApprovalEntity {
-
+@Table(name = "oranization") //주소록임 주소록!!(전자결재용 주소록)
+public class OrganizationchartEntity {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long approval_no;
-
-	@ManyToOne
-	@JoinColumn(name = "professor_no", referencedColumnName = "professor_no")
-	private ProfessorEntity professor;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
+	private long oranization_no;
+	
+	
+	@Column(nullable = false, unique = true)
+	private String oranization_field;
+	
+	
+	@Column(nullable = false)
+	private String oranization_name;
+	
+	
 
 }
