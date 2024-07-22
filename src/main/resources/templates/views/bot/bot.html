@@ -1,15 +1,17 @@
-<div class="chatbot-icon" onclick="btnBotClicked()">
-	<img src="/images/common/chatbot-icon.png" alt="챗봇">
-</div>
-<div class="chatbot-window" id="chatbotWindow">
-	<div class="chatbot-header">
-		챗봇 나리 <span class="close-btn" onclick="btnCloseClicked()">✕</span>
+<div class="chatbot-container">
+	<div class="chatbot-icon" onclick="btnBotClicked()">
+		<img src="/images/common/chatbot-icon.png" alt="챗봇">
 	</div>
-	<div class="chatbot-body" id="chatbot-body">
-		<!-- Chat titles will be appended here as buttons -->
-	</div>
-	<div class="chatbot-footer">
-		<input type="text" class="input" id="input" placeholder="질문을 입력하세요">
-		<button class="btn-send" onclick="sendMessage()">전송</button>
+	<div class="chatbot-window" id="chatbotWindow">
+		<div class="chatbot-header">
+			챗봇 나리 <span class="close-btn" onclick="btnCloseClicked()">✕</span>
+		</div>
+		<div class="chatbot-body" id="chatbot-body">
+			<!-- Chat titles will be appended here as buttons -->
+		</div>
+		<div class="chatbot-footer">
+			<input type="text" class="input" id="input" placeholder="질문을 입력하세요">
+			<button class="btn-send" onclick="sendMessage()">전송</button>
+		</div>
 	</div>
 </div>
