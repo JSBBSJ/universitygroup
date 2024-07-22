@@ -5,6 +5,9 @@ $(document).ready(function() {
         method: 'GET',
         success: function(events) {
             $('#calendar').fullCalendar('addEventSource', events);
+        },
+        error: function() {
+            alert('일정을 불러오는 데 실패했습니다.');
         }
     });
 
@@ -19,7 +22,7 @@ $(document).ready(function() {
             $('#event-end').val(moment(end).format('YYYY-MM-DD'));
             $('#event-title').val('');
             $('#event-description').val('');
-            
+
             $('#save-event').off('click').on('click', function() {
                 var title = $('#event-title').val();
                 var description = $('#event-description').val();
@@ -86,7 +89,7 @@ $(document).ready(function() {
                         url: `/calendar/${event.id}`,
                         method: 'DELETE',
                         success: function() {
-                            $('#calendar').fullCalendar('removeEvents', event._id);
+                            $('#calendar').fullCalendar('removeEvents', event.id);
                             $('#event-modal').hide();
                             clearModalFields();
                         },
@@ -145,4 +148,3 @@ $(document).ready(function() {
         $('#event-end').val('');
     }
 });
-

@@ -121,7 +121,3 @@ button {
 	cursor: pointer; /* 클릭 시 커서 변경 */
 }
 
-button:hover {
-	/*background-color: #6a3c4c; 버튼 호버 색상 */
-	
-}
