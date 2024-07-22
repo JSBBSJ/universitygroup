@@ -9,6 +9,6 @@ import com.green.universityGroup.domain.entity.BoardEntity;
 
 public interface BoardEntityRepository extends JpaRepository<BoardEntity, Long> {
 	
-	List<BoardEntity> findAllByDivision(String division);
+	 List<BoardEntity> findAllByDivision(String division); 
 
 }

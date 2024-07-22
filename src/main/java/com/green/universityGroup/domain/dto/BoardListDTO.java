@@ -14,4 +14,5 @@ public class BoardListDTO {
 	private LocalDateTime createdAt;
 	private String username;
 	private String division;
+	private long user_no;
 }

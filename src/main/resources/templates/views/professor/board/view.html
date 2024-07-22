@@ -97,11 +97,11 @@
 
                 <div class="comments-list">
                     <h2>댓글 목록</h2>
-                    <div th:each="comment : ${comments}">
+                    <div th:each="comments:${comments}">
                         <div class="comment-item">
-                            <p th:text="${comment.comment_user}"></p>
-                            <p th:text="${comment.text}"></p>
-                            <small th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></small>
+                            <p th:text="${comments.comment_no}"></p>
+                            <p th:text="${comments.text}"></p>
+                           <!-- <small th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></small>-->
                         </div>
                     </div>
                 </div>

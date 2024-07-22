@@ -27,14 +27,14 @@ public class CommentDTO {
 	private LocalDateTime createdAt;
 	private long board_no;
 
-	public CommentEntity toCommentEntity() {
+	public CommentEntity toCommentEntity(BoardEntity board) {
 		return CommentEntity.builder()
 				.comment_no(comment_no)
 				.comment_user(comment_user)
 				.createdAt(createdAt)
 				.text(text)
+				.board(board)
 				.build();
 	}
-
 
 }

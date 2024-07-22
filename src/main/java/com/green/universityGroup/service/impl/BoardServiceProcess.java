@@ -12,6 +12,7 @@ import com.green.universityGroup.domain.dto.BoardSaveDTO;
 import com.green.universityGroup.domain.dto.BoardUpdateDTO;
 import com.green.universityGroup.domain.entity.BoardEntity;
 import com.green.universityGroup.domain.repository.BoardEntityRepository;
+import com.green.universityGroup.domain.repository.UserEntityRepository;
 import com.green.universityGroup.service.BoardService;
 
 import lombok.RequiredArgsConstructor;

@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.green.universityGroup.domain.dto.BoardDetailDTO;
 import com.green.universityGroup.domain.dto.BoardListDTO;
+import com.green.universityGroup.domain.dto.BoardSaveDTO;
 import com.green.universityGroup.domain.dto.BoardUpdateDTO;
 
 import jakarta.persistence.Column;
@@ -60,16 +61,17 @@ public class BoardEntity {
 	@JoinColumn(name = "user_no", referencedColumnName = "user_no")
 	private UserEntity user;
 
-	@OneToMany(mappedBy = "comment_no")
+	@OneToMany(mappedBy = "board")
 	private List<CommentEntity> comments;
 	
-	
+
 	public BoardListDTO toListDTO() {
 		return BoardListDTO.builder()
 				.board_no(board_no)
 				.title(title)
 				.createdAt(createdAt)
 				.username(user.getUsername())
+				.user_no(user.getUser_no())
 				.division(division)
 				.build();
 	}
