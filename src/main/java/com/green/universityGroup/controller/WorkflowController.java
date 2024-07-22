@@ -43,12 +43,12 @@ public class WorkflowController {
 		 * 버튼태그 }
 		 */
 		
-		@GetMapping("/work-save")
-		public String report() {
-			
-			return "/views/professor/workflow/work-save"; //이것도 경로가 달라지면 수정 필요//이건 양식폼 버튼태그
-		}
-		
+		/* work save 컨트롤러 따로 있어 주석처리
+		 * @GetMapping("/work-save") public String report() {
+		 * 
+		 * return "/views/professor/workflow/work-save"; //이것도 경로가 달라지면 수정 필요//이건 양식폼
+		 * 버튼태그 }
+		 */
 	
 		
 	
