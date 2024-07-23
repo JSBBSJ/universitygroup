@@ -59,7 +59,6 @@
 						<div class="title">제목</div>
 						<div class="writer">작성자</div>
 						<div class="date">작성일</div>
-						<div class="count">조회</div>
 					</div>
 
 					<div th:each="dto:${list}">
@@ -67,7 +66,6 @@
 						<div class="title"><a th:href="|/professor/view/${dto.board_no}|"><span th:text="${dto.title}"></a></div>
 						<div class="writer"><span th:text="${dto.username}"></span></div>
 						<div class="date"><span th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd')}"></span></div>
-						<div class="count">3</div>
 					</div>
 				</div>
 			</div>

@@ -3,13 +3,19 @@ package com.green.universityGroup.domain.dto;
 import com.green.universityGroup.domain.entity.BoardEntity;
 import com.green.universityGroup.domain.entity.UserEntity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Builder
 @ToString
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BoardSaveDTO {
 	
 	private long board_no;
@@ -19,13 +25,21 @@ public class BoardSaveDTO {
 	private long user_no; 
 
 
-	public BoardEntity toSaveEntity(UserEntity user) {
-	    return BoardEntity.builder()
-	            .title(title)
-	            .text(text)
-	            .division(division)
-	            .user(user)
-	            .board_no(board_no)
-	            .build();
-	}
+	public BoardSaveDTO(String title, String text, String division, long user_no) {
+
+        this.title = title;
+        this.text = text;
+        this.division = division;
+        this.user_no = user_no;
+    }
+	
+	  public BoardEntity toSaveEntity(UserEntity user) { 
+	  return BoardEntity.builder() 
+	  .title(title) 
+	  .text(text) 
+	  .division(division)
+	  .user(user) 
+	  .build(); 
+	  }
+	 
 }

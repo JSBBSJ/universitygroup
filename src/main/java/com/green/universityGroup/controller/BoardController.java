@@ -43,8 +43,24 @@ public class BoardController {
 	@PostMapping("/board/write")
 	public String save(BoardSaveDTO dto) {
 		service.saveProcess(dto);
-		return "redirect:/board/1";
-	}
+		 String redirectPath;
+		    switch (dto.getDivision()) {
+		        case "자유게시판":
+		            redirectPath = "/board/1"; 
+		            break;
+		        case "학과공지":
+		            redirectPath = "/board/2"; 
+		            break;
+		        case "학사공지":
+		            redirectPath = "/board/3"; 
+		            break;
+		        default:
+		            redirectPath = "/board/1"; 
+		            break;
+		    }
+		    
+		    return "redirect:" + redirectPath;
+		}
 	
 	
 	@GetMapping("/professor/view/{board_no}")
