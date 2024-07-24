@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+    <meta name="csrf-token" content="${_csrf.token}"> <!-- CSRF 토큰을 메타 태그로 추가 -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!-- Stomp.js 라이브러리 추가 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+	<script src="/js/bot/bot.js"></script>
+	<link rel="stylesheet" href="/css/commons/common.css" />
+	<link rel="stylesheet" href="/css/lms/list.css" />
+	<link rel="stylesheet" href="/css/bot/bot.css" />
+	<link rel="stylesheet" href="/css/weather/weather.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+	<script src="/js/weather/weather.js"></script>
+</head>
+
+<body>
+	<header>
+		<section class="logo">
+			<div class="logo-img"></div>
+			<div class="logo-text">
+				<a href="/lms">라라대학교</a>
+			</div>
+			<div class="signout">
+				<form action="/logout" method="post">
+					<button type="submit" title="로그아웃">
+						<img src="/images/common/logout-icon.png" alt="로그아웃 아이콘">
+					</button>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				</form>
+			</div>
+		</section>
+	</header>
+	<main>
+		<section class="profile">
+			<div class="profile-bg">
+				<img src="/images/common/professor/profile.jpg" id="img">
+			</div>
+			<div class="info">
+				<div class="name">
+					<p>김라라 (2024001795)</p>
+					<strong>컴퓨터공학과</strong><br> <span>접속IP:192.168.0.0</span>
+				</div>
+				<div class="menu-box">
+					<div class="menu-item">안읽은 메일</div>
+					<div class="menu-item">
+						<a href="/mypage">내 정보</a>
+					</div>
+					<!-- 추가 항목은 여기에 추가 -->
+				</div>
+			</div>
+		</section>
+
+		<section class="weather">
+			<div class="weather-info">
+				<div id="weather-icon"></div>
+				<div class="weather-text">
+					<h2 id="city-name"></h2>
+					<p id="temperature"></p>
+					<div class="weather-detail">
+						<p id="humidity">현재 습도:</p>
+						<p id="weather">날씨:</p>
+						<p id="wind-speed">풍속:</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="class">
+			<span>이번학기 강좌 목록</span>
+			<ul>
+				<li th:each="course : ${courses}">
+					<span th:text="${course.courseName}"></span>
+				</li>
+			</ul>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-container">
+			<div class="footer-section logo">
+				<img src="/images/common/main-logo.png" alt="대학교 로고">
+			</div>
+			<div class="footer-section links">
+				<h3>유용한 링크</h3>
+				<ul>
+					<li><a href="/#">학교 소개</a></li>
+					<li><a href="/#">입학 안내</a></li>
+					<li><a href="/#">학과 소개</a></li>
+					<li><a href="/#">문의하기</a></li>
+				</ul>
+			</div>
+			<div class="footer-section contact">
+				<h3>연락처 정보</h3>
+				<p>주소: 서울특별시</p>
+				<p>전화: (02) 1234-5678</p>
+				<p>이메일: info@university.ac.kr</p>
+			</div>
+			<div class="footer-section social">
+				<h3>소셜 미디어</h3>
+				<a href="#"><img src="facebook.png" alt="페이스북"></a> <a href="#"><img src="twitter.png" alt="트위터"></a> <a
+					href="#"><img src="instagram.png" alt="인스타그램"></a>
+			</div>
+		</div>
+	</footer>
+	<article th:insert="~{views/bot/bot.html}"></article>
+
+</body>
+
+</html>
