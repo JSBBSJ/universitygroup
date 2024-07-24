@@ -63,7 +63,7 @@
 
 					<div th:each="dto:${list}">
 						<div class="num"><span th:text="${dto.board_no}"></div>
-						<div class="title"><a th:href="|/professor/view/${dto.board_no}|"><span th:text="${dto.title}"></a></div>
+						<div class="title"><a th:href="|/board/view/${dto.board_no}|"><span th:text="${dto.title}"></a></div>
 						<div class="writer"><span th:text="${dto.username}"></span></div>
 						<div class="date"><span th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd')}"></span></div>
 					</div>

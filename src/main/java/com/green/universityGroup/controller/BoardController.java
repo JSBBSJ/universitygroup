@@ -63,25 +63,25 @@ public class BoardController {
 		}
 	
 	
-	@GetMapping("/professor/view/{board_no}")
+	@GetMapping("/board/view/{board_no}")
 	public String detail(@PathVariable("board_no") long board_no, Model model) {
 		service.detailProcess(board_no,model);
 		return "/views/professor/board/view";
 	}
 	
-	@GetMapping("/professor/edit/{board_no}")
+	@GetMapping("/board/edit/{board_no}")
 	public String edit(@PathVariable("board_no") long board_no, Model model) {
 		service.editProcess(board_no,model);
 		return "/views/professor/board/edit";
 	}
 	
-	@PutMapping("/professor/edit/{board_no}")
+	@PutMapping("/board/edit/{board_no}")
 	public String update(@PathVariable("board_no") long board_no, BoardUpdateDTO dto) {
 		service.updateProcess(board_no,dto);		
-		return "redirect:/professor/view/{board_no}";
+		return "redirect:/board/view/{board_no}";
 	}
 	
-	@DeleteMapping("/professor/view/{board_no}")
+	@DeleteMapping("/board/view/{board_no}")
 	public String delete(@PathVariable("board_no") long board_no) {
 		service.deleteProcess(board_no);
 		return "redirect:/board/1";
