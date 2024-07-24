@@ -5,6 +5,8 @@ import java.util.Set;
 import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.CascadeType;
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +46,6 @@ public class CourseEntity {
 	@ManyToOne
 	private ProfessorEntity professor;
 	
-	@OneToMany(mappedBy = "enrollment_no", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "course_no", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EnrollmentEntity> enrollment;
 }
