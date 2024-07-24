@@ -5,8 +5,6 @@ import java.util.Set;
 import org.apache.catalina.User;
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.green.universityGroup.domain.dto.ProfessorClassDTO;
-
 import jakarta.persistence.CascadeType;
 import org.hibernate.annotations.DynamicUpdate;
 
