@@ -12,7 +12,7 @@ body {
 
 header {
 	border: none;
-	background-color: #944E63;
+	background-color: var(--main-color);
 	color: #fff;
 	grid-area: header;
 	display: flex;

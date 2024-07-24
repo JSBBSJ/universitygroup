@@ -6,5 +6,7 @@ public interface ProfessorService {
 
 	void listProcess(Model model);
 
+	String getLoggedInProfessorUsername();
+
 
 }

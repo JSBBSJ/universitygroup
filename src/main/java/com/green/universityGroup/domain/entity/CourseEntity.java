@@ -1,9 +1,12 @@
 package com.green.universityGroup.domain.entity;
 
 import java.util.Set;
+import java.util.function.Function;
 
 import org.apache.catalina.User;
 import org.hibernate.annotations.DynamicUpdate;
+
+import com.green.universityGroup.domain.dto.ProfessorClassListDTO;
 
 import jakarta.persistence.CascadeType;
 import org.hibernate.annotations.DynamicUpdate;
@@ -50,4 +53,9 @@ public class CourseEntity {
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EnrollmentEntity> enrollment;
 
+	public ProfessorClassListDTO toListDTO() {
+        return ProfessorClassListDTO.builder()
+                .course_name(course_name)
+                .build();
+	}
 }

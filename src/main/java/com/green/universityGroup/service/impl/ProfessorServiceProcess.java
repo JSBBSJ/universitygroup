@@ -2,6 +2,8 @@ package com.green.universityGroup.service.impl;
 
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -24,5 +26,11 @@ public class ProfessorServiceProcess implements ProfessorService{
 		.map(ProfessorEntity::toListDTO)
 		.collect(Collectors.toList()));
 	}
-	
+
+
+	@Override
+    public String getLoggedInProfessorUsername() {
+        return ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+    }
+
 }

@@ -1,5 +1,5 @@
 let stompClient = null;
-
+//소켓 연결
 function connect() {
     const socket = new SockJS('/rara-bot');
     stompClient = Stomp.over(socket);
@@ -25,15 +25,25 @@ function connect() {
     });
 }
 
+//소켓 연결 해제
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+    }
+    console.log("Disconnected");
+}
+
 function loadCategories() {
     fetch('/api/questions/categories')
         .then(response => response.json())
         .then(categories => {
             const categoryButtons = document.getElementById('category-buttons');
             if (categoryButtons) {
+				categoryButtons.innerHTML = ''; // 기존 버튼들을 초기화
                 categories.forEach(category => {
                     const button = document.createElement('button');
                     button.textContent = category;
+					button.className = 'category-button';
                     button.onclick = () => sendCategory(category);
                     categoryButtons.appendChild(button);
                 });
@@ -53,6 +63,7 @@ function sendCategory(category) {
                 texts.forEach(text => {
                     const button = document.createElement('button');
                     button.textContent = text;
+					button.className = 'category-button';
                     button.onclick = () => fetchAnswer(text);
                     textButtonsContainer.appendChild(button);
                 });
@@ -103,14 +114,15 @@ function showMessage(message) {
 
 function btnBotClicked() {
     const chatbotWindow = document.getElementById('chatbotWindow');
+	
+	connect();
     chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
 }
 
 function btnCloseClicked() {
     const chatbotWindow = document.getElementById('chatbotWindow');
+	disconnect();
     chatbotWindow.style.display = 'none';
+	
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    connect();
-});
