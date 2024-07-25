@@ -48,7 +48,8 @@ public class CommentServiceProcess implements CommentService {
 		 */
 		
 		
-		  List<CommentListDTO> comments = repository.findAll() .stream()
+		  List<CommentListDTO> comments = repository.findAll() 
+		  .stream()
 		  .map(CommentEntity::toListDTO)
 		  .collect(Collectors.toList());
 		  model.addAttribute("comments", comments);

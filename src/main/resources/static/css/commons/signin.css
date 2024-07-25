@@ -4,7 +4,7 @@ body {
 	/*  height: 100%; */
 	/* margin: 0; */
 	overflow: hidden;
-	background-color: #944E63;
+	background-color: white;
 
 	/*background-color: #ffcdcd;*/ /* 전체 배경색 추가 */
 }
@@ -29,7 +29,7 @@ main {
 }
 
 .signin {
-	background-color: rgba(255, 255, 255, 0.9); /* 반투명한 배경색 복구 */
+	background-color: #356855;/* 반투명한 배경색 복구 */
 	padding: 30px;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -42,7 +42,7 @@ main {
 .signin h1 {
 	margin-bottom: 20px;
 	font-size: 24px;
-	color: #333;
+	color: white;
 }
 
 .signin label {
@@ -51,7 +51,7 @@ main {
 	margin: 0 auto;
 	/* margin-bottom: 10px;*/
 	font-weight: bold;
-	color: #666;
+	color: white;
 	text-align: left;
 }
 
@@ -67,8 +67,8 @@ main {
 	width: 95%;
 	padding: 10px;
 	/*background-color: #944E63;*/
-	background-color: #c56d87;
-	color: white;
+	background-color:white;/* #c56d87;*/
+	color: black;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
@@ -79,6 +79,6 @@ main {
 .signin button:hover {
 	/*color: #333; */
 	transform: scale(1.05);
-	background-color: #944E63;
+	background-color:black;/* #944E63;*/
 	font-weight: bold;
 }

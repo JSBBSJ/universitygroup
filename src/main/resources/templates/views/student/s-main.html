@@ -6,7 +6,14 @@
 <head>
 	<link rel="stylesheet" href="/css/s-main/s-main.css">
 	<link rel="stylesheet" href="/css/ps-common/ps-common.css">
-
+	<link rel="stylesheet" href="/css/weather/weather.css" />
+	
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!-- Stomp.js 라이브러리 추가 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+	<script src="/js/weather/weather.js"></script>
+	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -17,28 +24,29 @@
 </head>
 
 
-<body>
 
-	<main class="s-main">
+
+	<main >
 		<section class="container">
-			<div sec:authorize="isAuthenticated()">
-				<div class="profile">
+			<div sec:authorize="isAuthenticated()" class="profile">
+				<div class="profile1">
 					<div class="pro-back">
 						<img src="/images/s-main/프로필 사진.jpg" id="img">
-					</div>
+						</div>
 
 					<div class="name">
 						<span th:text="${#authentication.principal.name}">이름</span><br>
 						<span th:text="${#authentication.principal.studentDTO.student_number}">교번</span>
 						<span th:text="${#authentication.principal.studentDTO.department_name}">학과</span>
 					</div>
-				</div>
-			</div>
+				
+		
 				<div class="btn-box">
 					<div class="box1">
 						<a href="#">마이페이지</a>
 					</div>
 				</div>
+				
 
 				<div class="info">
 					<div class="icons">
@@ -72,14 +80,24 @@
 							인증현황
 						</div>
 					</div>
-
+					
+				   </div>
+				 </div> <!--여기다-->
 				</div>
-
-			</div>
+			
 
 			<div class="weather">
-				<div class="weather-top">
-					<a href="#">오늘날씨</a>
+				<div class="weather-info">
+					<div id="weather-icon"></div>
+						<div class="weather-text">
+						<h2 id="city-name"></h2>
+						<p id="temperature"></p>
+						<div class="weather-detail">
+						<p id="humidity">현재 습도:</p>
+						<p id="weather">날씨:</p>
+						<p id="wind-speed">풍속:</p>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -123,7 +141,7 @@
 		</section>
 
 	</main>
-</body>
+
 
 
 

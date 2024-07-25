@@ -8,4 +8,5 @@ import lombok.Setter;
 public class UserUpdateDTO {
 
 	private String profile_image;
+	
 }

@@ -63,7 +63,7 @@ nav {
    
 }
 
-.menu li {
+.menu > li,form{
     font-weight: bold; 
     padding-right: 70px;
 }
@@ -76,6 +76,16 @@ nav {
     padding: 10px 0; 
     border-radius: 4px; 
     transition: background-color 0.3s, transform 0.3s, text-shadow 0.3s, box-shadow 0.3s; /* 여러 효과에 부드러운 전환 적용 */
+}
+
+.menu > div > form> button {
+	
+	border: none;
+    padding: 0;
+    background: none;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 700 ;
 }
 
 .menu a:hover {

@@ -26,6 +26,7 @@ public class CustomUserDetails extends User {
 	private DepartmentEntity department;
 	private ProfessorListDTO professorDTO; // 교수 정보
 	private StudentlistDTO studentDTO;
+	private long user_no;
 
 	// 첫번째 인증객체는
 	public CustomUserDetails(UserEntity entity) {
@@ -35,6 +36,7 @@ public class CustomUserDetails extends User {
 		email = entity.getEmail();
 		name = entity.getUsername();
 		profileImage = entity.getProfile_image();
+		user_no = entity.getUser_no();
 		// Professor DTO 설정
 		if (entity.getProfessor() != null) {
 			ProfessorEntity professorEntity = entity.getProfessor();

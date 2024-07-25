@@ -1,71 +1,100 @@
 package com.green.universityGroup.service.impl;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.green.universityGroup.domain.dto.CalendarDTO;
+import com.green.universityGroup.domain.dto.CalendarCreateDTO;
+import com.green.universityGroup.domain.dto.CalendarUpdateDTO;
+import com.green.universityGroup.domain.dto.CalendarReadDTO;
 import com.green.universityGroup.domain.entity.CalendarEntity;
+import com.green.universityGroup.domain.entity.UserEntity;
 import com.green.universityGroup.domain.repository.CalendarRepository;
+import com.green.universityGroup.domain.repository.UserRepository;
 import com.green.universityGroup.service.CalendarService;
 
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
 @Service
-public class CalendarServiceProcess implements CalendarService{
+@RequiredArgsConstructor
+public class CalendarServiceProcess implements CalendarService {
 
-	  @Autowired
-	    private CalendarRepository calendarRepository;
-	
+    private final CalendarRepository calendarRepository;
+    private final UserRepository userRepository;
 
-	    @Override
-	    public void getAllCalendars(Model model) {
-	        List<CalendarEntity> calendars = calendarRepository.findAll();
-	        model.addAttribute("calendars", calendars);
-	    }
-	    @Override
-	    public void createCalendar(CalendarDTO calendarDTO) {
-	        CalendarEntity calendarEntity = CalendarEntity.builder()
-	                .title(calendarDTO.getTitle())
-	                .start_date(calendarDTO.getStart_date())
-	                .end_date(calendarDTO.getEnd_date())
-	                .description(calendarDTO.getDescription())
-	                .is_all_day(calendarDTO.getIs_all_day())
-	                .build();
-	        calendarRepository.save(calendarEntity);
-	    }
+    @Override
+    public List<CalendarReadDTO> getAllCalendars() {
+        List<CalendarEntity> calendarEntities = calendarRepository.findAll();
+        return calendarEntities.stream()
+                .map(this::convertToReadDTO)
+                .collect(Collectors.toList());
+    }
 
-	    @Override
-	    public CalendarDTO getCalendarById(Long id) {
-	        Optional<CalendarEntity> optionalCalendar = calendarRepository.findById(id);
-	        if (optionalCalendar.isPresent()) {
-	            CalendarEntity calendarEntity = optionalCalendar.get();
-	            return CalendarDTO.builder()
-	                    .calendar_no(calendarEntity.getCalendar_no())
-	                    .title(calendarEntity.getTitle())
-	                    .start_date(calendarEntity.getStart_date())
-	                    .end_date(calendarEntity.getEnd_date())
-	                    .description(calendarEntity.getDescription())
-	                    .is_all_day(calendarEntity.getIs_all_day())
-	                    .build();
-	        } else {
-	            throw new RuntimeException("일정을 찾을 수 없습니다.");
-	        }
-	    }
+    @Override
+    @Transactional
+    public void createCalendar(CalendarCreateDTO calendarDTO) {
+        if (calendarDTO.getUser_no() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User number must not be null");
+        }
 
-	    @Override
-	    public void updateCalendar(Long id, CalendarDTO calendarDTO) {
-	       calendarRepository.findById(id).orElseThrow().update(calendarDTO);
-	        
-	    }
+        UserEntity user = userRepository.findById(calendarDTO.getUser_no())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        
+        CalendarEntity calendarEntity = convertToEntity(calendarDTO);
+        calendarEntity.setUser(user);
+        calendarRepository.save(calendarEntity);
+    }
+    @Override
+    public CalendarReadDTO getCalendarById(Long id) {
+        CalendarEntity calendarEntity = calendarRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Calendar not found"));
+        return convertToReadDTO(calendarEntity);
+    }
 
-	    @Override
-	    public void deleteCalendar(Long id) {
-	        if (calendarRepository.existsById(id)) {
-	            calendarRepository.deleteById(id);
-	        } else {
-	            throw new RuntimeException("일정을 찾을 수 없습니다.");
-	        }
-	    }
-	}
+    @Override
+    @Transactional
+    public void updateCalendar(Long id, CalendarUpdateDTO calendarDTO) {
+        CalendarEntity calendarEntity = calendarRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Calendar not found"));
+        
+        UserEntity user = userRepository.findById(calendarDTO.getUser_no())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        calendarEntity.update(calendarDTO, user);
+        calendarRepository.save(calendarEntity);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCalendar(Long id) {
+        CalendarEntity calendarEntity = calendarRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Calendar not found"));
+        calendarRepository.delete(calendarEntity);
+    }
+
+    private CalendarEntity convertToEntity(CalendarCreateDTO calendarDTO) {
+        return CalendarEntity.builder()
+                .title(calendarDTO.getTitle())
+                .start_date(calendarDTO.getStart_date())
+                .end_date(calendarDTO.getEnd_date())
+                .description(calendarDTO.getDescription())
+                .is_all_day(calendarDTO.getIs_all_day())
+                .build();
+    }
+
+    private CalendarReadDTO convertToReadDTO(CalendarEntity calendarEntity) {
+        return CalendarReadDTO.builder()
+                .id(calendarEntity.getCalendar_no())
+                .title(calendarEntity.getTitle())
+                .start_date(calendarEntity.getStart_date())
+                .end_date(calendarEntity.getEnd_date())
+                .description(calendarEntity.getDescription())
+                .is_all_day(calendarEntity.getIs_all_day())
+                .user_no(calendarEntity.getUser() != null ? calendarEntity.getUser().getUser_no() : null)
+                .build();
+    }
+}

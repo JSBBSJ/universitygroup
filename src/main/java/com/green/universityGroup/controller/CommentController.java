@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.green.universityGroup.domain.dto.CommentDTO;
+import com.green.universityGroup.service.BoardService;
 import com.green.universityGroup.service.CommentService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,9 @@ public class CommentController {
 	
 	@PostMapping("/add")
 	public String commentsave(CommentDTO dto) {
+
 		service.commentsaveProcess(dto);		
-		 return "redirect:/professor/view/" + dto.getBoard_no();
+		 return "redirect:/board/view/" + dto.getBoard_no();
 	}
 	
 }

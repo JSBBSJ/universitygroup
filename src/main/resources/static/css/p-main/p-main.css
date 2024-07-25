@@ -9,23 +9,44 @@ main {
 
 .container {
 
-	grid-template-areas: 'profile board1 board1' 
-						  'profile mail mail'
+	grid-template-areas: 'profile mail mail' 
+						  'profile board1 board1'
 						'calendar workflow workflow'
 }
 
 .profile, .calendar {
 	width: 400px;
 }
+.cal_top button {
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+  padding: 0 10px;
+}
+
+#userName {
+    font-size: 24px; 
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 3px; 
+}
+.cal_top button:hover {
+
+  background-color: #f0f0f0; 
+  color: #000; 
+}
+
+a {
+	text-decoration: none;
+	color: inherit; 
+}
 
 
+a:hover {
+	text-decoration: none; 
+	color: inherit; 
+}
 
-/* .calendar {
-	background-color: #ffffff;
-	border-radius: 1em;
-	grid-area: calendar;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
 
 .board1 {
 	display: flex;
@@ -43,6 +64,7 @@ main {
 }
 
 .workflow {
+	display: flex;
 	background-color: #ffffff;
 	border-radius: 1em;
 	grid-area: workflow;
@@ -140,20 +162,20 @@ main {
 	align-items: center;
 	width:200px;
 	margin:4em;
-	margin-top:50px;
 }
 
-.board_title {
+.board_title, .workflow_title {
 	display: inline-block;
 	width: 60px;
 	height:60px;
-	background-image: url("/images/common/professor/notice1.png");
 	background-size: cover;
 	background-position: center;
 	margin-bottom:20px;
     
 }
-
+.board_title{
+	background-image: url("/images/common/professor/notice1.png");
+}
 .na{
 
     text-align: center;
@@ -162,34 +184,12 @@ main {
 .bo1{
 	margin-top:50px;
 }
-.no1 {
-	display: flex;
-    list-style-type: none; 
-    padding: 0;
-    margin: 0;
-    border-bottom: 1px solid #ebebec;
-}
 
-.no1 li {
- 	display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    height: 50px;
-    text-align: center;
-    margin-right: 10px;
-    
-}
 
-.no1 li:hover {
-    color: #944e63;
-    cursor: pointer; 
-}
 
 .notice {
 	
 	flex: 8;
-    background-color: #f9f9f9; 
     border: 1px solid #e0e0e0; 
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
@@ -202,7 +202,7 @@ main {
     font-size: 20px; 
     font-weight: bold;
     color: #333; 
-    margin-bottom: 10px;
+    margin-top: 40px;
     text-align: center;
     
 }
@@ -218,7 +218,7 @@ main {
     -webkit-box-orient: vertical;
 }
 
-.notice_content ul {
+/* .notice_content ul {
     list-style-type: none; 
     padding-left: 0; 
 }
@@ -227,17 +227,68 @@ main {
     border-bottom: 1px solid #ebebec;
     padding: 10px 0; 
 }
+ */
+.not, .no {
+	
+	flex: 1;
+	padding: 1em;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px solid #ccc;
+	color: #191919;
+}
+
+.not1{
+	flex: 1;
+	padding: 1em;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	color: #191919;
+}
+
+
+.no01, .no02, .no03, .wo01, .wo02, .wo03  {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-size: cover;
+	background-position: center;
+}
+
+.no01 {
+
+	background-image: url("/images/common/professor/no01.png");
+
+}
+
+.no02 {
+
+	background-image: url("/images/common/professor/no02.png");
+
+}
+
+.no03 {
+	background-image: url("/images/common/professor/no03.png");
+}
 /* ----------------------메일----------------------------------- */
 
 @keyframes bounce {
 	0%,50%,100% {
 		transform: translateY(0);
 	}
-	40% {
+	20% {
 	transform: translateY(-10px);	
 	
 	}
-	60% {
+	40% {
 	transform: translateY(-5px);
 	}
 	
@@ -259,7 +310,7 @@ main {
 
 .ma {
 	text-align: center;
-	animation: bounce 5s 1;
+	animation: bounce 2s 1;
 }
 
 .mail_title{
@@ -272,6 +323,8 @@ main {
 	margin-bottom:20px;
 	
 }
+
+
 
 .mail_notice{
 	flex: 8;
@@ -348,19 +401,21 @@ main {
 	justify-content: space-between;
 	padding:1em;
 	margin-top:20px;
-	
+		
 }
 
 .flow {
-	flex: 1;
+	
 	display: flex;
 	margin-top: 10px;
+
 }
 
 .fl{
 	text-align: center;
 	margin-top:60px;
-	margin-left:30px;
+	margin-left:60px;
+	
 }
 
 .wo {
@@ -381,29 +436,18 @@ main {
 	border-right: none; /* 마지막 요소의 border-right 제거 */
 }
 
+.workflow_title{
+	background-image: url("/images/common/professor/workflow.png");
+}
+
 .wo01 {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	background-image: url("/images/common/professor/wo2.png");
-	background-size: cover;
-	background-position: center;
+	background-image: url("/images/common/professor/wo01.png");
 }
 
 .wo02 {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	background-image: url("/images/common/professor/wo1.png");
-	background-size: cover;
-	background-position: center;
+	background-image: url("/images/common/professor/wo02.png");
 }
 
 .wo03 {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	background-image: url("/images/common/professor/wo3.png");
-	background-size: cover;
-	background-position: center;
+	background-image: url("/images/common/professor/wo03.png");
 }
