@@ -1,11 +1,8 @@
 
 /* /////////////////////////화면 구성/////////////////// */
 
-.s-main {
-  
-  display: grid;
-  height: 100vh; 
-  background: #f3f3f3;
+main {
+ 
   justify-content: center; 
   align-items: center; 
   height: 100%; 

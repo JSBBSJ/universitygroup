@@ -21,7 +21,7 @@ public class WorksaveController {
 	private final WorksaveService sevice;
 	
 	//@PostMapping(value = "/saveDoc")
-	@PostMapping("/saveDoc")
+	@PostMapping("/professor/saveDoc")
 	@ResponseBody
 	public String saveDoc(@RequestBody WorksaveDTO dto) {
 	
@@ -31,7 +31,7 @@ public class WorksaveController {
 	}
 	
 	//저장된 값 save페이지에서 가져오기
-	@GetMapping("/work-save")
+	@GetMapping("/professor/work-save")
 	public String list(Model model) {
 		sevice.listprocess(model);
 		return "views/professor/workflow/work-save";
@@ -39,7 +39,7 @@ public class WorksaveController {
 	
 	
 	//상세페이지로 이동하는 페이지(비동기)
-	@GetMapping("/detailpage")
+	@GetMapping("/professor/detailpage")
 	public String detailpage() {
 				
 		return "views/professor/workflow/worklistpageup"; //여기도 패키지에 맞게 수정필요 최초 "/"이거였음
