@@ -86,6 +86,7 @@ public class BoardEntity {
 				.text(text)
 				.createdAt(createdAt)
 				.username(user.getUsername())
+				.user_no(user.getUserNo())
 				.build();
 	}
 
