@@ -24,12 +24,8 @@ main {
   padding: 0 10px;
 }
 
-#userName {
-    font-size: 24px; 
-    font-weight: bold; 
-    display: block; 
-    margin-bottom: 3px; 
-}
+
+
 .cal_top button:hover {
 
   background-color: #f0f0f0; 

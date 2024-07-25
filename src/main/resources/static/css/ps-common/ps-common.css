@@ -51,6 +51,7 @@
 	text-align: center;
 	padding-top:20px;
 	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
+		margin-bottom: 25px;
 }
 
 .name>p {
@@ -64,7 +65,7 @@
 	display: flex;
     gap: 1em;
     justify-content: center; 
-   
+   	margin-bottom: 10px;
 
 }
 
@@ -92,7 +93,17 @@
 	
 }
 
+#userName {
+    font-size: 20px; 
+    font-weight: bold;
+     display: inline-block; 
+     margin-bottom: 15px;
+}
 
+#userName1{
+
+	font-weight: 550;
+}
 
 /* ////////////////////////////////// 하단- 아이콘들 ////////////////////////////// */
 
@@ -131,7 +142,6 @@
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	border-top: 1px solid #f3f3f3;
 	border-right: 1px solid #f3f3f3;
 	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
 	
