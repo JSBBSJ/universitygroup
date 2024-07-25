@@ -13,13 +13,13 @@ public class WorkflowController {
 	
 	//private final WorkflowService service;
 
-	@GetMapping("/workflow")
+	@GetMapping("/professor/workflow")
 	public String list() {
 		return "/views/professor/workflow/workflow";
 	}
 	
 	//최조 전자결재 화면에서 작성하기 눌렀을때 페이지 이동하는 컨트롤러
-		@GetMapping("/work-list")//이게 수정되면 자바 스크립트 towiriting page 경로도 수정 필요
+		@GetMapping("/professor/work-list")//이게 수정되면 자바 스크립트 towiriting page 경로도 수정 필요
 		public String write() {
 			return "/views/professor/workflow/work-list"; //여기 경로 수정필요(패키지에 맞게)
 		}
@@ -27,7 +27,7 @@ public class WorkflowController {
 		
 		//휴가신청서 등 자바스크립트에서 찾아오기위해 만든 컨트롤러(휴가신청서 이름: vacationapplicationform)
 		//@ResponseBody//데이터로 가라는 뜻
-		@GetMapping("/findDoc")
+		@GetMapping("/professor/findDoc")
 		public String findDoc(@RequestParam("data") String data) {
 			
 			return "/views/professor/workflow/"+data; //여기도 패키지에 맞게 수정필요 최초 "/"이거였음

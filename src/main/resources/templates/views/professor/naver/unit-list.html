@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
+
+<!--///주소록 html//-->
+<head>
+	
+	<link rel="stylesheet" type="text/css" href="/css/commons/contracts.css">
+	
+</head>
+
+<main class="contacts-mains">
+
+
+
+<section class="contacts-container">
+
+	<section class="contacts-menu">
+
+		<a >조직도</a>
+		
+			<table class="contacts-listss">
+				<tr th:each="dto:${list}">
+				<!--<td th:text="${dto.displayLevel}"></td>-->
+				<!--<td th:text="${dto.displayOrder}"></td>-->
+				<!--<td th:text="${dto.orgUnitId}"></td>-->
+				<td th:text="${dto.orgUnitName}"></td>
+				<td ></td>
+			</tr>
+			</table>
+			<hr>
+				
+		<!--///부서등록
+		<form action="/departments" method="post">
+				<input type="text" name="orgUnitName" placeholder="부서이름">
+				<input type="hidden" name="displayOrder" th:value="${#list.size(list)+1}">
+				<input type="hidden" name="domainId" th:value="${@environment.getProperty('naver.client.domain')}">
+				<button>부서등록</button>	
+		</form>
+				-->
+
+	</section>
+
+
+
+	<section class="contacts-main">
+	
+		<a>전체조직목록</a>
+	
+		<div class="contacts-savelist-l">
+	
+			<ul>
+	
+				<li class="contacts-savelist-title">
+	
+					<div>번호</div>
+	
+					<div>이름</div>
+	
+					<div>조직명</div>
+	
+					<div>직급</div>
+	
+					<div>연락처</div>
+
+			</li>
+	
+
+		</ul>
+	
+		</div>
+	
+	
+		<div class="unit-lists">
+	
+			
+	
+		</div>
+	
+	
+	
+	</section>
+
+
+
+</main>
+
+
+</html>

@@ -19,7 +19,7 @@ public class WorkpageupController {
 
 	
 	//주소록에 저장된 db 값을 조회하기 위한 컨트롤러
-	@GetMapping("/w-pageup")
+	@GetMapping("/professor/w-pageup")
 	public String list(Model model) {
 		
 		service.wpagelistProcess(model);

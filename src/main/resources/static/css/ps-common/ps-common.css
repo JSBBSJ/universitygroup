@@ -49,7 +49,7 @@
 .name {
 	
 	text-align: center;
-	justify-content: center;
+	padding-top:20px;
 	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
 }
 
@@ -107,6 +107,7 @@
 	flex:1;
 	display: flex;
 	margin-top:10px;
+	padding-top: 20px;
 		
 }
 
