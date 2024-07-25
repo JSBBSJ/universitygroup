@@ -26,9 +26,9 @@ public class DepartmentEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
-	private long department_no;
+	private long departmentNo;
 	
 	
 	@Column(nullable=false , length = 100, unique = true)
-	private String department_name;
-	}
+	private String departmentName;
+}

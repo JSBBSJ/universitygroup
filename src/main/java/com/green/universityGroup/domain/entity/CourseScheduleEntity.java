@@ -2,8 +2,11 @@ package com.green.universityGroup.domain.entity;
 
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.hibernate.annotations.DynamicUpdate;
+
+import com.green.universityGroup.domain.dto.CourseScheduleDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,21 +35,43 @@ public class CourseScheduleEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long schedule_no;
+	private long scheduleNo;
 	
 	@Column(nullable = false)
-	private int day_of_week;
+	private int dayOfWeek;
 	
 	@Column(columnDefinition = "timestamp")
-	private LocalDateTime start_time;
+	private LocalDateTime startTime;
 	
 	@Column(columnDefinition = "timestamp")
-	private LocalDateTime end_time;
+	private LocalDateTime endTime;
 	
 	@Column(nullable = false, length = 50)
-	private String class_room;
+	private String classRoom;
 	
 	@ManyToOne
-	@JoinColumn(name = "course_no", referencedColumnName = "course_no")
+	@JoinColumn(name = "course_no")
 	private CourseEntity course;
+	
+	public CourseScheduleDTO toCourseScheduleDTO() {
+		LocalTime startTime;
+		LocalTime endTime;
+		if (this.startTime == null)
+			startTime = LocalTime.now();
+		else
+			startTime = this.startTime.toLocalTime();
+		
+		if (this.endTime == null)
+			endTime = LocalTime.now();
+		else
+			endTime = this.endTime.toLocalTime();
+		
+		return CourseScheduleDTO.builder()
+				.scheduleNo(scheduleNo)
+				.dayOfWeek(dayOfWeek)
+				.startTime(startTime)
+				.endTime(endTime)
+				.classRoom(classRoom)
+				.build();
+	}
 }

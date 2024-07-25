@@ -58,7 +58,7 @@ public class BoardEntity {
 	private LocalDateTime updatedAt;
 
 	@ManyToOne
-	@JoinColumn(name = "user_no", referencedColumnName = "user_no")
+	@JoinColumn(name = "user_no")
 	private UserEntity user;
 
 	@OneToMany(mappedBy = "board")
@@ -73,7 +73,7 @@ public class BoardEntity {
 				.title(title)
 				.createdAt(createdAt)
 				.username(user.getUsername())
-				 .user_no(user.getUser_no()) 
+				 .user_no(user.getUserNo()) 
 				.division(division)
 				.build();
 	}

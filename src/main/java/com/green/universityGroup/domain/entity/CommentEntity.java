@@ -46,7 +46,7 @@ public class CommentEntity {
 	private LocalDateTime createdAt;
 
 	@ManyToOne
-	@JoinColumn(name = "board_no", referencedColumnName = "board_no")
+	@JoinColumn(name = "board_no")
 	private BoardEntity board;
 	
 	

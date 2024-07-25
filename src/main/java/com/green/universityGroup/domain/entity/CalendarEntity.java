@@ -49,7 +49,7 @@ public class CalendarEntity {
     private Boolean is_all_day = false;
 
     @OneToOne
-    @JoinColumn(name = "user_no", referencedColumnName = "user_no")
+    @JoinColumn(name = "user_no")
     private UserEntity user;
 
     public void update(CalendarUpdateDTO calendarDTO, UserEntity userEntity) {

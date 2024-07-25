@@ -1,5 +1,6 @@
 package com.green.universityGroup.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 // 필요한 패키지를 임포트합니다.
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.universityGroup.domain.dto.CourseListDto;
+import com.green.universityGroup.security.CustomUserDetails;
 import com.green.universityGroup.service.CourseService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,16 +23,16 @@ public class EnrolmentController {
     
     // 수강 신청 과목 목록을 표시하는 메서드입니다.
     @GetMapping("/enrolment-main")
-    public String courseList(CourseListDto dto, Model model) {
+    public String courseList(@AuthenticationPrincipal CustomUserDetails user, Model model) {
         // CourseService를 이용해 과목 목록을 모델에 추가합니다.
-        service.getCourseList(dto, model);
+        service.getCourseList(user, model);
         // views/student/enrolment/enrolment-main.html 파일을 반환하여 해당 뷰를 렌더링합니다.
         return "views/student/enrolment/enrolment-main";
     }
     
     // 수강 신청을 처리하는 메서드입니다.
     @PostMapping("/enroll")
-    public String enrollCourse(@RequestParam Long student_no, @RequestParam Long course_no) {
+    public String enrollCourse(@RequestParam("student_no") Long student_no, @RequestParam("course_no") Long course_no) {
         // CourseService를 이용해 학생의 수강 신청을 처리합니다.
         service.enrollCourse(student_no, course_no);
         // 수강 신청 후에는 다시 수강 목록 페이지로 리다이렉트합니다.
@@ -39,7 +41,7 @@ public class EnrolmentController {
 
     // 학생의 수강 목록을 표시하는 메서드입니다.
     @GetMapping("/my-enrollments")
-    public String studentEnrollments(@RequestParam Long student_no, Model model) {
+    public String studentEnrollments(@RequestParam("student_no")  Long student_no, Model model) {
         // CourseService를 이용해 학생의 수강 목록을 모델에 추가합니다.
         service.getStudentEnrollments(student_no, model);
         // 학생의 수강 목록을 표시하기 위해 views/student/enrolment/enrolment-main.html 파일을 반환합니다.
