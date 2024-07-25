@@ -36,8 +36,9 @@ import lombok.NoArgsConstructor;
 public class StudentEntity {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
-	private long student_no;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성
+	@Column(name = "student_no")
+	private long studentNo;
 	
 	@Column(nullable = false, unique = true)
 	private long student_number;

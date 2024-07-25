@@ -30,18 +30,18 @@ public class EnrolmentController {
     
     // 수강 신청을 처리하는 메서드입니다.
     @PostMapping("/enroll")
-    public String enrollCourse(@RequestParam Long studentId, @RequestParam Long courseId) {
+    public String enrollCourse(@RequestParam Long student_no, @RequestParam Long course_no) {
         // CourseService를 이용해 학생의 수강 신청을 처리합니다.
-        service.enrollCourse(studentId, courseId);
+        service.enrollCourse(student_no, course_no);
         // 수강 신청 후에는 다시 수강 목록 페이지로 리다이렉트합니다.
         return "redirect:/enrolment-main";
     }
 
     // 학생의 수강 목록을 표시하는 메서드입니다.
     @GetMapping("/my-enrollments")
-    public String studentEnrollments(@RequestParam Long studentId, Model model) {
+    public String studentEnrollments(@RequestParam Long student_no, Model model) {
         // CourseService를 이용해 학생의 수강 목록을 모델에 추가합니다.
-        service.getStudentEnrollments(studentId, model);
+        service.getStudentEnrollments(student_no, model);
         // 학생의 수강 목록을 표시하기 위해 views/student/enrolment/enrolment-main.html 파일을 반환합니다.
         return "views/student/enrolment/enrolment-main";
     }

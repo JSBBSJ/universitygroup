@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Long> {
 
-	List<EnrollmentEntity> findByStudentId(Long studentId);
+	List<EnrollmentEntity> findByStudentStudentNo(Long student_no);
+
 
 }
