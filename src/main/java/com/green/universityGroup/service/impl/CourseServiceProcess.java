@@ -22,7 +22,7 @@ public class CourseServiceProcess implements CourseService {
 
 	@Override
 	public void getCourseList(String username, Model model) {
-	        model.addAttribute("courses", repository.findAll()
+	        model.addAttribute("courses", repository.findByProfessor_User_Username(username)
 	        		.stream().map(CourseEntity::toListDTO)
 	        		.collect(Collectors.toList()));
 
