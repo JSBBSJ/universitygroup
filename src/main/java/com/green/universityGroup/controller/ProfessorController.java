@@ -24,14 +24,8 @@ public class ProfessorController {
 		return "views/professor/p-main";
 	}
 	
-	  @GetMapping("/professor/edit")
-	  public String edit() { 
-		  return  "/views/professor/board/edit"; 
-		  }
-	 
 	
-	
-	@GetMapping("/mail")
+	@GetMapping("/professor/mail")
 	public String mail() {
 		return "/views/professor/mail/mail";
 	}
@@ -41,14 +35,5 @@ public class ProfessorController {
 		return "/views/professor/mail/mail-view";
 	}
 	
-	
-	@GetMapping("/professor/{no}")
-	public String detail(@PathVariable("no") long no) {
-		return "/views/professor/detail";
-	}
-	
-	@PutMapping("/professor/{no}")
-	public String update(@PathVariable("no") long no) {
-		return "redirect:/professor";
-	}
+
 }

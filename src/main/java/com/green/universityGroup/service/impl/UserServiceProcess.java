@@ -19,7 +19,8 @@ public class UserServiceProcess implements UserService {
 	public void updateProfile(long user_no, UserUpdateDTO dto) {
 		repository.findById(user_no).orElseThrow().update(dto);		
 	}
-
+	
+	
 
 
 

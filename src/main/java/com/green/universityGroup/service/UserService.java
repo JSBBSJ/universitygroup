@@ -1,6 +1,6 @@
 package com.green.universityGroup.service;
 
-import com.green.universityGroup.domain.dto.UserSaveDTO;
+
 import com.green.universityGroup.domain.dto.UserUpdateDTO;
 
 public interface UserService  {

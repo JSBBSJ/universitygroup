@@ -34,7 +34,7 @@ main {
 
 /* ===================왼쪽목록=========================== */
 .tit {
-	background-image: url("/images/common/professor/lnb_bg.png");
+	background-image: url("/images/common/professor/gr1.png");
 }
 
 .tit>h2 {
@@ -88,7 +88,6 @@ a {
 	background-color: #ffffff;
 	border-radius: 1em;
 	grid-area: content;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 1rem;
 	width: 1000px;
 	margin-top:10px;
@@ -123,7 +122,6 @@ a {
 	background-color: #ffffff;
     border-radius: 1em;
     grid-area: content;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 1rem;
     width: 1000px;
     margin-top: 10px;

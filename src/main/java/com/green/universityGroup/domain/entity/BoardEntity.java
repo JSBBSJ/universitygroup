@@ -64,7 +64,9 @@ public class BoardEntity {
 	@OneToMany(mappedBy = "board")
 	private List<CommentEntity> comments;
 	
-
+	
+	
+	
 	public BoardListDTO toListDTO() {
 		return BoardListDTO.builder()
 				.board_no(board_no)

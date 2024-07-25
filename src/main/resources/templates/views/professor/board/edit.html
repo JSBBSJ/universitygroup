@@ -48,7 +48,7 @@
 			
 			
 			<div class="board_write_wrap">
-			<form th:action="|/professor/edit/${board_no}" method="post">
+			<form th:action="|/board/edit/${board_no}" method="post">
 			
 				<div class="board_write">
 					<div class="title">
@@ -78,7 +78,7 @@
 				<div class="bt_wrap">
 					<input type="hidden" name="_method" value="put">
 					<button type="submit">수정완료</button>				
-					<a th:href="|/professor/view/${detail.board_no}|">취소</a>
+					<a th:href="|/board/view/${detail.board_no}|">취소</a>
 	
 				</div>
 				</form>
