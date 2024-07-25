@@ -24,6 +24,7 @@ public class NaverAauth2Controller {
 		System.out.println("code: " +code);
 		if(state.equals("orgunit.read")) {
 			service.orgUnitRead(code,model);
+			service.listProcess(model);
 		}else if(state.equals("orgunit")){
 			
 		}

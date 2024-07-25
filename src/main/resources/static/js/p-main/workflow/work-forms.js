@@ -2,8 +2,6 @@ function formlists(id){//worklist에서 id를 받아와서
 
 
 
-	
-
 	$.ajax({
 
 		url:'http://localhost:8080/professor/findDoc', //컨트롤러 매핑 주소 
@@ -24,11 +22,7 @@ function formlists(id){//worklist에서 id를 받아와서
 
 			$('#f-form-list').hide(); //가려라
 
-			
-
-			
-
-			
+	
 
 		}
 

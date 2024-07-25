@@ -1,88 +1,127 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
+	
 
 <!--///주소록 html//-->
+
 <head>
-	
-	<link rel="stylesheet" type="text/css" href="/css/commons/contracts.css">
-	
+
+<link rel="stylesheet" type="text/css" href="/css/commons/contracts.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+<script src="/js/bot/bot.js"></script>
+<link rel="stylesheet" href="/css/bot/bot.css" />
+
 </head>
+
 
 <main class="contacts-mains">
 
+	<section class="contacts-container">
 
+		<section class="contacts-menu">
 
-<section class="contacts-container">
+			<a>조직도</a>
 
-	<section class="contacts-menu">
-
-		<a >조직도</a>
-		
 			<table class="contacts-listss">
+
 				<tr th:each="dto:${list}">
-				<!--<td th:text="${dto.displayLevel}"></td>-->
-				<!--<td th:text="${dto.displayOrder}"></td>-->
-				<!--<td th:text="${dto.orgUnitId}"></td>-->
-				<td th:text="${dto.orgUnitName}"></td>
-				<td ></td>
-			</tr>
+
+					<!--<td th:text="${dto.displayLevel}"></td>-->
+
+					<!--<td th:text="${dto.displayOrder}"></td>-->
+
+					<!--<td th:text="${dto.orgUnitId}"></td>-->
+
+					<td th:text="${dto.orgUnitName}"></td>
+
+					<td></td>
+
+				</tr>
+
 			</table>
+
 			<hr>
-				
-		<!--///부서등록
+
+
+
+			<!--///부서등록
+
 		<form action="/departments" method="post">
+
 				<input type="text" name="orgUnitName" placeholder="부서이름">
+
 				<input type="hidden" name="displayOrder" th:value="${#list.size(list)+1}">
+
 				<input type="hidden" name="domainId" th:value="${@environment.getProperty('naver.client.domain')}">
+
 				<button>부서등록</button>	
+
 		</form>
+
 				-->
 
-	</section>
 
 
-
-	<section class="contacts-main">
-	
-		<a>전체조직목록</a>
-	
-		<div class="contacts-savelist-l">
-	
-			<ul>
-	
-				<li class="contacts-savelist-title">
-	
-					<div>번호</div>
-	
-					<div>이름</div>
-	
-					<div>조직명</div>
-	
-					<div>직급</div>
-	
-					<div>연락처</div>
-
-			</li>
-	
-
-		</ul>
-	
-		</div>
-	
-	
-		<div class="unit-lists">
-	
-			
-	
-		</div>
-	
-	
-	
-	</section>
+		</section>
 
 
+		<section class="contacts-main">
 
-</main>
+			<a>전체 구성원 목록</a>
+
+			<div class="contacts-savelist-l">
+
+				<ul>
+
+					<li class="contacts-savelist-title">
+
+						<div>번호</div>
+
+						<div>이름</div>
+
+						<div>조직명</div>
+
+						<div>직급</div>
+
+						<div>연락처</div>
+
+					</li>
+
+				</ul>
+
+			</div>
+
+			<div class="unit-lists">
+
+				<ul>
+					<li class="th-contacts" th:each="mem:${mem}">
+
+						<div th:text=${mem.member_no}>번호</div>
+
+						<div th:text=${mem.member_name}>이름</div>
+
+						<div th:text=${mem.member_sub}>조직명</div>
+
+						<div th:text=${mem.member_roll}>직급</div>
+
+						<div th:text=${mem.member_num}>연락처</div>
+
+					</li>
+
+
+				</ul>
+
+
+			</div>
+
+		</section>
+	
+		</section>
+		
+		<article th:insert="~{views/bot/bot.html}"></article>
+	</main>
 
 
 </html>
