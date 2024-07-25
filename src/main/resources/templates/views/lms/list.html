@@ -22,10 +22,16 @@
 <body>
 	<header>
 		<section class="logo">
-			<div class="logo-img"></div>
-			<div class="logo-text">
-				<a href="/lms">라라대학교</a>
-			</div>
+			<div class="logo" sec:authorize="hasRole('STUDENT')">
+						<a href="/student" title="메인페이지로 이동"> <img
+							src="/images/common/main-logo.png" alt="라라대학교 로고"> <span>라라대학교</span>
+						</a>
+					</div>
+					<div class="logo" sec:authorize="hasRole('PROFESSOR')">
+						<a href="/professor" title="메인페이지로 이동"> <img
+							src="/images/common/main-logo.png" alt="라라대학교 로고"> <span>라라대학교</span>
+						</a>
+					</div>
 			<div class="signout">
 				<form action="/logout" method="post">
 					<button type="submit" title="로그아웃">
