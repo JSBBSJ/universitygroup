@@ -1,104 +1,128 @@
-var stompClient = null;
-
+let stompClient = null;
+//소켓 연결
 function connect() {
-    var socket = new SockJS('/rara-bot');
+    const socket = new SockJS('/rara-bot');
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function(frame) {
+    stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
+        loadCategories();
 
-        // 메시지 구독
-        stompClient.subscribe('/topic/messages', function(messageOutput) {
-            var message = messageOutput.body;
-
-            if (message.includes(", ")) {
-                if (message.split(":").length === 1) {
-                    // 카테고리 목록일 때
-                    showCategoryButtons(message);
-                } else {
-                    // 질문 목록일 때
-                    showQuestionButtons(message);
-                }
-            } else {
-                // 답변일 때
-                showMessageOutput(message);
-            }
+        stompClient.subscribe('/topic/category', function (message) {
+            showMessage(JSON.parse(message.body).content);
         });
 
-        // 기본 카테고리 가져오기
-        stompClient.send("/app/chat", {}, "GET_TOPICS");
+        stompClient.subscribe('/topic/question', function (message) {
+            showMessage(JSON.parse(message.body).content);
+        });
+
+        stompClient.subscribe('/topic/children', function (message) {
+            showMessage(JSON.parse(message.body).content);
+        });
+
+        stompClient.subscribe('/topic/create', function (message) {
+            showMessage(JSON.parse(message.body).content);
+        });
     });
 }
 
-
-function btnBotClicked() {
-    document.getElementById('chatbotWindow').style.display = 'block';
+//소켓 연결 해제
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+    }
+    console.log("Disconnected");
 }
 
-function btnCloseClicked() {
-    document.getElementById('chatbotWindow').style.display = 'none';
+function loadCategories() {
+    fetch('/api/questions/categories')
+        .then(response => response.json())
+        .then(categories => {
+            const categoryButtons = document.getElementById('category-buttons');
+            if (categoryButtons) {
+				categoryButtons.innerHTML = ''; // 기존 버튼들을 초기화
+                categories.forEach(category => {
+                    const button = document.createElement('button');
+                    button.textContent = category;
+					button.className = 'category-button';
+                    button.onclick = () => sendCategory(category);
+                    categoryButtons.appendChild(button);
+                });
+            }
+        });
+}
+
+function sendCategory(category) {
+    fetch(`/api/questions/category/${category}/texts`)
+        .then(response => response.json())
+        .then(texts => {
+            if (Array.isArray(texts)) {
+                const chatbotBody = document.getElementById('chatbot-body');
+                const textButtonsContainer = document.createElement('div');
+                textButtonsContainer.id = 'text-buttons';
+
+                texts.forEach(text => {
+                    const button = document.createElement('button');
+                    button.textContent = text;
+					button.className = 'category-button';
+                    button.onclick = () => fetchAnswer(text);
+                    textButtonsContainer.appendChild(button);
+                });
+
+                const existingTextButtons = document.getElementById('text-buttons');
+                if (existingTextButtons) {
+                    chatbotBody.removeChild(existingTextButtons);
+                }
+                chatbotBody.appendChild(textButtonsContainer);
+            } else {
+                console.error('Expected an array but got:', texts);
+            }
+        })
+        .catch(error => console.error('Error fetching texts by category:', error));
+}
+
+function fetchAnswer(text) {
+    const encodedText = encodeURIComponent(text);
+    fetch(`/api/questions/question/${encodedText}/answer`)
+        .then(response => response.text())
+        .then(answer => {
+            showMessage(answer);
+        })
+        .catch(error => console.error('Error fetching answer by text:', error));
+}
+
+
+function sendText(text) {
+    stompClient.send("/app/question", {}, JSON.stringify({'text': text}));
 }
 
 function sendMessage() {
-    var inputElem = document.getElementById('input');
-    var message = inputElem.value.trim();
+    const input = document.getElementById('input');
+    const message = input.value;
     if (message) {
-        stompClient.send("/app/chat", {}, message);
-        inputElem.value = ''; // 입력 필드 초기화
+        stompClient.send("/app/question", {}, JSON.stringify({'text': message}));
+        input.value = '';
     }
 }
 
-function showCategoryButtons(message) {
-    var chatbotBody = document.getElementById('chatbot-body');
-    chatbotBody.innerHTML = '';
-
-    var categories = message.split(', ');
-    categories.forEach(function(category) {
-        var button = document.createElement('button');
-        button.textContent = category;
-        button.onclick = function() {
-            stompClient.send("/app/chat", {}, category);
-        };
-        chatbotBody.appendChild(button);
-    });
-}
-
-function showQuestionButtons(message) {
-    var chatbotBody = document.getElementById('chatbot-body');
-    chatbotBody.innerHTML = '';
-
-    // 메시지를 ':'로 분리하여 카테고리와 질문을 추출
-    var messagesParts = message.split(":");
-    if (messagesParts.length === 2) {
-        var category = messagesParts[0].trim();
-        var questions = messagesParts[1].split(', ');
-
-        questions.forEach(function(question) {
-            var button = document.createElement('button');
-            button.textContent = question; // 카테고리 정보를 제외하고 질문만 표시
-            button.onclick = function() {
-                stompClient.send("/app/chat", {}, category + ": " + question); // 서버로 질문 전송
-            };
-            chatbotBody.appendChild(button);
-        });
-    } else {
-        console.error('Unexpected message format for questions:', message);
-    }
-}
-
-
-
-function showMessageOutput(message) {
-    var chatbotBody = document.getElementById('chatbot-body');
-    chatbotBody.innerHTML = ''; // 기존 내용을 지우고
-
-    // 답변 메시지를 표시합니다.
-    var messageElement = document.createElement('div');
+function showMessage(message) {
+    const chatbotBody = document.getElementById('chatbot-body');
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message';
     messageElement.textContent = message;
     chatbotBody.appendChild(messageElement);
-
-    // 선택 사항: 스크롤을 아래로 이동시켜 최신 메시지를 볼 수 있게 합니다.
-    chatbotBody.scrollTop = chatbotBody.scrollHeight;
 }
 
+function btnBotClicked() {
+    const chatbotWindow = document.getElementById('chatbotWindow');
+	
+	connect();
+    chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
+}
 
-connect(); // 페이지 로드 시 웹소켓 연결
+function btnCloseClicked() {
+    const chatbotWindow = document.getElementById('chatbotWindow');
+	disconnect();
+    chatbotWindow.style.display = 'none';
+	
+}
+

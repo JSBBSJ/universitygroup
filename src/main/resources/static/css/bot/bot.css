@@ -9,6 +9,7 @@
     z-index: 2;
     animation: bounce 3s infinite;
 }
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0); /* 원래 위치 */
@@ -20,6 +21,7 @@
         transform: translateY(-15px); /* 약간 위로 이동 */
     }
 }
+
 .chatbot-window {
     position: fixed;
     bottom: 110px;
@@ -29,16 +31,17 @@
     max-height: 600px;
     overflow: hidden; /* 가로 스크롤 방지 */
     z-index: 2;
-    background: #944E63;
+    background-color: #4CAF50; /* 초록색 */
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex; /* 플렉스 레이아웃 사용 */
     flex-direction: column;
     display: none;
+    border-radius: 10px;
 }
 
 .chatbot-header {
-    background: #944E63;
+    background-color: #388E3C; /* 더 어두운 초록색 */
     color: white;
     padding: 10px;
     display: flex;
@@ -69,10 +72,11 @@
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    outline: none; /* 포커스 시 테두리 제거 */
 }
 
 .btn-send {
-    background: #944E63;
+    background-color: #4CAF50; /* 초록색 */
     color: white;
     border: none;
     padding: 5px 10px;
@@ -82,7 +86,7 @@
 }
 
 .btn-send:hover {
-    background: #803552;
+    background-color: #388E3C; /* 더 어두운 초록색 */
 }
 
 .message-wrapper {
@@ -99,6 +103,7 @@
     padding: 10px;
     border-radius: 10px;
     background: #e1e1e1;
+    word-wrap: break-word; /* 긴 단어를 줄 바꿈 */
 }
 
 .message-bubble.user {
@@ -123,7 +128,7 @@
     display: inline-block;
     padding: 10px 20px;
     margin: 5px;
-    background-color: #3498db;
+    background-color: #4CAF50; /* 초록색 */
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -131,21 +136,5 @@
 }
 
 .category-button:hover {
-    background-color: #2980b9;
-}
-
-/* 챗봇 채팅 타이틀 버튼 스타일 */
-.chat-title-btn {
-    display: block;
-    padding: 10px;
-    margin: 5px;
-    background-color: #2ecc71;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.chat-title-btn:hover {
-    background-color: #27ae60;
+    background-color: #388E3C; /* 더 어두운 초록색 */
 }

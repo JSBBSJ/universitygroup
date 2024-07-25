@@ -1,10 +1,17 @@
 package com.green.universityGroup.domain.entity;
 
 import java.util.Set;
+import java.util.function.Function;
+
+import org.apache.catalina.User;
+import org.hibernate.annotations.DynamicUpdate;
+
+import com.green.universityGroup.domain.dto.ProfessorClassListDTO;
+
+import jakarta.persistence.CascadeType;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +50,14 @@ public class CourseEntity {
 	@JoinColumn(name = "professor_no" ,referencedColumnName = "professor_no")
 	@ManyToOne
 	private ProfessorEntity professor;
-	
-	@OneToMany(mappedBy = "enrollment_no", cascade = CascadeType.ALL, orphanRemoval = true)
+
+	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+
 	private Set<EnrollmentEntity> enrollment;
+
+	public ProfessorClassListDTO toListDTO() {
+        return ProfessorClassListDTO.builder()
+                .course_name(course_name)
+                .build();
+	}
 }

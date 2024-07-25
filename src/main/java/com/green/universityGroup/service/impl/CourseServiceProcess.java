@@ -1,11 +1,16 @@
 package com.green.universityGroup.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.green.universityGroup.domain.dto.ProfessorClassListDTO;
+import com.green.universityGroup.domain.entity.CourseEntity;
+import com.green.universityGroup.domain.repository.CourseRepository;
 import com.green.universityGroup.domain.dto.CourseListDto;
 import com.green.universityGroup.domain.entity.CourseEntity;
 import com.green.universityGroup.domain.entity.EnrollmentEntity;
@@ -19,10 +24,22 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CourseServiceProcess implements CourseService {
-
-	 private final CourseRepository courseRepository; //과목정보를 조회할 레포지토리
+  
+   private final CourseRepository courseRepository; //과목정보를 조회할 레포지토리
 	 private final EnrollmentRepository enrollmentRepository; //수강 신청 정보를 저장할 레포지토리
 
+
+	@Override
+	public void getCourseList(String username, Model model) {
+	        model.addAttribute("courses", repository.findByProfessor_User_Username(username)
+	        		.stream().map(CourseEntity::toListDTO)
+	        		.collect(Collectors.toList()));
+
+	}
+
+
+}
+	
 	@Override
 	public void getCourseList(CourseListDto dto, Model model) {
 		List<CourseEntity> courses = courseRepository.findAll(); //모든 과목목록 조회
