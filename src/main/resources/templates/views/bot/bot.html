@@ -14,7 +14,7 @@
             </div>
             <div class="chatbot-body" id="chatbot-body">
                 <!-- 카테고리 버튼 추가 -->
-                <div id="category-buttons"></div>
+                 <div id="category-buttons" class="button-grid"></div>
             </div>
             <div class="chatbot-footer">
                 <input type="text" class="input" id="input" placeholder="질문을 입력하세요">
@@ -22,3 +22,5 @@
             </div>
         </div>
     </div>
+	<!-- 사용자 이름을 숨겨진 필드에 저장 -->
+	   <div id="username" th:text="${username}" style="display: none;"></div>

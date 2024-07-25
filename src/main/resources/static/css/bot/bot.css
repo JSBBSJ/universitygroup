@@ -26,12 +26,12 @@
     position: fixed;
     bottom: 110px;
     right: 40px;
-    width: 300px;
-    height: 400px; /* 전체 높이 */
+    width: 360px;
+    height: 600px; /* 전체 높이 */
     max-height: 600px;
     overflow: hidden; /* 가로 스크롤 방지 */
     z-index: 2;
-    background-color: #4CAF50; /* 초록색 */
+    background-color: #ffffff; /* 흰색 */
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex; /* 플렉스 레이아웃 사용 */
@@ -56,6 +56,7 @@
     overflow-y: auto;
     overflow-x: hidden; /* 가로 스크롤 방지 */
     background: #f9f9f9;
+    font-size: 0.9em; /* 폰트 크기 조정 */
 }
 
 .chatbot-footer {
@@ -119,8 +120,18 @@
 }
 
 .chatbot-icon img {
+	display:block;
     width: 70px;
     height: 70px;
+}
+
+.message-content {
+    background-color: #f1f1f1; /* 챗봇 메시지 배경색 */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    word-wrap: break-word; /* 긴 단어 줄 바꿈 */
+    margin: 5px 0; /* 위아래 여백 추가 */
 }
 
 /* 챗봇 카테고리 버튼 스타일 */
@@ -128,13 +139,25 @@
     display: inline-block;
     padding: 10px 20px;
     margin: 5px;
-    background-color: #4CAF50; /* 초록색 */
-    color: #ffffff;
-    border: none;
+    background-color: #ffffff; /* 흰색 */
+    color: #333333; /* 검은색 */
+    border: 1px solid #cccccc; /* 연한 회색 테두리 */
     border-radius: 5px;
     cursor: pointer;
+    text-align: left;
+    font-size: 0.9em; /* 폰트 크기 조정 */
 }
 
 .category-button:hover {
-    background-color: #388E3C; /* 더 어두운 초록색 */
+    background-color: #f1f1f1; /* 연한 회색 */
+}
+
+.button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.button-grid .category-button {
+    width: 48%; /* 버튼을 2개씩 배치 */
 }
