@@ -20,9 +20,11 @@
 
 				<div class="name">
 					<!-- 사용자 이름 -->
-					<span id="userName" th:text="${#authentication.principal.name}">이름</span><br>
-					학번:<span th:text="${#authentication.principal.professorDTO.professor_number}">사번</span><br>
-					학과:<span th:text="${#authentication.principal.professorDTO.department_name}">학과</span>
+					<span id="userName" th:text="${#authentication.principal.name}"></span>
+					(<span id="userName1" th:text="${#authentication.principal.professorDTO.professor_number}"></span>)<br>
+					<span th:text="${#authentication.principal.professorDTO.department_name}"></span>
+
+					
 				</div>
 
 
@@ -176,19 +178,19 @@
 								<div class="wo">
 									<span class="wo01"></span>
 									<br>
-									<a href="/workflow">결재현황</a>
+									<a href="/professor/workflow">결재현황</a>
 								</div>
 
 								<div class="wo">
 									<span class="wo02"></span>
 									<br>
-									<a href="/work-save" id="Wt2">결재목록</a>
+									<a href="/professor/work-save" id="Wt2">결재목록</a>
 
 								</div>
 								<div class="wo">
 									<span class="wo03"></span>
 									<br>
-									<a href="/work-list" id="Wt3">결재신청</a>
+									<a href="/professor/work-list" id="Wt3">결재신청</a>
 
 								</div>
 	</section>
