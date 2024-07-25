@@ -43,8 +43,9 @@
 			</div>
 			<div class="info">
 				<div class="name">
-					<p>김라라 (2024001795)</p>
-					<strong>컴퓨터공학과</strong><br> <span>접속IP:192.168.0.0</span>
+					<p th:text="${#authentication.principal.name}"></p><br>
+					<span th:text="${#authentication.principal.studentDTO.student_number}">학번</span>
+					<strong><span th:text="${#authentication.principal.studentDTO.department_name}">학과</span></strong><br>
 				</div>
 				<div class="menu-box">
 					<div class="menu-item">안읽은 메일</div>

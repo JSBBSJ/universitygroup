@@ -3,6 +3,11 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+	<script src="/js/bot/bot.js"></script>
+	<link rel="stylesheet" href="/css/bot/bot.css" />
 
 	<link rel="stylesheet" href="/css/p-main/workflow/work-save.css">
 
@@ -256,7 +261,11 @@
 		</section>
 
 
-
+		
+		
+		</section>
+		
+		<article th:insert="~{views/bot/bot.html}"></article>
 </main>
 
 

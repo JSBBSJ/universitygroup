@@ -64,9 +64,8 @@
 					<div class="info">
 						<dl>
 							<dt>작성자</dt>
-							<dd><input type="text" name="title" placeholder="작성자 입력"></dd>
+							<span id="userName" th:text="${#authentication.principal.name}"></span>
 						</dl>
-						<dl>
 						    <dt>게시판선택</dt>
 						    <dd>
 						        <select name="division">

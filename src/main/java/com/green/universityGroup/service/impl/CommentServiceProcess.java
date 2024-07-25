@@ -42,11 +42,6 @@ public class CommentServiceProcess implements CommentService {
 	@Override
 	public void commentlistProcess(long board_no, Model model) {
 		
-		/*
-		 * model.addAttribute("comments", repository.findAll().stream()
-		 * .map(CommentEntity::toListDTO) .collect(Collectors.toList()));
-		 */
-		
 		
 		  List<CommentListDTO> comments = repository.findAll() 
 		  .stream()

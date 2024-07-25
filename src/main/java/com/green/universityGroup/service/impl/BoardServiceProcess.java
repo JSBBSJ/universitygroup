@@ -56,7 +56,8 @@ public class BoardServiceProcess implements BoardService {
 
 	@Override
 	public void detailProcess(long board_no, Model model) {
-		model.addAttribute("detail", repository.findById(board_no).map(BoardEntity::toProcessDTO).orElseThrow());
+		model.addAttribute("detail", repository.findById(board_no)
+				.map(BoardEntity::toProcessDTO).orElseThrow());
 
 	}
 
