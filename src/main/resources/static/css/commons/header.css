@@ -63,8 +63,8 @@ nav {
    
 }
 
-.menu > li,form{
-    font-weight: bold; 
+.menu > li, form{
+   
     padding-right: 70px;
 }
 
@@ -85,7 +85,14 @@ nav {
     background: none;
     font-size: 20px;
     color: #ffffff;
-    font-weight: 700 ;
+    cursor: pointer;
+}
+
+.menu > div > form> button:hover{
+	
+	color: black;
+    transform: scale(1.1);
+	
 }
 
 .menu a:hover {

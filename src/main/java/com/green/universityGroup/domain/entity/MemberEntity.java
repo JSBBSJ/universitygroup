@@ -4,8 +4,7 @@ import java.util.Set;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-
-
+import com.green.universityGroup.domain.dto.MemberDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,20 +31,34 @@ public class MemberEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
 	private long member_no;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String member_name;
 	
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String member_sub;
 	
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String member_roll;
 	
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String member_num;
+	
+	
+	public MemberDTO toListDTO() {
+	
+		return MemberDTO.builder()
+
+				.member_no(member_no)
+				.member_name(member_name)
+				.member_sub(member_sub)
+				.member_roll(member_roll)
+				.member_num(member_num)
+				.build();
+
+	}
 
 	
 }

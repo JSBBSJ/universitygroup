@@ -2,6 +2,7 @@ package com.green.universityGroup.naver;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.green.universityGroup.domain.entity.MemberEntity;
+import com.green.universityGroup.domain.repository.MemberRepository;
 import com.green.universityGroup.naver.dto.NaverTokenDTO;
 import com.green.universityGroup.naver.dto.OrgUnitSaveDTO;
 import com.green.universityGroup.naver.dto.ResponseResultDTO;
@@ -23,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class NaverCpService {
 	
 	private final OpenApiUtil openApiUtil;
+	private final MemberRepository repository;
 	
 	//private final ObjectMapper objectMapper; //빈으로 생성 완료 
 
@@ -116,6 +120,17 @@ public class NaverCpService {
 		//
 		
 	}
-	
+
+
+	public void listProcess(Model model) {
+		
+		model.addAttribute("mem",repository.findAll().stream()
+		.map(MemberEntity::toListDTO).collect(Collectors.toList()));
+		
+		
+	}
+
+
+
 
 }
