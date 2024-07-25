@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
+
 public class UniversityGroupApplication {
 
 	public static void main(String[] args) {

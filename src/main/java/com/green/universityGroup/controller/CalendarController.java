@@ -1,62 +1,52 @@
-	package com.green.universityGroup.controller;
-	
-	import java.util.Optional;
+package com.green.universityGroup.controller;
 
+import com.green.universityGroup.domain.dto.CalendarCreateDTO;
+import com.green.universityGroup.domain.dto.CalendarReadDTO;
+import com.green.universityGroup.domain.dto.CalendarUpdateDTO;
+import com.green.universityGroup.service.CalendarService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-	import org.springframework.ui.Model;
-	import org.springframework.web.bind.annotation.DeleteMapping;
-	import org.springframework.web.bind.annotation.GetMapping;
-	import org.springframework.web.bind.annotation.PathVariable;
-	import org.springframework.web.bind.annotation.PostMapping;
-	import org.springframework.web.bind.annotation.RequestBody;
-	import com.green.universityGroup.domain.dto.CalendarDTO;
-	import com.green.universityGroup.service.CalendarService;
-	
-	import lombok.RequiredArgsConstructor;
-	
-	
-	@Controller
-	@RequiredArgsConstructor
-	public class CalendarController {
-	    
-	    private final CalendarService calendarService;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-	    @GetMapping("/calendar")
-	    public String showCalendarView(Model model) {
-	        model.addAttribute("calendars", calendarService.getAllCalendars());
-	        return "views/commons/calendar";  // 경로이동
-	    }
+@Controller
+@RequiredArgsConstructor
+//@RequestMapping("/calendar")
+public class CalendarController {
 
-	    @PostMapping("/calendar")
-	    public String createCalendar(@RequestBody CalendarDTO calendarDTO) {
-	        calendarService.createCalendar(calendarDTO);
-	        return "redirect:/calendar";
-	    }
+    private final CalendarService calendarService;
 
-	    @GetMapping("/calendar/{id}/edit")
-	    public String showEditForm(@PathVariable Long id, Model model) {
-	        Optional<CalendarDTO> calendarDTO = calendarService.getCalendarById(id);
-	        if (calendarDTO.isPresent()) {
-	            model.addAttribute("calendar", calendarDTO.get());
-	            return "views/commons/editCalendar"; // 수정 폼 뷰 경로
-	        } else {
-	            return "redirect:/calendar"; // 404 페이지 혹은 에러 페이지로 리다이렉트
-	        }
-	    }
+    @GetMapping("/calendar")
+    public String showCalendarView(Model model) {
+        model.addAttribute("calendars", calendarService.getAllCalendars());
+        return "views/commons/calendar";
+    }
 
-	    @PostMapping("/calendar/{id}")
-	    public String updateCalendar(@PathVariable Long id, @RequestBody CalendarDTO calendarDTO) {
-	        Optional<CalendarDTO> updatedCalendar = calendarService.updateCalendar(id, calendarDTO);
-	        if (updatedCalendar.isPresent()) {
-	            return "redirect:/calendar";
-	        } else {
-	            return "redirect:/calendar"; // 404 페이지 혹은 에러 페이지로 리다이렉트
-	        }
-	    }
+    @PostMapping("/calendar") 	              
+    public String createCalendar(@Validated @ModelAttribute CalendarCreateDTO calendarCreateDTO) {
+        calendarService.createCalendar(calendarCreateDTO);
+        return "redirect:/calendar";
+    }
 
-	    @DeleteMapping("/calendar/{id}")
-	    public String deleteCalendar(@PathVariable Long id) {
-	        calendarService.deleteCalendar(id);
-	        return "redirect:/calendar";
-	    }
-	}
+    @GetMapping("/{id}/edit")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        CalendarReadDTO calendarDTO = calendarService.getCalendarById(id);
+        model.addAttribute("calendar", calendarDTO);
+        return "views/commons/editCalendar";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateCalendar(@PathVariable Long id, @Validated @ModelAttribute CalendarUpdateDTO calendarUpdateDTO) {
+        calendarService.updateCalendar(id, calendarUpdateDTO);
+        return "redirect:/calendar";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteCalendar(@PathVariable Long id) {
+        calendarService.deleteCalendar(id);
+        return "redirect:/calendar";
+    }
+}
+    
+    

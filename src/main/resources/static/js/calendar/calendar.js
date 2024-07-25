@@ -39,8 +39,8 @@ $(document).ready(function() {
                     var newEvent = {
                         title: title,
                         description: description,
-                        start: start.format(),
-                        end: end.format()
+                        start_date: start.format(),
+                        end_date: end.format()
                     };
                     $.ajax({
                         url: '/calendar',
@@ -48,8 +48,8 @@ $(document).ready(function() {
                         headers: { [csrfHeader]: csrfToken },
                         contentType: 'application/json',
                         data: JSON.stringify(newEvent),
-                        success: function(event) {
-                            newEvent.id = event.id;
+                        success: function(response) {
+                            newEvent.id = response.calendar_no; // 서버에서 반환된 ID를 사용
                             $('#calendar').fullCalendar('renderEvent', newEvent, true);
                             $('#event-modal').hide();
                             clearModalFields();
@@ -72,8 +72,8 @@ $(document).ready(function() {
                 if (confirm('수정하시겠습니까?')) {
                     event.title = $('#event-title').val();
                     event.description = $('#event-description').val();
-                    event.start = $('#event-start').val();
-                    event.end = $('#event-end').val();
+                    event.start_date = $('#event-start').val();
+                    event.end_date = $('#event-end').val();
                     updateEvent(event);
                     $('#event-modal').hide();
                     clearModalFields();

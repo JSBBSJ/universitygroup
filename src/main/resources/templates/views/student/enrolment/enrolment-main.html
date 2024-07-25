@@ -52,10 +52,34 @@
 							<div>개설학과</div>
 							<div>시간표 요약</div>
 						</li>
+						<!-- Thymeleaf 반복문을 통해 과목 데이터를 동적으로 표시 -->
+						<th:block th:each="course : ${courses}">
+							<li>
+								<div th:text="${course.courseNo}"></div>
+								<div>
+									<form th:action="@{/save-enrollment}" method="post">
+										<input type="hidden" name="courseNo" th:value="${course.courseNo}" />
+										<button type="submit">신청</button>
+									</form>
+								</div>
+								<div th:text="${course.courseName}"></div>
+								<div th:text="${course.classroom}"></div>
+								<div th:text="${course.professorName}"></div>
+								<div th:text="${course.credits}"></div>
+								<div th:text="${course.departmentName}"></div>
+								<div th:text="${course.scheduleSummary}"></div>
+							</li>
+						</th:block>
 					</ul>
 				</div>
 			</div>
 		</section>
+		</ul>
+
+		</div>
+		</div>
+	</section>
 	</section>
 </main>
+
 </html>

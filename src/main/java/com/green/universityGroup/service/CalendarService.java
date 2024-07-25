@@ -1,23 +1,20 @@
 package com.green.universityGroup.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.ui.Model;
-
-import com.green.universityGroup.domain.dto.CalendarDTO;
+import com.green.universityGroup.domain.dto.CalendarCreateDTO;
+import com.green.universityGroup.domain.dto.CalendarReadDTO;
+import com.green.universityGroup.domain.dto.CalendarUpdateDTO;
 
 public interface CalendarService {
 
-    List<CalendarDTO> getAllCalendars();
+    List<CalendarReadDTO> getAllCalendars(); 
 
-    CalendarDTO createCalendar(CalendarDTO calendarDTO);
+    void createCalendar(CalendarCreateDTO calendarDTO); // 생성
 
-    CalendarDTO getCalendarById(Long id);
+    CalendarReadDTO getCalendarById(Long id); //조회
 
-    void updateCalendar(Long id, CalendarDTO calendarDTO);
+    void updateCalendar(Long id, CalendarUpdateDTO calendarDTO); //수정
 
-    void deleteCalendar(Long id);
-
-	void getAllCalendars(Model model);
+    void deleteCalendar(Long id); //삭제
 }
