@@ -1,3 +1,4 @@
+li{list-style: none;}
 .enrolment-mains {
 
 
@@ -228,7 +229,7 @@ strong {
 
 .e-sub-list-title>div {
 
-	flex: 1;
+	min-width:100px;
 	/* 동일한 너비로 나누기 */
 
 	text-align: center;
@@ -240,4 +241,7 @@ strong {
 	padding: 10px 0;
 	/* 위아래 여백 설정 */
 
+}
+.e-sub-list-title>div:last-child {
+	min-width: 600px;
 }

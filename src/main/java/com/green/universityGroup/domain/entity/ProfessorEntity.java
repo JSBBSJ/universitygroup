@@ -31,26 +31,23 @@ public class ProfessorEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
-	private long professor_no;	
+	private long professorNo;	
 	
-	private long professor_number;
+	private long professorNumber;
 	
-	@OneToOne  //일대일
-    @JoinColumn(name = "user_no", referencedColumnName = "user_no")
+	@OneToOne(mappedBy = "professor")  //일대일
 	private UserEntity user;
 	
 	@ManyToOne //다대일
-    @JoinColumn(name = "department_no", referencedColumnName = "department_no")
-	private DepartmentEntity dep;
-
-
+    @JoinColumn(name = "departmentNo")
+	private DepartmentEntity department;
 
 	public ProfessorListDTO toListDTO() {
 		return ProfessorListDTO.builder()
-				.professorNo(professor_no)
-				.professor_number(professor_number)
+				.professorNo(professorNo)
+				.professor_number(professorNumber)
 				.username(user.getUsername())
-				.department_name(dep.getDepartment_name())
+				.department_name(department.getDepartmentName())
 				.build();
 	
 	}

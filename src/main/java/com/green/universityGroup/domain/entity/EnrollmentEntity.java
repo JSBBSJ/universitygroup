@@ -30,11 +30,11 @@ public class EnrollmentEntity {
 	private long enrollment_no; // 수강신청 번호
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "student_no", referencedColumnName = "student_no")
+	@JoinColumn(name = "student_no")
 	private StudentEntity student; // 학생정보
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "course_no", referencedColumnName = "course_no")
+	@JoinColumn(name = "course_no")
 	private CourseEntity course; // 과목정보
 
 }

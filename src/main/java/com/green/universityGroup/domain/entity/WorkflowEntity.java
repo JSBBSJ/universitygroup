@@ -35,12 +35,12 @@ public class WorkflowEntity {
 
 	
 	@ManyToOne
-	@JoinColumn(name = "professor_no", referencedColumnName = "professor_no")
+	@JoinColumn(name = "professor_no")
 	private ProfessorEntity professor;
 	
 	
 	@OneToOne
-    @JoinColumn(name = "workpageup_no", referencedColumnName = "workpageup_no")
+    @JoinColumn(name = "workpageup_no")
 	private WorkpageupEntity workpageup;
 	
 

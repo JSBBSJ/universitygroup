@@ -37,7 +37,7 @@ public class UserEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가 값 생성
-	private long user_no;
+	private long userNo;
 
 	@Column(nullable = false, length = 50)
 	private String username;
@@ -49,14 +49,16 @@ public class UserEntity {
 	private String password;
 
 	@Column(nullable = false)
-	private String profile_image;
+	private String profileImage;
 
 	// StudentEntity와의 관계
-	@OneToOne(mappedBy = "user")
+	@OneToOne
+	@JoinColumn(name = "studentNo")
 	private StudentEntity student;
 
 	// ProfessorEntity와의 관계
-	@OneToOne(mappedBy = "user")
+	@OneToOne
+	@JoinColumn(name = "professorNo")
 	private ProfessorEntity professor;
 
 	@Enumerated(EnumType.STRING) // DB저장 데이터타입 문자로 저장 : default 숫자로 저장
@@ -84,7 +86,7 @@ public class UserEntity {
 	}
 
 	public UserEntity update(UserUpdateDTO dto) {
-		this.profile_image=dto.getProfile_image();
+		this.profileImage=dto.getProfile_image();
 		return this;
 		
 		
