@@ -1,5 +1,6 @@
 package com.green.universityGroup.utils.websocket;
 
+import com.green.universityGroup.domain.dto.ChatbotAnswerListDTO;
 import com.green.universityGroup.domain.dto.QuestionDTO;
 import com.green.universityGroup.domain.entity.QuestionEntity;
 import com.green.universityGroup.service.QuestionService;
@@ -36,6 +37,14 @@ public class QuestionController {
 	@SendTo("/topic/children")
 	public List<QuestionEntity> getChildrenQuestions(Long parentId) {
 		return service.getChildrenQuestions(parentId);
+	}
+	
+	@MessageMapping("/hello")
+	@SendTo("/topic/bot/{key}")
+	public ChatbotAnswerListDTO greeting(ChatbotAnswerListDTO questionDTO) {
+		// 메시지 처리 로직
+		questionDTO.setContent("Hello, " + questionDTO.getName() + "!");
+		return questionDTO;
 	}
 
 	@GetMapping("/categories")
