@@ -15,9 +15,9 @@
 		<nav>
 			<ul class="menu">
 				<!-- 게시판 -->
-				<li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a th:href="@{/board/1}">게시판</a>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a th:href="@{/board/1}">공지사항</a>
 				</li>
-				<li th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a th:href="@{/board/1}">게시판</a>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a th:href="@{/board/1}">공지사항</a>
 				</li>
 
 				<!-- 캘린더 -->
