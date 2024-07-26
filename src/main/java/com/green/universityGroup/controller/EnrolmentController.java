@@ -28,10 +28,11 @@ public class EnrolmentController {
     }
     
     // 수강 신청을 처리하는 메서드입니다.
-    @PostMapping("/enroll")
-    public String enrollCourse(@RequestParam("student_no") Long student_no, @RequestParam("course_no") Long course_no) {
+    @PostMapping("/enrollments")//html의 form태그의  action="@{/enrollments}" 주소화 일치
+    public String enrollCourse(@AuthenticationPrincipal RaraUniversityUserDetails userDetails,@RequestParam("courseNo") Long courseNo) {
         // CourseService를 이용해 학생의 수강 신청을 처리합니다.
-        service.enrollCourse(student_no, course_no);
+    	userDetails.getStudentDTO().getStudent_no();
+        service.enrollCourse(userDetails.getStudentDTO().getStudent_no(), courseNo);
         // 수강 신청 후에는 다시 수강 목록 페이지로 리다이렉트합니다.
         return "redirect:/enrolment-main";
     }

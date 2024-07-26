@@ -1,6 +1,9 @@
 package com.green.universityGroup.domain.dto;
 
 import java.util.List;
+import java.util.Objects;
+
+import com.green.universityGroup.domain.entity.CourseEntity;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -28,4 +31,19 @@ public class CourseListDto {
  
  // 강의 일정 목록
  private List<CourseScheduleDTO> courseSchedules; 
+ 
+//equals 메서드 재정의
+ @Override
+ public boolean equals(Object o) {
+     if (this == o) return true;
+     if (o == null || getClass() != o.getClass()) return false;
+     CourseListDto that = (CourseListDto) o;
+     return courseNo == that.courseNo;
+ }
+
+ // hashCode 메서드 재정의
+ @Override
+ public int hashCode() {
+     return Objects.hash(courseNo);
+ }
 }

@@ -1,6 +1,7 @@
 package com.green.universityGroup.domain.entity;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -57,6 +58,24 @@ public class CourseEntity {
     @OneToMany(mappedBy = "course") // 일대다 관계를 설정합니다.
     private List<CourseScheduleEntity> courseSchedule; // 강의 일정 목록
     
+    
+    // equals 메서드 재정의
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseEntity that = (CourseEntity) o;
+        return courseNo == that.courseNo;
+    }
+
+    // hashCode 메서드 재정의
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseNo);
+    }
+    
+    
+    
     // CourseListDto 객체로 변환하는 메서드입니다.
     public CourseListDto toCourseListDto() {
         return CourseListDto.builder()
@@ -77,4 +96,6 @@ public class CourseEntity {
                 .course_name(courseName) // 과목명 설정
                 .build(); // ProfessorClassListDTO 객체 생성
     }
+
+}
 

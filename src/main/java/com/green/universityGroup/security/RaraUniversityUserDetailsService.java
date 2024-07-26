@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.green.universityGroup.domain.repository.UserEntityRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class RaraUniversityUserDetailsService implements UserDetailsService {
 
 	private final UserEntityRepository repository;
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

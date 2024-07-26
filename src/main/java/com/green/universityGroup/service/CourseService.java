@@ -26,7 +26,7 @@ public interface CourseService {
      * @param studentId - 학생의 ID입니다.
      * @param courseId - 과목의 ID입니다.
      */
-    void enrollCourse(Long studentId, Long courseId);
+    void enrollCourse(Long studentNo, Long courseNo);
 
     /**
      * 특정 학생의 수강 목록을 가져와서 모델에 추가하는 메서드입니다.

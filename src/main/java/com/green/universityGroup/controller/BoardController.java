@@ -83,7 +83,7 @@ public class BoardController {
 	@DeleteMapping("/board/view/{board_no}")
 	public String delete(@PathVariable("board_no") long board_no,
 
-	        @AuthenticationPrincipal CustomUserDetails userDetails) {
+	        @AuthenticationPrincipal RaraUniversityUserDetails userDetails) {
 	    service.deleteProcess(board_no, userDetails.getUser_no());
 	    return "redirect:/board/1?page=1";
 

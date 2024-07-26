@@ -13,6 +13,7 @@ import com.green.universityGroup.domain.entity.ProfessorEntity;
 import com.green.universityGroup.domain.entity.StudentEntity;
 import com.green.universityGroup.domain.entity.UserEntity;
 
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 
 
@@ -32,6 +33,7 @@ public class RaraUniversityUserDetails extends User {
 	private long user_no;
 
 	// 첫번째 인증객체는
+
 	public RaraUniversityUserDetails(UserEntity entity) {
 		super(entity.getEmail(), entity.getPassword(), entity.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toSet()));
@@ -43,14 +45,18 @@ public class RaraUniversityUserDetails extends User {
 		// Professor DTO 설정
 		if (entity.getProfessor() != null) {
 			ProfessorEntity professorEntity = entity.getProfessor();
-			this.professorDTO = ProfessorListDTO.builder().professor_number(professorEntity.getProfessorNumber())
+			this.professorDTO = ProfessorListDTO.builder()
+					.professorNo(professorEntity.getProfessorNo())
+					.professor_number(professorEntity.getProfessorNumber())
 					.username(professorEntity.getUser().getUsername())
 					.department_name(professorEntity.getDepartment().getDepartmentName()).build();
 		}
 
 		if (entity.getStudent() != null) {
 			StudentEntity studentEntity = entity.getStudent();
-			this.studentDTO = StudentlistDTO.builder().student_number(studentEntity.getStudentNumber())
+			this.studentDTO = StudentlistDTO.builder()
+					.student_no(studentEntity.getStudentNo())
+					.student_number(studentEntity.getStudentNumber())
 					.username(studentEntity.getUser().getUsername())
 					.department_name(studentEntity.getDepartment().getDepartmentName()).build();
 		}
