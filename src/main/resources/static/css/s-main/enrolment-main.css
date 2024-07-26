@@ -1,247 +1,122 @@
-li{list-style: none;}
-.enrolment-mains {
-
-
-
-	max-width: 1700px;
-
-	margin: 0 auto;
-
-
-
+li {
+  list-style: none;
 }
 
-
+.enrolment-mains {
+  max-width: 1700px;
+  margin: 0 auto;
+}
 
 .enrolment-container {
-
-
-
-	display: grid;
-
-	grid-template-columns: 1fr 2fr 2fr;
-
-	grid-auto-rows: 900px;
-
-	padding: 10px;
-
-	grid-gap: 20px;
-
-	grid-template-areas:
-
-		'enrolment-menu enrolment-main enrolment-main'
-
-
-
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-auto-rows: 900px;
+  padding: 10px;
+  grid-gap: 20px;
+  grid-template-areas:
+    'enrolment-menu enrolment-main enrolment-main';
 }
-
-
 
 .enrolment-container,
 .enrolment-main {
-
-
-
-
-
-	background-color: #ffffff;
-
+  background-color: #ffffff;
 }
-
-
-
-
 
 .enrolment-menu {
-
-
-
-	display: flex;
-
-	flex-direction: column;
-
-	border-radius: 1em;
-
-	grid-area: enrolment-menu;
-
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-	position: relative;
-
-
-
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  grid-area: enrolment-menu;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
-
-
 
 .enrolment-main {
-
-
-
-	display: flex;
-
-	flex-direction: column;
-
-	background-color: #ffffff;
-
-	border-radius: 1em;
-
-	grid-area: enrolment-main;
-
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-
-
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 1em;
+  grid-area: enrolment-main;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
-
-/* //////////////////////////////////화면 구성 끝///////////////////////// */
-
-
-
-/* //////////왼쪽 menu 바 구성///// */
-
-
-
-
-
+/* 왼쪽 메뉴 바 구성 */
 .enrolment-title,
 .e-g-title {
-
-
-
-	font-size: 20px;
-
-	padding: 1em;
-
-	background-color: #944e63;
-
-	color: #ffffff;
-
-
-
-
+  font-size: 20px;
+  padding: 1em;
+  background-color: #356855;
+  color: #ffffff;
 }
 
-
-
-.enrolment-lists>div {
-
-	padding-top: 20px;
-
-	padding-left: 20px;
-
-	padding-bottom: 20px;
-
-	border-bottom: 1px solid #f3f3f3;
-
-
-
+.enrolment-lists > div {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f3f3;
 }
 
-.enrolment-lists>div>a {
-
-	text-decoration: none;
-	color: #191919;
-
+.enrolment-lists > div > a {
+  text-decoration: none;
+  color: #191919;
 }
 
 .e-period {
-
-
-
-	line-height: 2;
-
+  line-height: 2;
 }
-
-
 
 .e-guide-con {
-
-
-
-	padding-top: 20px;
-
-	padding-left: 20px;
-
-	padding-bottom: 20px;
-
-	border-bottom: 1px solid #f3f3f3;
-
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f3f3;
 }
 
-
-
-.e-guide-con>span,
+.e-guide-con > span,
 strong {
-
-
-
-	line-height: 2;
-
+  line-height: 2;
 }
 
-
-
-/*/////////////////////////왼쪽 바 끝////////////////////*/
-/*/////////////////////////왼쪽 바 끝////////////////////*/
-
-
-
+/* 수강신청 과목 목록 */
 .e-sub-top {
-
-
-
-	font-size: 20px;
-
-	padding: 1em;
-
-	background-color: #944e63;
-
-	color: #ffffff;
-
+  font-size: 20px;
+  padding: 1em;
+  background-color: #356855;
+  color: #ffffff;
 }
 
-
-
-.e-sub-list>ul {
-
-	padding: 0;
-
-	list-style-type: none;
-
+.e-sub-list > ul {
+  padding: 0;
+  list-style-type: none;
 }
-
-
 
 .e-sub-list-title {
-
-	display: flex;
-
-	justify-content: center;
-
-	padding-top: 10px;
-
+  display: flex;
+  justify-content: space-between; /* 항목을 양 끝으로 배치 */
+  align-items: center; /* 수직 가운데 정렬 */
+  padding-top: 10px;
 }
 
-
-
-.e-sub-list-title>div {
-
-	min-width:100px;
-	/* 동일한 너비로 나누기 */
-
-	text-align: center;
-	/* 가운데 정렬 */
-
-	border-bottom: 1px solid #ccc;
-	/* 아래쪽 테두리 설정 */
-
-	padding: 10px 0;
-	/* 위아래 여백 설정 */
-
+.e-sub-list-title > div {
+  flex: 1; /* 동일한 너비로 나누기 */
+  text-align: center; /* 가운데 정렬 */
+  border-bottom: 1px solid #ccc; /* 아래쪽 테두리 설정 */
+  padding: 10px 0; /* 위아래 여백 설정 */
 }
-.e-sub-list-title>div:last-child {
-	min-width: 600px;
+
+.e-sub-list-title > div:last-child {
+  min-width: 600px; /* 마지막 div의 최소 너비 설정 */
+  flex: 2; /* 마지막 항목의 너비를 두 배로 설정 */
+}
+
+/* 버튼을 가운데 정렬하기 위한 추가 CSS */
+.e-sub-list-title > div button {
+  margin: -2px; /* 버튼 주변 여백을 제거 */
+}
+
+/* 신청 버튼을 포함한 div의 flexbox 설정 */
+.e-sub-list-title > div {
+  display: flex; /* Flexbox를 사용하여 자식 요소들을 가운데 정렬 */
+  justify-content: center; /* 수평 방향으로 가운데 정렬 */
+  align-items: center; /* 수직 방향으로 가운데 정렬 */
 }
