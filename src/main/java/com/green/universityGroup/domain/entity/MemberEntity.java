@@ -29,33 +29,33 @@ public class MemberEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
-	private long member_no;
+	private long memberNo;
 	
 	@Column(nullable = false)
-	private String member_name;
-	
-	
-	@Column(nullable = false)
-	private String member_sub;
+	private String memberName;
 	
 	
 	@Column(nullable = false)
-	private String member_roll;
+	private String memberSub;
 	
 	
 	@Column(nullable = false)
-	private String member_num;
+	private String memberRoll;
+	
+	
+	@Column(nullable = false)
+	private String memberNum;
 	
 	
 	public MemberDTO toListDTO() {
 	
 		return MemberDTO.builder()
 
-				.member_no(member_no)
-				.member_name(member_name)
-				.member_sub(member_sub)
-				.member_roll(member_roll)
-				.member_num(member_num)
+				.member_no(memberNo)
+				.member_name(memberName)
+				.member_sub(memberSub)
+				.member_roll(memberRoll)
+				.member_num(memberNum)
 				.build();
 
 	}

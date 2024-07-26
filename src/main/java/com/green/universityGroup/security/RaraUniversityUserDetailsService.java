@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 //bean으로 등록해서 DB에 접근해야됨
 @Service
 @RequiredArgsConstructor
-public class CustomUserDetailsService implements UserDetailsService {
+public class RaraUniversityUserDetailsService implements UserDetailsService {
 
 	private final UserEntityRepository repository;
 	
@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		System.out.println(">>>> username"+email);
 		
 		
-		return new CustomUserDetails(repository.findByEmail(email).orElseThrow());
+		return new RaraUniversityUserDetails(repository.findByEmail(email).orElseThrow());
 		
 	}
 

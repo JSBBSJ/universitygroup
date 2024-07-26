@@ -42,15 +42,16 @@ public class StudentEntity {
 	private long studentNo;
 	
 	@Column(nullable = false, unique = true)
-	private long student_number;
+	private long studentNumber;
 	
 	@OneToOne(mappedBy = "student")
 	private UserEntity user;
 	
 	@ManyToOne
-    @JoinColumn(name = "department_no")
+    @JoinColumn(name = "departmentNo")
 	private DepartmentEntity department;
 	
+
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_no") // 조인 컬럼명 지정 EnrollmentEntity 물리테이블에 생성됨
@@ -76,7 +77,7 @@ public class StudentEntity {
 		
 		
 		return StudentlistDTO.builder()
-				.student_number(student_number)
+				.student_number(studentNumber)
 				.username(user.getUsername())
 				.department_name(department.getDepartmentName())
 				.build();

@@ -8,7 +8,7 @@ import com.green.universityGroup.domain.entity.UserEntity;
 
 public interface BoardService {
 
-	void listProcess(int division, Model model);
+	void listProcess(int division, Model model, int page);
 
 	void saveProcess(BoardSaveDTO dto);
 

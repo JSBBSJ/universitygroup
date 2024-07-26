@@ -48,7 +48,7 @@ public class QuestionEntity {
 
     // 부모 질문과의 셀프 조인을 위한 필드
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
+    @JoinColumn(name = "parentId")
     private QuestionEntity parent;
 
     // 자식 질문들과의 셀프 조인을 위한 필드

@@ -1,43 +1,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
-	
+
 <header>
 	<div class="header-container">
 		<div class="logo" sec:authorize="hasRole('STUDENT')">
-			<a href="/student" title="메인페이지로 이동"> <img
-				src="/images/common/main-logo.png" alt="라라대학교 로고"> <span>라라대학교</span>
+			<a href="/student" title="메인페이지로 이동"> <img src="/images/common/main-logo.png" alt="라라대학교 로고">
+				<span>라라대학교</span>
 			</a>
 		</div>
 		<div class="logo" sec:authorize="hasRole('PROFESSOR')">
-			<a href="/professor" title="메인페이지로 이동"> <img
-				src="/images/common/main-logo.png" alt="라라대학교 로고"> <span>라라대학교</span>
+			<a href="/professor" title="메인페이지로 이동"> <img src="/images/common/main-logo.png" alt="라라대학교 로고">
+				<span>라라대학교</span>
 			</a>
 		</div>
 		<nav>
 			<ul class="menu">
 				<!-- 게시판 -->
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a
-					th:href="@{/board/1}">게시판</a></li>
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
-					th:href="@{/board/1}">게시판</a></li>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a th:href="@{/board/1}">게시판</a>
+				</li>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a th:href="@{/board/1}">게시판</a>
+				</li>
 
 				<!-- 캘린더 -->
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a
-					th:href="@{/calendar}">캘린더</a></li>
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
-					th:href="@{/calendar}">캘린더</a></li>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a th:href="@{/calendar}">캘린더</a>
+				</li>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
+						th:href="@{/calendar}">캘린더</a></li>
+
+				<li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a th:href="@{/enrolment-main}">수강신청</a>
+				</li>
 
 				<!-- 전자결재 (교수만 보이도록) -->
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
-					th:href="@{/professor/workflow}">전자결재</a></li>
-					
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
-					th:href="@{/professor/mail}">메일</a></li>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
+						th:href="@{/professor/workflow}">전자결재</a></li>
+
+				<li th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
+						th:href="@{/professor/mail}">메일</a></li>
 
 				<!-- 주소록 (교수만 보이도록) -->
 				<!--<li
@@ -45,25 +42,24 @@
 					th:href="@{/contacts}">주소록</a></li>
 
 				 수강목록 -->
-				 <div th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}">
-				 <form action="https://auth.worksmobile.com/oauth2/v2.0/authorize">
-				 	<input type="hidden" name="client_id" th:value="${@environment.getProperty('naver.client.id')}">
-				 	<input type="hidden" name="redirect_uri" th:value="${@environment.getProperty('naver.client.redirect-uri')}">
-				 	<input type="hidden" name="scope" th:value="${@environment.getProperty('naver.client.scope')}">
-				 	<input type="hidden" name="response_type" value="code">
-				 	<input type="hidden" name="state" value="orgunit.read">
-				 	<button>조직도</button>
-				 		
-				 </form>
-				 </div>
-				 
-				 
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a
-					th:href="@{/student/lms}">수강목록</a></li>
-				<li
-					th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
-					th:href="@{/professor/lms}">강의목록</a></li>
+				<div th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}">
+					<form action="https://auth.worksmobile.com/oauth2/v2.0/authorize">
+						<input type="hidden" name="client_id" th:value="${@environment.getProperty('naver.client.id')}">
+						<input type="hidden" name="redirect_uri"
+							th:value="${@environment.getProperty('naver.client.redirect-uri')}">
+						<input type="hidden" name="scope" th:value="${@environment.getProperty('naver.client.scope')}">
+						<input type="hidden" name="response_type" value="code">
+						<input type="hidden" name="state" value="orgunit.read">
+						<button>조직도</button>
+
+					</form>
+				</div>
+
+
+				<li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"><a
+						th:href="@{/student/lms}">수강목록</a></li>
+				<li th:if="${#authorization.expression('hasRole(''ROLE_PROFESSOR'')')}"><a
+						th:href="@{/professor/lms}">강의목록</a></li>
 			</ul>
 		</nav>
 		<div class="signout">
@@ -71,12 +67,11 @@
 				<button type="submit" title="로그아웃">
 					<img src="/images/common/logout-icon.png" alt="로그아웃 아이콘">
 				</button>
-				<input type="hidden" th:name="${_csrf.parameterName}"
-					th:value="${_csrf.token}" />
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			</form>
 		</div>
 	</div>
-	
-	
-	
+
+
+
 </header>

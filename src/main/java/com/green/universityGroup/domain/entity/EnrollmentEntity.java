@@ -28,13 +28,21 @@ public class EnrollmentEntity {
 
     @Id // 기본 키를 나타냅니다.
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 생성을 데이터베이스에 위임합니다.
+
     private long enrollment_no; // 수강신청 번호
     
     /*
     @ManyToOne
     @JoinColumn(name = "student_no") // 외래 키를 설정합니다.
+
+    private long enrollmentNo; // 수강신청 번호
+
+    @ManyToOne(fetch = FetchType.LAZY) // 다대일 관계를 설정하고, 지연 로딩을 사용합니다.
+    @JoinColumn(name = "studentNo") // 외래 키를 설정합니다.
+
     private StudentEntity student; // 학생 정보
     */
+
 
     @ManyToOne
     @JoinColumn(name = "course_no") // 외래 키를 설정합니다.

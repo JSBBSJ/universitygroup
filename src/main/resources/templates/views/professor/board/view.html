@@ -96,18 +96,20 @@
                     <h2>댓글 목록</h2>
                     <div th:each="comment:${comments}">
                         <div class="comment-item">
-                            <p th:text="${comment.comment_no}"></p>
+							<p th:text="${comment.comment_user}"></p>
                             <p th:text="${comment.text}"></p>
-                           <!-- <small th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></small>-->
+                            <small th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></small>
                         </div>
                     </div>
                 </div>
                 </form>
+				
 				<div class="bt_wrap" th:if="${#authentication.principal.user_no == detail.user_no}">
 					<a th:href="@{|/board/edit/${detail.board_no}|}">수정</a>
-					<form th:action="|/board/view/${board_no}" method="post">
-						<input type="hidden" name="_method" value="delete">
-						<button type="submit" onclick="confirmDelete()">삭제</button>
+					<form th:action="@{|/board/view/${detail.board_no}|}" method="post" onsubmit="return confirmDelete()">
+					    <input type="hidden" name="_method" value="delete">
+					    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+					    <button type="submit">삭제</button>
 					</form>
 				</div>
 				</div>

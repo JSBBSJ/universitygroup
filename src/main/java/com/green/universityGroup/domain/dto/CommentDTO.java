@@ -36,7 +36,7 @@ public class CommentDTO {
 	
 	public CommentEntity toCommentEntity(BoardEntity board) {
 		return CommentEntity.builder()
-				.comment_no(comment_no)
+				.commentNo(comment_no)
 				.comment_user(comment_user)
 				.createdAt(createdAt)
 				.text(text)
