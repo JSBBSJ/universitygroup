@@ -2,23 +2,15 @@ package com.green.universityGroup.domain.entity;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.apache.catalina.User;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.OnDelete;
 
 import com.green.universityGroup.domain.dto.CourseListDto;
 import com.green.universityGroup.domain.dto.ProfessorClassListDTO;
 
-import jakarta.persistence.CascadeType;
-
-import org.hibernate.annotations.DynamicUpdate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,7 +23,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @DynamicUpdate
 @Builder
@@ -56,7 +48,6 @@ public class CourseEntity {
 	@ManyToOne
 	private ProfessorEntity professor;
 
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EnrollmentEntity> enrollment;
 	
 	@OneToMany(mappedBy = "course")
