@@ -13,6 +13,7 @@ public class WorkflowController {
 	
 	//private final WorkflowService service;
 
+	//단순 전자결재 페이지 이동
 	@GetMapping("/professor/workflow")
 	public String list() {
 		return "/views/professor/workflow/workflow";
@@ -25,9 +26,9 @@ public class WorkflowController {
 		}
 		
 		
-		//휴가신청서 등 자바스크립트에서 찾아오기위해 만든 컨트롤러(휴가신청서 이름: vacationapplicationform)
+		//휴가신청서 등 자바스크립트에서 찾아오기위해 만든 컨트롤러(폼이 두개이므로 data변수를 통해 매핑)
 		//@ResponseBody//데이터로 가라는 뜻
-		@GetMapping("/professor/findDoc")
+		@GetMapping("/professor/findDoc") //자바스크립트 work-forms 비동기로 찾는교
 		public String findDoc(@RequestParam("data") String data) {
 			
 			return "/views/professor/workflow/"+data; //여기도 패키지에 맞게 수정필요 최초 "/"이거였음
