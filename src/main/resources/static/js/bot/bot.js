@@ -1,5 +1,7 @@
+
 var stompClient = null;
 var key;
+var isConnected = false;
 
 function isWebSocketSupported() {
     return 'WebSocket' in window;
@@ -43,10 +45,12 @@ function resetChat() {
 }
 
 function connect() {
+    if (isConnected) return;
     const socket = new SockJS('/rara-bot');
     stompClient = Stomp.over(socket);
 
     stompClient.connect({}, function(frame) {
+        isConnected = true;
         key = new Date().getTime();
         console.log('Connected: ' + frame);
 
@@ -74,7 +78,6 @@ function connect() {
                 </div>
             `;
             showMessage(tag);
-
         });
 
         var data = {
@@ -107,6 +110,7 @@ function connect() {
 function disconnect() {
     if (stompClient !== null) {
         stompClient.disconnect();
+        isConnected = false;
     }
     console.log("Disconnected");
     resetChat();
@@ -120,53 +124,48 @@ function loadCategories() {
             if (categoryButtons) {
                 categoryButtons.innerHTML = '';
                 categories.forEach(category => {
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category';
                     const button = document.createElement('button');
                     button.textContent = category;
                     button.className = 'category-button';
                     button.onclick = () => {
-                        sendCategory(category);
+                        toggleSubQuestions(`sub-questions-${category}`);
+                        loadSubQuestions(category, `sub-questions-${category}`);
                     };
-                    categoryButtons.appendChild(button);
+                    categoryDiv.appendChild(button);
+                    const subQuestionsDiv = document.createElement('div');
+                    subQuestionsDiv.id = `sub-questions-${category}`;
+                    subQuestionsDiv.className = 'sub-questions';
+                    categoryDiv.appendChild(subQuestionsDiv);
+                    categoryButtons.appendChild(categoryDiv);
                 });
             }
         });
 }
 
-function sendCategory(category) {
-    hideOtherContent('category-buttons');
+function loadSubQuestions(category, elementId) {
     fetch(`/api/questions/category/${category}/texts`)
         .then(response => response.json())
         .then(texts => {
-            if (Array.isArray(texts)) {
-                const chatbotBody = document.getElementById('chatbot-body');
-                const textButtonsContainer = document.createElement('div');
-                textButtonsContainer.id = 'text-buttons';
-
+            const subQuestionsDiv = document.getElementById(elementId);
+            if (subQuestionsDiv) {
+                subQuestionsDiv.innerHTML = '';
                 texts.forEach(text => {
                     const button = document.createElement('button');
                     button.textContent = text;
                     button.className = 'category-button';
                     button.onclick = () => {
                         fetchAnswer(text);
-                        hideOtherContent('text-buttons');
                     };
-                    textButtonsContainer.appendChild(button);
+                    subQuestionsDiv.appendChild(button);
                 });
-
-                const existingTextButtons = document.getElementById('text-buttons');
-                if (existingTextButtons) {
-                    chatbotBody.removeChild(existingTextButtons);
-                }
-                chatbotBody.appendChild(textButtonsContainer);
-            } else {
-                console.error('Expected an array but got:', texts);
             }
         })
         .catch(error => console.error('Error fetching texts by category:', error));
 }
 
 function fetchAnswer(text) {
-    hideOtherContent('text-buttons');
     const encodedText = encodeURIComponent(text);
     fetch(`/api/questions/question/${encodedText}/answer`)
         .then(response => response.text())
@@ -202,8 +201,13 @@ function sendMessage() {
 
 function btnBotClicked() {
     const chatbotWindow = document.getElementById('chatbotWindow');
-    connect();
-    chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
+    if (chatbotWindow.style.display === 'none' || chatbotWindow.style.display === '') {
+        connect();
+        chatbotWindow.style.display = 'flex';
+    } else {
+        disconnect();
+        chatbotWindow.style.display = 'none';
+    }
 }
 
 function btnCloseClicked() {
@@ -222,4 +226,13 @@ function hideOtherContent(exceptionId) {
             }
         }
     });
+}
+
+function toggleSubQuestions(id) {
+    var subQuestions = document.getElementById(id);
+    if (subQuestions.style.display === 'none' || subQuestions.style.display === '') {
+        subQuestions.style.display = 'block';
+    } else {
+        subQuestions.style.display = 'none';
+    }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.green.universityGroup.domain.dto.CourseListDto;
 import com.green.universityGroup.domain.dto.ProfessorClassListDTO;
 import com.green.universityGroup.domain.entity.CourseEntity;
 
