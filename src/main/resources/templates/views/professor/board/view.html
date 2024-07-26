@@ -103,14 +103,14 @@
                     </div>
                 </div>
                 </form>
-				<div class="bt_wrap">
-					<a th:href="|/board/edit/${detail.board_no}|">수정</a>
+				<div class="bt_wrap" th:if="${#authentication.principal.user_no == detail.user_no}">
+					<a th:href="@{|/board/edit/${detail.board_no}|}">수정</a>
 					<form th:action="|/board/view/${board_no}" method="post">
-					<input type="hidden" name="_method" value="delete">
-					<button type="submit" onclick="confirmDelete()">삭제</button>
+						<input type="hidden" name="_method" value="delete">
+						<button type="submit" onclick="confirmDelete()">삭제</button>
 					</form>
 				</div>
-			</div>
+				</div>
 			
 		</div>
 

@@ -14,10 +14,10 @@ public interface BoardService {
 
 	void detailProcess(long board_no, Model model);
 
-	void updateProcess(long board_no, BoardUpdateDTO dto);
-
 	void editProcess(long board_no, Model model);
 
-	void deleteProcess(long board_no);
-	
+	void updateProcess(long board_no, BoardUpdateDTO dto, long user_no);
+
+	void deleteProcess(long board_no, long user_no);
+
 }
