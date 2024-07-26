@@ -59,13 +59,13 @@ nav {
     display: flex;
     flex-direction: row; 
     align-items: center; 
-    gap: 40px;
+    gap: 100px;
    
 }
 
 .menu > li, form{
    
-    padding-right: 70px;
+    padding-right: 0px;
 }
 
 .menu a {
@@ -105,14 +105,17 @@ nav {
     position: absolute; /* 아이콘을 상위 컨테이너에 대해 절대 위치 설정 */
     top: 10px; /* 상단에서 10px */
     right: 20px; /* 우측에서 20px */
+    
 }
 
 .signout img {
     width: 24px; /* 아이콘의 너비 */
     height: 24px; /* 아이콘의 높이 */
+  
 }
 
 /* 로그아웃 아이콘의 호버 효과 */
 .signout:hover img {
     filter: brightness(0.8); /* 호버 시 아이콘의 밝기를 줄여 효과를 줌 */
+    
 }
