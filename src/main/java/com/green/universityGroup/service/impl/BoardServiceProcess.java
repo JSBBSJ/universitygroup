@@ -63,11 +63,16 @@ public class BoardServiceProcess implements BoardService {
 
 	@Override
 	@Transactional
-	public void updateProcess(long board_no, BoardUpdateDTO dto) {
-
-		repository.findById(board_no).orElseThrow().update(dto);
-
-	}
+	public void updateProcess(long board_no, BoardUpdateDTO dto, long user_no) {
+        BoardEntity board = repository.findById(board_no)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid board_no: " + board_no));
+            
+            if (board.getUser().getUserNo() != user_no) {
+                throw new IllegalStateException("You don't have permission to update this board");
+            }
+            
+            board.update(dto);
+        }
 
 	@Override
 	public void editProcess(long board_no, Model model) {
@@ -76,8 +81,12 @@ public class BoardServiceProcess implements BoardService {
 	}
 
 	@Override
-	public void deleteProcess(long board_no) {
-		repository.deleteById(board_no);
-
-	}
+	public void deleteProcess(long board_no, long user_no) {
+        BoardEntity board = repository.findById(board_no)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid board_no: " + board_no));
+            
+            if (board.getUser().getUserNo() != user_no) {
+                throw new IllegalStateException("You don't have permission to delete this board");
+            }
+}
 }

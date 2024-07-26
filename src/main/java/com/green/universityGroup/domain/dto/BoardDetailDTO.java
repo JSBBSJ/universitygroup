@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 @Builder
 public class BoardDetailDTO {
@@ -15,4 +17,5 @@ public class BoardDetailDTO {
 	private String text;
 	private String username;
 	private LocalDateTime createdAt;
+	private long user_no;
 }
