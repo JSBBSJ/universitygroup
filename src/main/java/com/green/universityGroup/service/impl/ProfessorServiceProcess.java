@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 
 import com.green.universityGroup.domain.entity.ProfessorEntity;
 import com.green.universityGroup.domain.repository.ProfessorEntityRepository;
+import com.green.universityGroup.security.CustomUserDetails;
 import com.green.universityGroup.service.ProfessorService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class ProfessorServiceProcess implements ProfessorService{
 
 	@Override
     public String getLoggedInProfessorUsername() {
-        return ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        return ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
     }
 
 }

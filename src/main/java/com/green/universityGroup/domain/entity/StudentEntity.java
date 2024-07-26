@@ -37,18 +37,16 @@ public class StudentEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성
-	@Column(name = "student_no")
 	private long studentNo;
 	
 	@Column(nullable = false, unique = true)
 	private long student_number;
 	
-	@OneToOne
-    @JoinColumn(name = "user_no", referencedColumnName = "user_no")
+	@OneToOne(mappedBy = "student")
 	private UserEntity user;
 	
 	@ManyToOne
-    @JoinColumn(name = "department_no", referencedColumnName = "department_no")
+    @JoinColumn(name = "department_no")
 	private DepartmentEntity department;
 	
 	@OneToMany(mappedBy = "enrollment_no", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -62,7 +60,7 @@ public class StudentEntity {
 		return StudentlistDTO.builder()
 				.student_number(student_number)
 				.username(user.getUsername())
-				.department_name(department.getDepartment_name())
+				.department_name(department.getDepartmentName())
 				.build();
 	}
 	

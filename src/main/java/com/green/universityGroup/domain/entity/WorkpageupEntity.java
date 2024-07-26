@@ -43,7 +43,7 @@ public class WorkpageupEntity {
 	
 	
 	@OneToOne
-    @JoinColumn(name = "oranization_no", referencedColumnName = "oranization_no")
+    @JoinColumn(name = "oranization_no")
 	private OrganizationchartEntity oranization;
 
 
