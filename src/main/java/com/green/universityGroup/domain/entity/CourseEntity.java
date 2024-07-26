@@ -78,3 +78,5 @@ public class CourseEntity {
                 .build(); // ProfessorClassListDTO 객체 생성
     }
 }
+	}
+}

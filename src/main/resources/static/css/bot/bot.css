@@ -1,163 +1,184 @@
-.chatbot-container {
-    position: relative;
-}
+     .chatbot-container {
+            position: relative;
+        }
 
-.chatbot-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 2;
-    animation: bounce 3s infinite;
-}
+        .chatbot-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+            animation: bounce 3s infinite;
+        }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0); /* 원래 위치 */
-    }
-    40% {
-        transform: translateY(-25px); /* 위로 이동 */
-    }
-    60% {
-        transform: translateY(-15px); /* 약간 위로 이동 */
-    }
-}
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0); /* 원래 위치 */
+            }
+            40% {
+                transform: translateY(-25px); /* 위로 이동 */
+            }
+            60% {
+                transform: translateY(-15px); /* 약간 위로 이동 */
+            }
+        }
 
-.chatbot-window {
-    position: fixed;
-    bottom: 110px;
-    right: 40px;
-    width: 360px;
-    height: 600px; /* 전체 높이 */
-    max-height: 600px;
-    overflow: hidden; /* 가로 스크롤 방지 */
-    z-index: 2;
-    background-color: #ffffff; /* 흰색 */
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex; /* 플렉스 레이아웃 사용 */
-    flex-direction: column;
-    display: none;
-    border-radius: 10px;
-}
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 40px;
+            width: 360px;
+            height: 600px; /* 전체 높이 */
+            max-height: 600px;
+            overflow: hidden; /* 가로 스크롤 방지 */
+            z-index: 2;
+            background-color: #ffffff; /* 흰색 */
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex; /* 플렉스 레이아웃 사용 */
+            flex-direction: column;
+            display: none;
+            border-radius: 10px;
+        }
 
-.chatbot-header {
-    background-color: #388E3C; /* 더 어두운 초록색 */
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
-}
+        .chatbot-header {
+            background-color: #388E3C; /* 더 어두운 초록색 */
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
+        }
 
-.chatbot-body {
-    flex: 1; /* 가용 공간을 모두 사용 */
-    padding: 10px;
-    overflow-y: auto;
-    overflow-x: hidden; /* 가로 스크롤 방지 */
-    background: #f9f9f9;
-    font-size: 0.9em; /* 폰트 크기 조정 */
-}
+        .chatbot-body {
+            flex: 1; /* 가용 공간을 모두 사용 */
+            padding: 10px;
+            overflow-y: auto;
+            overflow-x: hidden; /* 가로 스크롤 방지 */
+            background: #f9f9f9;
+            font-size: 0.9em; /* 폰트 크기 조정 */
+        }
 
-.chatbot-footer {
-    padding: 10px;
-    display: flex;
-    border-top: 1px solid #ccc;
-    background: #f1f1f1; /* 배경색 추가 */
-    flex-shrink: 0; /* 푸터가 줄어들지 않도록 */
-    align-items: center; /* 수직 중앙 정렬 */
-}
+        .chatbot-footer {
+            padding: 10px;
+            display: flex;
+            border-top: 1px solid #ccc;
+            background: #f1f1f1; /* 배경색 추가 */
+            flex-shrink: 0; /* 푸터가 줄어들지 않도록 */
+            align-items: center; /* 수직 중앙 정렬 */
+        }
 
-.input {
-    flex: 1;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none; /* 포커스 시 테두리 제거 */
-}
+        .input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none; /* 포커스 시 테두리 제거 */
+        }
 
-.btn-send {
-    background-color: #4CAF50; /* 초록색 */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-}
+        .btn-send {
+            background-color: #4CAF50; /* 초록색 */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
 
-.btn-send:hover {
-    background-color: #388E3C; /* 더 어두운 초록색 */
-}
+        .btn-send:hover {
+            background-color: #388E3C; /* 더 어두운 초록색 */
+        }
 
-.message-wrapper {
-    display: flex;
-    margin-bottom: 10px;
-}
+        .message-wrapper {
+            display: flex;
+            margin-bottom: 10px;
+        }
 
-.message-wrapper.user {
-    justify-content: flex-end;
-}
+        .message-wrapper.user {
+            justify-content: flex-end;
+        }
 
-.message-bubble {
-    max-width: 70%;
-    padding: 10px;
-    border-radius: 10px;
-    background: #e1e1e1;
-    word-wrap: break-word; /* 긴 단어를 줄 바꿈 */
-}
+        .message-bubble {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            background: #e1e1e1;
+            word-wrap: break-word; /* 긴 단어를 줄 바꿈 */
+        }
 
-.message-bubble.user {
-    background: #007bff;
-    color: white;
-}
+        .message-bubble.user {
+            background: #007bff;
+            color: white;
+        }
 
-.message-time {
-    display: block;
-    text-align: right;
-    font-size: 0.8em;
-    color: #999;
-}
+        .message-time {
+            display: block;
+            text-align: right;
+            font-size: 0.8em;
+            color: #999;
+        }
 
-.chatbot-icon img {
-	display:block;
-    width: 70px;
-    height: 70px;
-}
+        .chatbot-icon img {
+            display: block;
+            width: 70px;
+            height: 70px;
+        }
 
-.message-content {
-    background-color: #f1f1f1; /* 챗봇 메시지 배경색 */
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-    word-wrap: break-word; /* 긴 단어 줄 바꿈 */
-    margin: 5px 0; /* 위아래 여백 추가 */
-}
+        .message-content {
+            background-color: #f1f1f1; /* 챗봇 메시지 배경색 */
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+            word-wrap: break-word; /* 긴 단어 줄 바꿈 */
+            margin: 5px 0; /* 위아래 여백 추가 */
+        }
 
-/* 챗봇 카테고리 버튼 스타일 */
-.category-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    background-color: #ffffff; /* 흰색 */
-    color: #333333; /* 검은색 */
-    border: 1px solid #cccccc; /* 연한 회색 테두리 */
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: left;
-    font-size: 0.9em; /* 폰트 크기 조정 */
-}
+        /* 챗봇 카테고리 버튼 스타일 */
+        .category-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #ffffff; /* 흰색 */
+            color: #333333; /* 검은색 */
+            border: 1px solid #cccccc; /* 연한 회색 테두리 */
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.9em; /* 폰트 크기 조정 */
+        }
 
-.category-button:hover {
-    background-color: #f1f1f1; /* 연한 회색 */
-}
+        .category-button:hover {
+            background-color: #f1f1f1; /* 연한 회색 */
+        }
 
-.button-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
 
-.button-grid .category-button {
-    width: 48%; /* 버튼을 2개씩 배치 */
-}
+        .sub-questions {
+            display: none;
+            margin-left: 20px;
+        }
+
+        .sub-questions button {
+            background-color: #d9edf7;
+            border: 1px solid #bce8f1;
+            color: #31708f;
+            margin-top: 5px;
+        }
+
+        .sub-questions button:hover {
+            background-color: #c4e3f3;
+        }
+
+        .category button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
