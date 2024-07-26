@@ -45,18 +45,31 @@
 
 </style>
 
-<script>
+<script> 
 	
+	//	subUpdate 이건 온클릭 함수 , 	element 이건 내가 클릭된 요소를 	element 매개변수로 받기
 	function subUpdate(element) {
-	    var organizationName = $(element).text(); // 클릭된 요소의 텍스트 콘텐츠를 가져옵니다.
-	    var approverList = document.getElementById('approver-list'); // 우측 결제선 지정 창의 요소를 가져옵니다.
-	    
-	    // 새로운 div 엘리먼트를 생성하여 조직 이름을 추가합니다.
-	    var newDiv = document.createElement('div');
-	    newDiv.textContent = organizationName; // 텍스트 내용 설정
-	    
-	    approverList.appendChild(newDiv); // 우측 결제선 지정 창에 새로운 div를 추가합니다.
-	}
+	            var organizationName = element.textContent; // 클릭된 요소의 텍스트 콘텐츠를 가져옵니다.
+	            var approverList = document.getElementById('approver-list'); // 우측 결제선 지정 창의 요소를 가져옵니다.
+	
+	            // approver-list에서 이미 존재하는 항목인지 확인합니다.
+	            var existingItem = Array.from(approverList.children).find(child => child.textContent === organizationName);
+	
+	            if (existingItem) {
+	                // 이미 존재하는 항목이 있다면, 해당 항목을 제거합니다.
+	                approverList.removeChild(existingItem);
+	            } else {
+	                // 새로운 div 엘리먼트를 생성하여 조직 이름을 추가합니다.
+	                var newDiv = document.createElement('div');
+	                newDiv.textContent = organizationName; // 텍스트 내용 설정
+	                newDiv.className = 'approver-item'; // 스타일 적용
+	                newDiv.onclick = function() {
+	                    subUpdate(this); // 클릭 시 현재 div를 제거합니다.
+	                };
+	
+	                approverList.appendChild(newDiv); // 우측 결제선 지정 창에 새로운 div를 추가합니다.
+	            }
+	        }
 	
 	
 </script>
@@ -89,20 +102,6 @@
 
 		</div>
 			
-			<!--<ul class="w-chart2">▼  사무부
-
-				<li>
-
-					<div>김몽 차장</div>
-
-					<div>김여름 과장</div>
-
-					<div>김여름 대리</div>
-
-				</li>
-
-			</ul>-->
-
 	
 
 <div class="w-right-var">
