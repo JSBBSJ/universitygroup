@@ -39,7 +39,7 @@ public class BoardEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long board_no;
+	private long boardNo;
 
 	@Column(nullable = false, length = 100)
 	private String division;
@@ -59,7 +59,7 @@ public class BoardEntity {
 	private LocalDateTime updatedAt;
 
 	@ManyToOne
-	@JoinColumn(name = "user_no")
+	@JoinColumn(name = "userNo")
 	private UserEntity user;
 
 	@OneToMany(mappedBy = "board",fetch = FetchType.LAZY)// 게시글정보만 불러와, LAZY:지연로딩-게시글과 연결된 댓글은 사용한다고 할때(getComments()) 쿼리가 실행돼
@@ -70,7 +70,7 @@ public class BoardEntity {
 	
 	public BoardListDTO toListDTO() {
 		return BoardListDTO.builder()
-				.board_no(board_no)
+				.board_no(boardNo)
 				.title(title)
 				.createdAt(createdAt)
 				.username(user.getUsername())
@@ -81,7 +81,7 @@ public class BoardEntity {
 	
 	public BoardDetailDTO toProcessDTO() {
 		return BoardDetailDTO.builder()
-				.board_no(board_no)
+				.board_no(boardNo)
 				.division(division)
 				.title(title)
 				.text(text)

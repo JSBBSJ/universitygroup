@@ -33,7 +33,7 @@ public class CommentEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long comment_no;
+	private long commentNo;
 
 	@Column(nullable = false)
 	private String comment_user;
@@ -46,17 +46,17 @@ public class CommentEntity {
 	private LocalDateTime createdAt;
 
 	@ManyToOne
-	@JoinColumn(name = "board_no")
+	@JoinColumn(name = "boardNo")
 	private BoardEntity board;
 	
 	
 	public CommentListDTO toCommentListDTO() {
 		return CommentListDTO.builder()
 				.text(text)
-				.comment_no(comment_no)
+				.comment_no(commentNo)
 				.comment_user(comment_user)
 				.createdAt(createdAt)
-				.board_no(board.getBoard_no())
+				.board_no(board.getBoardNo())
 				.build();
 	}
 	

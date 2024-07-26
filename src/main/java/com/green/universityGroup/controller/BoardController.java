@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import com.green.universityGroup.domain.dto.BoardSaveDTO;
 import com.green.universityGroup.domain.dto.BoardUpdateDTO;
 import com.green.universityGroup.domain.entity.Division;
-import com.green.universityGroup.security.CustomUserDetails;
+import com.green.universityGroup.security.RaraUniversityUserDetails;
 import com.green.universityGroup.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -75,15 +75,18 @@ public class BoardController {
 
 	@PutMapping("/board/edit/{board_no}")
 	public String update(@PathVariable("board_no") long board_no, BoardUpdateDTO dto,
-			@AuthenticationPrincipal CustomUserDetails userDetails) {
+			@AuthenticationPrincipal RaraUniversityUserDetails userDetails) {
 		service.updateProcess(board_no, dto, userDetails.getUser_no());
 		return "redirect:/board/view/{board_no}";
 	}
 
 	@DeleteMapping("/board/view/{board_no}")
 	public String delete(@PathVariable("board_no") long board_no,
+
 	        @AuthenticationPrincipal CustomUserDetails userDetails) {
 	    service.deleteProcess(board_no, userDetails.getUser_no());
 	    return "redirect:/board/1?page=1";
+
+
 	}
 }

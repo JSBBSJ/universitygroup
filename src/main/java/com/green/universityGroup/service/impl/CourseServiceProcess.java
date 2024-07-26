@@ -17,7 +17,7 @@ import com.green.universityGroup.domain.entity.EnrollmentEntity;
 import com.green.universityGroup.domain.entity.StudentEntity;
 import com.green.universityGroup.domain.repository.CourseRepository;
 import com.green.universityGroup.domain.repository.EnrollmentRepository;
-import com.green.universityGroup.security.CustomUserDetails;
+import com.green.universityGroup.security.RaraUniversityUserDetails;
 import com.green.universityGroup.service.CourseService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class CourseServiceProcess implements CourseService {
 	}
 
 	@Override
-	public void getCourseList(CustomUserDetails user, Model model) {
+	public void getCourseList(RaraUniversityUserDetails user, Model model) {
 		List<CourseListDto> courses = courseRepository.findAll().stream()
 				.map(CourseEntity::toCourseListDto)// CourseEntity -> CourseListDto
 				.collect(Collectors.toList())

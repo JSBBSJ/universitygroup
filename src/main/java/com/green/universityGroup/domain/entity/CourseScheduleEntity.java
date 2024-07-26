@@ -55,7 +55,7 @@ public class CourseScheduleEntity {
     private String classRoom; // 강의실
     
     @ManyToOne // 다대일 관계를 설정합니다.
-    @JoinColumn(name = "course_no") // 외래 키를 설정합니다.
+    @JoinColumn(name = "courseNo") // 외래 키를 설정합니다.
     private CourseEntity course; // 강의 과목
     
     // CourseScheduleDTO 객체로 변환하는 메서드입니다.
