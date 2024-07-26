@@ -17,7 +17,8 @@ public class SecurityConfig {
 
 	private final CustomUserDetailsService customUserDetailsService;
 	private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
-
+	private final CustomAccessDeniedHandler customAccessDeniedHandler;
+	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
@@ -46,7 +47,9 @@ public class SecurityConfig {
 					    .invalidateHttpSession(true) // 세션 무효화
 					    .deleteCookies("JSESSIONID")
 					    .permitAll())
-					.userDetailsService(customUserDetailsService);
+					.userDetailsService(customUserDetailsService)
+					.exceptionHandling(exception -> exception
+	                        .accessDeniedHandler(customAccessDeniedHandler)); // 접근 거부 핸들러 설정;
 
 
 		return http.build();
