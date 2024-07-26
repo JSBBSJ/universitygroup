@@ -16,8 +16,8 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
 
 	private final RaraUniversityUserDetailsService raraUniversityUserDetailsService;
-	private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
-	private final CustomAccessDeniedHandler customAccessDeniedHandler;
+	private final RaraUniversityAuthenticationSuccessHandler raraUniversityAuthenticationSuccessHandler;
+	private final RaraUniversityAccessDeniedHandler raraUniversityAccessDeniedHandler;
 	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -39,7 +39,7 @@ public class SecurityConfig {
 						// .usernameParameter("username") // 폼 필드 이름과 일치해야 함
 						// .passwordParameter("password") // 폼 필드 이름과 일치해야 함
 						.permitAll()
-						.successHandler(customAuthenticationSuccessHandler)
+						.successHandler(raraUniversityAuthenticationSuccessHandler)
 						// 로그인 성공 후 핸들러
 				).logout(logout -> logout
 					    .logoutUrl("/logout") // 로그아웃 URL 설정
@@ -49,7 +49,7 @@ public class SecurityConfig {
 					    .permitAll())
 					.userDetailsService(raraUniversityUserDetailsService)
 					.exceptionHandling(exception -> exception
-	                        .accessDeniedHandler(customAccessDeniedHandler)); // 접근 거부 핸들러 설정;
+	                        .accessDeniedHandler(raraUniversityAccessDeniedHandler)); // 접근 거부 핸들러 설정;
 
 
 		return http.build();

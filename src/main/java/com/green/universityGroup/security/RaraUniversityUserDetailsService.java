@@ -21,7 +21,7 @@ public class RaraUniversityUserDetailsService implements UserDetailsService {
 		System.out.println(">>>> username"+email);
 		
 		
-		return new CustomUserDetails(repository.findByEmail(email).orElseThrow());
+		return new RaraUniversityUserDetails(repository.findByEmail(email).orElseThrow());
 		
 	}
 

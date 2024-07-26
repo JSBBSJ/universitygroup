@@ -3,7 +3,7 @@ package com.green.universityGroup.service;
 import org.springframework.ui.Model;
 
 import com.green.universityGroup.domain.dto.CourseListDto;
-import com.green.universityGroup.security.CustomUserDetails;
+import com.green.universityGroup.security.RaraUniversityUserDetails;
 
 /**
  * CourseService는 과목 목록을 가져오고, 수강 신청을 처리하는 서비스 인터페이스입니다.
@@ -36,6 +36,6 @@ public interface CourseService {
      */
     void getStudentEnrollments(Long studentId, Model model);
 
-	void getCourseList(CustomUserDetails user, Model model);
+	void getCourseList(RaraUniversityUserDetails user, Model model);
 
 }
