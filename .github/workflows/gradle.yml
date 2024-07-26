@@ -73,3 +73,4 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --deployment-group-name ${{ secrets.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
           --s3-location bucket=${{secrets.S3_LOCATION_BUCKET}},key=${{env.PROJECT_NAME}}.zip,bundleType=zip
+
