@@ -4,8 +4,10 @@
 
 <head>
 	<link rel="stylesheet" href="/css/p-main/board.css">
+	<link rel="stylesheet" href="/css/bot/bot.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<script src="/js/bot/bot.js"></script>
+	
 
 </head>
 
@@ -19,7 +21,7 @@
 		<div class="content-bo"></div>
 		<div class="content-left">
 			<div class="tit">
-				<h2>게시판</h2>
+				<h2>공지사항</h2>
 				<p>nara university</p>
 			</div>
 			<div class="lnb">
@@ -71,25 +73,33 @@
 			</div>
 			
 			
-			<div class="board_page">
-				<a href="#" class="bt first"><</a>			
-						<a href="#" class="bt prev"><<</a>
-								<a href="#" class="num2">1</a>
-								<a href="#" class="num1">2</a>
-								<a href="#" class="num1">3</a>
-								<a href="#" class="num1">4</a>
-								<a href="#" class="num1">5</a>
-								<a href="#" class="bt next">></a>
-								<a href="#" class="bt last">>></a>
+			<div class="board_page" th:if="${totalPages > 1}">
+			    <a th:href="@{/board/{division}(division=${division}, page=1)}" class="bt first">&lt;&lt;</a>
+			    <a th:href="@{/board/{division}(division=${division}, page=${currentPage - 1})}" 
+			       th:if="${currentPage > 1}" class="bt prev">&lt;</a>
+			    
+			    <th:block th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
+			        <a th:href="@{/board/{division}(division=${division}, page=${pageNum})}" 
+			           th:text="${pageNum}" 
+			           th:class="${pageNum == currentPage} ? 'num2' : 'num1'"></a>
+			    </th:block>
+			    
+			    <a th:href="@{/board/{division}(division=${division}, page=${currentPage + 1})}" 
+			       th:if="${currentPage < totalPages}" class="bt next">&gt;</a>
+			    <a th:href="@{/board/{division}(division=${division}, page=${totalPages})}" class="bt last">&gt;&gt;</a>
 			</div>
+			
 			<div class="bt_wrap">
 				<a href="/board/write" class="on">글쓰기</a>
 
 			</div>
+			
 		</div>
+		
 		</div>
-
+		<article th:insert="~{views/bot/bot.html}"></article>
 	</section>
+	
 </main>
 
 </html>

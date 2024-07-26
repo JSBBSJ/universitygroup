@@ -27,8 +27,10 @@ public class BoardController {
 	private final BoardService service;
 
 	@GetMapping("/board/{division}")
-	public String list(@PathVariable("division") int division, Model model) {
-		service.listProcess(division, model);
+	public String list(@PathVariable("division") int division, 
+            @RequestParam(name = "page", defaultValue = "1") int page, 
+            Model model) {
+			service.listProcess(division, model, page);
 		return "views/professor/board/board";
 	}
 
@@ -80,8 +82,8 @@ public class BoardController {
 
 	@DeleteMapping("/board/view/{board_no}")
 	public String delete(@PathVariable("board_no") long board_no,
-			@AuthenticationPrincipal CustomUserDetails userDetails) {
-		service.deleteProcess(board_no, userDetails.getUser_no());
-		return "redirect:/board/1";
+	        @AuthenticationPrincipal CustomUserDetails userDetails) {
+	    service.deleteProcess(board_no, userDetails.getUser_no());
+	    return "redirect:/board/1?page=1";
 	}
 }

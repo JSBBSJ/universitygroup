@@ -4,9 +4,14 @@
 	th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
+	
 	<link rel="stylesheet" href="/css/p-main/p-main.css">
 	<link rel="stylesheet" href="/css/ps-common/ps-common.css">
+	<link rel="stylesheet" href="/css/bot/bot.css" />
+	<script src="/js/bot/bot.js"></script>
 </head>
+
+
 
 <main>
 	<div class="container">
@@ -154,8 +159,10 @@
 
 				<div class="mail_content">
 					<ul>
-						<li>mail입니다.</li>
-						<li>mail입니다.</li>
+						<li>2024학년도 2학기 송도학사 입사 신청 안내</li>
+						<li>학사경고자 학사지도 안내(Academic Advising for Academic Warning Recipients).</li>
+						<li>행정대학원 제82기 최고위정책과정 모집 안내</li>
+						<li>2024학년도 학생예비군 훈련 안내</li>
 					</ul>
 				</div>
 			</div>
@@ -187,12 +194,15 @@
 									<a href="/professor/work-save" id="Wt2">결재목록</a>
 
 								</div>
-								<div class="wo">
+								<div class="wo2">
 									<span class="wo03"></span>
 									<br>
 									<a href="/professor/work-list" id="Wt3">결재신청</a>
 
 								</div>
+								
+								<article th:insert="~{views/bot/bot.html}"></article>
+								
 	</section>
 </main>
 

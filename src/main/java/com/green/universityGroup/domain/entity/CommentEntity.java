@@ -50,7 +50,7 @@ public class CommentEntity {
 	private BoardEntity board;
 	
 	
-	public CommentListDTO toListDTO() {
+	public CommentListDTO toCommentListDTO() {
 		return CommentListDTO.builder()
 				.text(text)
 				.comment_no(comment_no)
