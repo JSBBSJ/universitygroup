@@ -33,25 +33,25 @@ public class WorkpageupEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
-	private long workpageup_no;
+	private long workpageupNo;
 	
 	
-	private String workpageup_field;
+	private String workpageupField;
 	
 	
-	private String workpageup_name;
+	private String workpageupName;
 	
 	
 	@OneToOne
-    @JoinColumn(name = "oranization_no")
+    @JoinColumn(name = "oranizationNo")
 	private OrganizationchartEntity oranization;
 
 
 	public WorkpageupDTO tolistDto() {
 		
 		return WorkpageupDTO.builder()
-				.oranization_field(oranization.getOranization_field())
-				.oranization_name(oranization.getOranization_name())
+				.oranization_field(oranization.getOranizationField())
+				.oranization_name(oranization.getOranizationName())
 				.build();
 	}
 	

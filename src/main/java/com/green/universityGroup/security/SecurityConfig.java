@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	private final CustomUserDetailsService customUserDetailsService;
+	private final RaraUniversityUserDetailsService raraUniversityUserDetailsService;
 	private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	private final CustomAccessDeniedHandler customAccessDeniedHandler;
 	
@@ -47,7 +47,7 @@ public class SecurityConfig {
 					    .invalidateHttpSession(true) // 세션 무효화
 					    .deleteCookies("JSESSIONID")
 					    .permitAll())
-					.userDetailsService(customUserDetailsService)
+					.userDetailsService(raraUniversityUserDetailsService)
 					.exceptionHandling(exception -> exception
 	                        .accessDeniedHandler(customAccessDeniedHandler)); // 접근 거부 핸들러 설정;
 

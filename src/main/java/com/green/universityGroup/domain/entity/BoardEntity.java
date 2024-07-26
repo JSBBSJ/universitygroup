@@ -38,7 +38,7 @@ public class BoardEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long board_no;
+	private long boardNo;
 
 	@Column(nullable = false, length = 100)
 	private String division;
@@ -58,7 +58,7 @@ public class BoardEntity {
 	private LocalDateTime updatedAt;
 
 	@ManyToOne
-	@JoinColumn(name = "user_no")
+	@JoinColumn(name = "userNo")
 	private UserEntity user;
 
 	@OneToMany(mappedBy = "board")
@@ -69,7 +69,7 @@ public class BoardEntity {
 	
 	public BoardListDTO toListDTO() {
 		return BoardListDTO.builder()
-				.board_no(board_no)
+				.board_no(boardNo)
 				.title(title)
 				.createdAt(createdAt)
 				.username(user.getUsername())
@@ -80,7 +80,7 @@ public class BoardEntity {
 	
 	public BoardDetailDTO toProcessDTO() {
 		return BoardDetailDTO.builder()
-				.board_no(board_no)
+				.board_no(boardNo)
 				.division(division)
 				.title(title)
 				.text(text)

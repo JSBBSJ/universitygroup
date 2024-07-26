@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 //bean으로 등록해서 DB에 접근해야됨
 @Service
 @RequiredArgsConstructor
-public class CustomUserDetailsService implements UserDetailsService {
+public class RaraUniversityUserDetailsService implements UserDetailsService {
 
 	private final UserEntityRepository repository;
 	

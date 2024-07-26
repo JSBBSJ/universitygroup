@@ -88,7 +88,7 @@ public class CalendarServiceProcess implements CalendarService {
 
     private CalendarReadDTO convertToReadDTO(CalendarEntity calendarEntity) {
         return CalendarReadDTO.builder()
-                .id(calendarEntity.getCalendar_no())
+                .id(calendarEntity.getCalendarNo())
                 .title(calendarEntity.getTitle())
                 .start_date(calendarEntity.getStart_date())
                 .end_date(calendarEntity.getEnd_date())

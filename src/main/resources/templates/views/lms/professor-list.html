@@ -22,15 +22,14 @@
 
 <body>
 	<header>
-		<section class="logo">
 			<div class="logo" sec:authorize="hasRole('STUDENT')">
-				<a href="/student" title="메인페이지로 이동"> <img src="/images/common/main-logo.png" alt="라라대학교 로고">
-					<span>라라대학교</span>
+				<a href="/student" title="메인페이지로 이동">
+					<img src="/images/common/main-logo.png" alt="라라대학교 로고">>
 				</a>
 			</div>
 			<div class="logo" sec:authorize="hasRole('PROFESSOR')">
-				<a href="/professor" title="메인페이지로 이동"> <img src="/images/common/main-logo.png" alt="라라대학교 로고">
-					<span>라라대학교</span>
+				<a href="/professor" title="메인페이지로 이동">
+					<img src="/images/common/main-logo.png" alt="라라대학교 로고">
 				</a>
 			</div>
 			<div class="signout">
@@ -41,8 +40,7 @@
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 				</form>
 			</div>
-		</section>
-	</header>
+		</header>
 	<main>
 		<section class="profile">
 			<div sec:authorize="isAuthenticated()">

@@ -40,16 +40,16 @@ public class StudentEntity {
 	private long studentNo;
 	
 	@Column(nullable = false, unique = true)
-	private long student_number;
+	private long studentNumber;
 	
 	@OneToOne(mappedBy = "student")
 	private UserEntity user;
 	
 	@ManyToOne
-    @JoinColumn(name = "department_no")
+    @JoinColumn(name = "departmentNo")
 	private DepartmentEntity department;
 	
-	@OneToMany(mappedBy = "enrollment_no", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "enrollmentNo", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<EnrollmentEntity> enrollment;
 
 	
@@ -58,7 +58,7 @@ public class StudentEntity {
 		
 		
 		return StudentlistDTO.builder()
-				.student_number(student_number)
+				.student_number(studentNumber)
 				.username(user.getUsername())
 				.department_name(department.getDepartmentName())
 				.build();

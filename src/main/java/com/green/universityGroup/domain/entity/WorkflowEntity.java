@@ -31,16 +31,16 @@ public class WorkflowEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long workflow_no;
+	private Long workflowNo;
 
 	
 	@ManyToOne
-	@JoinColumn(name = "professor_no")
+	@JoinColumn(name = "professorNo")
 	private ProfessorEntity professor;
 	
 	
 	@OneToOne
-    @JoinColumn(name = "workpageup_no")
+    @JoinColumn(name = "workpageupNo")
 	private WorkpageupEntity workpageup;
 	
 

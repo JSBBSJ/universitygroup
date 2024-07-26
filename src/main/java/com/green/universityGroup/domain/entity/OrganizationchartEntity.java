@@ -27,15 +27,15 @@ public class OrganizationchartEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //자동 증가 값 생성 
-	private long oranization_no;
+	private long oranizationNo;
 	
 	
 	@Column(nullable = false, unique = true)
-	private String oranization_field;
+	private String oranizationField;
 	
 	
 	@Column(nullable = false)
-	private String oranization_name;
+	private String oranizationName;
 	
 	
 

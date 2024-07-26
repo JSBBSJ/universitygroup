@@ -47,7 +47,7 @@ public class CourseEntity {
     @Column(nullable = false) // Not null 제약 조건을 설정합니다.
     private long credit; // 학점
     
-    @JoinColumn(name = "professor_no") // 외래 키를 설정합니다.
+    @JoinColumn(name = "professorNo") // 외래 키를 설정합니다.
     @ManyToOne // 다대일 관계를 설정합니다.
     private ProfessorEntity professor; // 담당 교수
     
@@ -77,6 +77,4 @@ public class CourseEntity {
                 .course_name(courseName) // 과목명 설정
                 .build(); // ProfessorClassListDTO 객체 생성
     }
-}
-	}
 }
