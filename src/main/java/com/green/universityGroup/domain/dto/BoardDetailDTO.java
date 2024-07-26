@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Builder
 public class BoardDetailDTO {
-
+	
 	private long board_no;
 	private String division;
 	private String title;
