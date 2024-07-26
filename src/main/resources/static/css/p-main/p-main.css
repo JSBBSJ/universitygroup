@@ -428,6 +428,20 @@ a:hover {
 	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
 }
 
+.wo2 {
+	
+	flex: 1;
+	padding: 1em;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	
+	color: #191919; /* 공통css가 없어 일단 폰트 새 넣은것 */
+}
+
 .wo:last-child {
 	border-right: none; /* 마지막 요소의 border-right 제거 */
 }

@@ -98,6 +98,14 @@ a {
 	padding: 1rem;
 }
 
+.cont {
+    padding: 20px; 
+    line-height: 1.8;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    white-space: pre-line; /* 공백과 줄바꿈을 HTML 그대로 반영 */
+    
+}
 
 .board_title2 strong {
 	font-size: 30px;
@@ -133,6 +141,7 @@ a {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+	padding: 15px;
 }
 
 .bt_wrap a {
@@ -155,6 +164,7 @@ a {
     font-size: 1rem;
     color: #000;
     background-color: #fff;
+    
 
 }
 
@@ -389,3 +399,66 @@ select {
 }
 
 
+.comment {
+    margin-bottom: 20px;
+}
+
+.comment h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.comment input[type="text"], .comment textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #356855;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment button:hover {
+    background-color: #000000;
+}
+
+.comments-list {
+    margin-top: 20px;
+}
+
+.comments-list h2 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #356855;
+    padding-bottom: 5px;
+}
+
+.comment-item {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.comment-item p {
+    margin: 5px 0;
+}
+
+.comment-item .comment-user {
+    font-weight: bold;
+}
+
+.comment-item .comment-date {
+    font-size: 12px;
+    color: #777;
+}

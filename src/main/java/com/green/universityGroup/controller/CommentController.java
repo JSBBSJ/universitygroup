@@ -18,13 +18,6 @@ public class CommentController {
 	
 	private final CommentService service;
 	
-	@GetMapping("/view/{board_no}")
-	public String commentlist(@PathVariable("board_no") long board_no, Model model) {
-		
-		service.commentlistProcess(board_no, model);
-		return "views/professor/board/{board}";
-	}
-	
 	
 	@PostMapping("/add")
 	public String commentsave(CommentDTO dto) {

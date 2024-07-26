@@ -8,8 +8,6 @@ public interface CommentService {
 
 	void commentsaveProcess(CommentDTO dto);
 
-	void commentlistProcess(long board_no, Model model);
-
 	
 
 }

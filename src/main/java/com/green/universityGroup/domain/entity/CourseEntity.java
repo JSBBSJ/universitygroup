@@ -77,4 +77,4 @@ public class CourseEntity {
                 .course_name(courseName) // 과목명 설정
                 .build(); // ProfessorClassListDTO 객체 생성
     }
-}
+
