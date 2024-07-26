@@ -127,7 +127,8 @@
 .w-update, .w-recive, .w-file, .w-cont > span{
 
 
-
+	white-space: nowrap;
+	
 	font-size: 18px;
 
 	cursor: pointer;
