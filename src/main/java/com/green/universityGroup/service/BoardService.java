@@ -19,5 +19,4 @@ public interface BoardService {
     void updateProcess(long board_no, BoardUpdateDTO dto, long user_no);
     
     void deleteProcess(long board_no, long user_no);
-	
 }
