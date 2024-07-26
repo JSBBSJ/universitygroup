@@ -4,6 +4,9 @@
 <head>
 	<link rel="stylesheet" href="/css/s-main/enrolment-main.css">
 	<script src=' '></script>
+	<style type="text/css">
+	
+	</style>
 </head>
 <!--work flow 메인화면-->
 <main class="enrolment-mains">
@@ -46,15 +49,14 @@
 							<div>번호</div>
 							<div>신청</div>
 							<div>교과목명</div>
-							<div>강의실</div>
 							<div>교수명</div>
 							<div>학점</div>
 							<div>개설학과</div>
-							<div>시간표 요약</div>
+							<div>스케줄</div>
 						</li>
 						<!-- Thymeleaf 반복문을 통해 과목 데이터를 동적으로 표시 -->
 						<th:block th:each="course : ${courses}">
-							<li>
+							<li class="e-sub-list-title">
 								<div th:text="${course.courseNo}"></div>
 								<div>
 									<form th:action="@{/save-enrollment}" method="post">
@@ -63,11 +65,19 @@
 									</form>
 								</div>
 								<div th:text="${course.courseName}"></div>
-								<div th:text="${course.classroom}"></div>
 								<div th:text="${course.professorName}"></div>
-								<div th:text="${course.credits}"></div>
+								<div th:text="${course.credit}"></div>
 								<div th:text="${course.departmentName}"></div>
-								<div th:text="${course.scheduleSummary}"></div>
+								<div>
+									 <ul>
+										<li th:each="dto:${course.courseSchedules}">
+											<span th:text="${dto.dayOfWeek}">요일</span> : 
+											<span th:text="${dto.startTime}">시작</span> : 
+											<span th:text="${dto.endTime}">종료</span> : 
+											<span th:text="${dto.classRoom}">강의실</span>
+										</li>
+									 </ul>
+								</div>
 							</li>
 						</th:block>
 					</ul>

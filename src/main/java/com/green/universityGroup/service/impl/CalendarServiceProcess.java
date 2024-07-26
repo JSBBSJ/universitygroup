@@ -94,7 +94,7 @@ public class CalendarServiceProcess implements CalendarService {
                 .end_date(calendarEntity.getEnd_date())
                 .description(calendarEntity.getDescription())
                 .is_all_day(calendarEntity.getIs_all_day())
-                .user_no(calendarEntity.getUser() != null ? calendarEntity.getUser().getUser_no() : null)
+                .user_no(calendarEntity.getUser() != null ? calendarEntity.getUser().getUserNo() : null)
                 .build();
     }
 }

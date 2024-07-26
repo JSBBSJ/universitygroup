@@ -2,6 +2,7 @@ package com.green.universityGroup.security;
 
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -14,6 +15,8 @@ import com.green.universityGroup.domain.entity.UserEntity;
 
 import lombok.Getter;
 
+
+//Controller의 메서드에서 @AuthenticationPrincipal CustomUserDetails user
 @Getter // principal 에서 확인가능
 public class CustomUserDetails extends User {
 	private static final long serialVersionUID = 1L;
@@ -35,21 +38,21 @@ public class CustomUserDetails extends User {
 		// 추가 등록하는건 아래서 초기화 해주면됨
 		email = entity.getEmail();
 		name = entity.getUsername();
-		profileImage = entity.getProfile_image();
-		user_no = entity.getUser_no();
+		profileImage = entity.getProfileImage();
+		user_no = entity.getUserNo();
 		// Professor DTO 설정
 		if (entity.getProfessor() != null) {
 			ProfessorEntity professorEntity = entity.getProfessor();
-			this.professorDTO = ProfessorListDTO.builder().professor_number(professorEntity.getProfessor_number())
+			this.professorDTO = ProfessorListDTO.builder().professor_number(professorEntity.getProfessorNumber())
 					.username(professorEntity.getUser().getUsername())
-					.department_name(professorEntity.getDep().getDepartment_name()).build();
+					.department_name(professorEntity.getDepartment().getDepartmentName()).build();
 		}
 
 		if (entity.getStudent() != null) {
 			StudentEntity studentEntity = entity.getStudent();
 			this.studentDTO = StudentlistDTO.builder().student_number(studentEntity.getStudent_number())
 					.username(studentEntity.getUser().getUsername())
-					.department_name(studentEntity.getDepartment().getDepartment_name()).build();
+					.department_name(studentEntity.getDepartment().getDepartmentName()).build();
 		}
 	}
 }

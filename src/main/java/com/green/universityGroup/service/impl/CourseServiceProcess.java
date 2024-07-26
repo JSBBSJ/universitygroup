@@ -17,6 +17,7 @@ import com.green.universityGroup.domain.entity.EnrollmentEntity;
 import com.green.universityGroup.domain.entity.StudentEntity;
 import com.green.universityGroup.domain.repository.CourseRepository;
 import com.green.universityGroup.domain.repository.EnrollmentRepository;
+import com.green.universityGroup.security.CustomUserDetails;
 import com.green.universityGroup.service.CourseService;
 
 import lombok.RequiredArgsConstructor;
@@ -34,11 +35,20 @@ public class CourseServiceProcess implements CourseService {
 				.map(CourseEntity::toListDTO).collect(Collectors.toList()));
 	}
 
+	@Override
+	public void getCourseList(CustomUserDetails user, Model model) {
+		List<CourseListDto> courses = courseRepository.findAll().stream()
+				.map(CourseEntity::toCourseListDto)// CourseEntity -> CourseListDto
+				.collect(Collectors.toList())
+				; // 모든 과목목록 조회
+		model.addAttribute("courses", courses);// 모델에 과목목록 추가
+		
+	}
 
 	@Override
 	public void getCourseList(CourseListDto dto, Model model) {
-		List<CourseEntity> courses = courseRepository.findAll(); // 모든 과목목록 조회
-		model.addAttribute("courses", courses);// 모델에 과목목록 추가
+		//List<CourseEntity> courses = courseRepository.findAll(); // 모든 과목목록 조회
+		//model.addAttribute("courses", courses);// 모델에 과목목록 추가
 	}
 
 	@Override
@@ -59,4 +69,7 @@ public class CourseServiceProcess implements CourseService {
 		model.addAttribute("enrollments", enrollments); // 모델에 수강 목록 추가
 
 	}
+
+
+	
 }

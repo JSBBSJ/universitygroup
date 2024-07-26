@@ -20,6 +20,7 @@ public class CommentController {
 	
 	@GetMapping("/view/{board_no}")
 	public String commentlist(@PathVariable("board_no") long board_no, Model model) {
+		
 		service.commentlistProcess(board_no, model);
 		return "views/professor/board/{board}";
 	}

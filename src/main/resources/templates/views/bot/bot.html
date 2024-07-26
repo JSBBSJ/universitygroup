@@ -1,24 +1,25 @@
 <head>
-<meta charset="UTF-8">
-<meta name="csrf-token" content="${_csrf.token}">
-<!-- CSRF 토큰 추가 -->
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="${_csrf.token}">
+    <!-- CSRF 토큰 추가 -->
 </head>
 
- <div class="chatbot-container">
-        <div class="chatbot-icon" id="toggleBtn" onclick="btnBotClicked()">
-            <img src="/images/common/chatbot-icon.png" alt="챗봇">
+<div class="chatbot-container">
+    <div class="chatbot-icon" id="toggleBtn" onclick="btnBotClicked()">
+        <img src="/images/common/chatbot-icon.png" alt="챗봇">
+    </div>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            챗봇 나리 <span class="close-btn" onclick="btnCloseClicked()">✕</span>
         </div>
-        <div class="chatbot-window" id="chatbotWindow">
-            <div class="chatbot-header">
-                챗봇 나리 <span class="close-btn" onclick="btnCloseClicked()">✕</span>
-            </div>
-            <div class="chatbot-body" id="chatbot-body">
-                <!-- 카테고리 버튼 추가 -->
-                <div id="category-buttons"></div>
-            </div>
-            <div class="chatbot-footer">
-                <input type="text" class="input" id="input" placeholder="질문을 입력하세요">
-                <button class="btn-send" id="sendBtn" onclick="sendMessage()">전송</button>
-            </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <!-- 카테고리 버튼 추가 -->
+            <div id="category-buttons" class="button-grid"></div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" class="input" id="input" placeholder="질문을 입력하세요">
+            <button class="btn-send" id="sendBtn" onclick="sendMessage()">전송</button>
         </div>
     </div>
+</div>
+<div id="username" th:text="${username}" style="display: none;"></div>

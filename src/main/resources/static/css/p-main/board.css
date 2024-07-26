@@ -318,19 +318,17 @@ a {
 }
 
 .board_write .info {
-	font-size: 0;
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #000;
 }
 
-.board_write .title dl {
-	font-size: 0;
-}
+
 
 .board_write .info dl {
 	display: inline-block;
 	width: 50%;
 	vertical-align: middle;
+	
 }
 
 .board_write .title dt, .board_write .title dd, .board_write .info dt,

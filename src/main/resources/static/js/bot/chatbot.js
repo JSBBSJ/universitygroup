@@ -135,7 +135,6 @@ function clearQuestion(){
 }
 
 //메세지 전송
-//사용자가 채팅메세지를 입력했는데
 function btnMsgSendClicked(){
 	var question=$("#question").val().trim();
 	if(question.length<2){

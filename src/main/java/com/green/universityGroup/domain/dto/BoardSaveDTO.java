@@ -23,14 +23,15 @@ public class BoardSaveDTO {
 	private String text;
 	private String division;
 	private long user_no; 
+	private String username;
 
-
-	public BoardSaveDTO(String title, String text, String division, long user_no) {
+	public BoardSaveDTO(String title, String text, String division, long user_no ,String username) {
 
         this.title = title;
         this.text = text;
         this.division = division;
         this.user_no = user_no;
+        this.username = username;
     }
 	
 	  public BoardEntity toSaveEntity(UserEntity user) { 
