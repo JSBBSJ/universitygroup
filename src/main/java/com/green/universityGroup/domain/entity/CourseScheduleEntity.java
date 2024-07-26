@@ -10,6 +10,10 @@ import com.green.universityGroup.domain.dto.CourseScheduleDTO;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import org.hibernate.annotations.DynamicUpdate;
+
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
