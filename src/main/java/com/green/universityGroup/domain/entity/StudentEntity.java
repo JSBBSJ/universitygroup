@@ -1,5 +1,6 @@
 package com.green.universityGroup.domain.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -10,6 +11,7 @@ import com.green.universityGroup.domain.dto.StudentlistDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,9 +51,25 @@ public class StudentEntity {
     @JoinColumn(name = "department_no")
 	private DepartmentEntity department;
 	
-	@OneToMany(mappedBy = "enrollment_no", cascade = CascadeType.ALL, orphanRemoval = true)
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_no") // 조인 컬럼명 지정 EnrollmentEntity 물리테이블에 생성됨
 	private Set<EnrollmentEntity> enrollment;
-
+	
+	//수강과목 등록
+	public StudentEntity addEnrollment(EnrollmentEntity enrollmentEntity) {
+		CourseEntity addCourse=enrollmentEntity.getCourse();
+		//내가등록한 수강과목들
+		for(EnrollmentEntity added:enrollment) {
+			if(added.getCourse().equals(addCourse)) {
+				System.out.println(">>> 이미 등록한 수강과목!!");
+				return StudentEntity.this;
+			}
+		}
+		
+		enrollment.add(enrollmentEntity);
+		return StudentEntity.this;
+	}
 	
 	//dto에 있는정보를 entity에 다시 반환
 	public StudentlistDTO tolistDto() {

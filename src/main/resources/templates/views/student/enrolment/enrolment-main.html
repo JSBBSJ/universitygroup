@@ -3,7 +3,17 @@
 
 <head>
 	<link rel="stylesheet" href="/css/s-main/enrolment-main.css">
-	<script src=' '></script>
+	<script>
+		function comfirmRegister(formTag){
+			let courseName = formTag.getAttribute("data-course-name");
+			
+			//Jquery 사용시
+			//let courseName=$(formTag).attr("data-course-name");
+			
+			return confirm(`${courseName} 과목 수강신청 하시겠습니까?`);
+			//확인-true, 취소-false
+		}
+	</script>
 	<style type="text/css">
 	
 	</style>
@@ -59,9 +69,11 @@
 							<li class="e-sub-list-title">
 								<div th:text="${course.courseNo}"></div>
 								<div>
-									<form th:action="@{/save-enrollment}" method="post">
+									<!-- /* data-*속성은 페이지나 애플리케이션의 비공개 사용자 정의 데이터를 저장하는 데 사용 */ -->
+									<!-- /* onsubmit="return comfirmRegister(this)"  return 값이 true인경우 전송(submit)됨 */-->
+									<form th:action="@{/enrollments}" method="post" th:data-course-name="${course.courseName}"  onsubmit="return comfirmRegister(this)">
 										<input type="hidden" name="courseNo" th:value="${course.courseNo}" />
-										<button type="submit">신청</button>
+										<button type="submit"  th:disabled="${#lists.contains(myAddedCourses, course)}" >신청</button>
 									</form>
 								</div>
 								<div th:text="${course.courseName}"></div>
