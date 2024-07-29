@@ -8,6 +8,7 @@ class UniversityGroupApplicationTests {
 
 	//@Test
 	void contextLoads() {
+		System.out.println("테스트코드");
 	}
 
 }
