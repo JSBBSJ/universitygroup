@@ -20,7 +20,7 @@
 
 	grid-template-columns:1fr 2fr 2fr;
 
-	grid-auto-rows:850px;
+	grid-auto-rows:900px;
 
 	padding: 10px;
 
@@ -86,7 +86,7 @@
 
 	grid-area: w-main;
 
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	
 
 	
 
@@ -114,7 +114,7 @@
 	display: block;
 	font-size: 20px;
 	padding: 1em;
-	background-color: #944e63;
+	background-color: #356855;
 	text-decoration: none;
 	color:#ffffff;
 	border-top-left-radius:15px;
@@ -153,6 +153,8 @@
 	color: #191919;
 
 	background-color: #ffffff;
+	
+	border: 1px solid #f3f3f3;
 
 }
 
@@ -260,8 +262,7 @@
 
 .w-t-name {
 
-	width: 100%;
-
+	
 	padding: 1em;
 
 	border-bottom:1px solid #f3f3f3;
@@ -269,6 +270,7 @@
 	font-weight: 500;
 	
 	font-size: 20px;
+	
 	
 	
 	
@@ -321,7 +323,7 @@
 
 	border-bottom:1px solid #f3f3f3;
 
-	background-color:#944e63 ;
+	background-color:#356855 ;
 	
 	color: #ffffff;
 
@@ -347,7 +349,7 @@
 
 	margin: 20px;
 
-	background-color:#944e63 ;
+	background-color:#356855 ;
 
 	height: 35px;
 
@@ -422,4 +424,3 @@
 	  padding: 10px 0; /* 위아래 여백 설정 */
 
 }
-

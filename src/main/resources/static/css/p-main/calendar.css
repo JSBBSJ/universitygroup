@@ -3,18 +3,18 @@
 /* 전체 레이아웃 그리드 설정 */
 main {
 	display: grid;
-	grid-template-columns: 1fr 4fr; /* 사이드바와 캘린더의 비율 */
+	grid-template-columns: 1fr 5fr; /* 사이드바와 캘린더의 비율 */
 	gap: 20px; /* 사이드바와 캘린더 사이의 공백 */
 	grid-template-areas: "sidebar calendar"; /* 그리드 영역 배치 */
-	height: 100vh; /* 전체 높이 */
+	max-width: 1700px;
 	padding: 20px; /* 그리드 컨테이너의 여백 */
 }
 
 /* 사이드바 스타일 */
 #sidebar {
 	border-radius: 20px;
-	background-color: #944e63; /* 메뉴 배경색 */
-	padding: 20px; /* 사이드바 내 여백 */
+	background-color: #356855; /* 메뉴 배경색 */
+	padding: 10px; /* 사이드바 내 여백 */
 	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 	grid-area: sidebar; /* 그리드 영역 설정 */
 	display: flex;
@@ -43,7 +43,7 @@ main {
 }
 
 .sidebar-menu a:hover {
-	background-color: #6a3c4c; /* 호버 시 배경색 */
+	background-color: #7FCCA1; /* 호버 시 배경색 */
 }
 
 /* 캘린더 컨테이너 */
@@ -58,7 +58,9 @@ main {
 
 /* 캘린더 메인 스타일 */
 .calendar-main {
-	max-width: 100%; /* 최대 너비 */
+	width: 100%; /* 최대 너비 */
+    max-width: 850px; /* 최대 너비 설정 (예: 600px) */
+    margin: 0 auto; /* 중앙 정렬 */
 	
 }
 
@@ -112,8 +114,8 @@ textarea {
 }
 
 button {
-	margin: 5px;
-	background-color: #944e63; /* 버튼 배경색 */
+	margin: 0px;
+	background-color: #356855; /* 버튼 배경색 */
 	color: white; /* 버튼 글씨 색상 */
 	border: none; /* 버튼 테두리 제거 */
 	padding: 10px 15px; /* 버튼 여백 */
@@ -121,7 +123,3 @@ button {
 	cursor: pointer; /* 클릭 시 커서 변경 */
 }
 
-button:hover {
-	/*background-color: #6a3c4c; 버튼 호버 색상 */
-	
-}

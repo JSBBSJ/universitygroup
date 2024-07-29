@@ -1,23 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="/css/commons/signin.css" />
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/commons/signin.css" />
+
+<script>
+    function onSubmitted(event, form) {
+        event.preventDefault();
+
+        // AJAX 요청
+        $.ajax({
+            url: "/signin",
+            type: "post",
+            data: {
+                username: $("#username").val(),
+                password: $("#password").val(),
+                _csrf: $("meta[name='_csrf']").attr("content")
+            },
+            success: function(response) {
+                var role = response.role_name; // 서버로부터 받은 역할 정보
+                console.log(role);
+                if (role === "ROLE_STUDENT") {
+                    window.location.href = "/student";
+                } else if (role === "ROLE_PROFESSOR") {
+                    window.location.href = "/professor";
+                } else {
+                    console.log("알 수 없는 역할");
+                   
+                }
+            }
+        });
+    }
+</script>
 </head>
 <body>
-    <main>
-        <div class="signin">        
-            <h1>라라대학교 Signin</h1>
-            <form action="/signin" method="post">
-                <label for="username">아이디</label>
-                <input id="username" type="text" name="username" placeholder="아이디를 입력하세요" required>
-                
-                <label for="password">비밀번호</label>
-                <input id="password" type="password" name="password" placeholder="비밀번호를 입력하세요" required>
-                
-                <button type="submit">로그인</button>
-                <a href="/help"><button type="button">아이디/비밀번호 찾기</button></a>
-            </form>        
-        </div>
-    </main>
+<main>
+    <div class="signin">
+        <h1>라라대학교 Signin</h1>
+        <form action="/signin" method="post" onsubmit="onSubmitted(event, this)">
+            <label for="username">아이디</label>
+            <input id="username" type="text" name="username" placeholder="아이디를 입력하세요" required>
+            <label for="password">비밀번호</label>
+            <input id="password" type="password" name="password" placeholder="비밀번호를 입력하세요" required>
+
+            <!-- CSRF 토큰을 폼에 추가합니다 -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+            <button type="submit">로그인</button>
+            <a th:href="@{/help}"><button type="button">아이디/비밀번호 찾기</button></a>
+        </form>
+    </div>
+</main>
 </body>
 </html>

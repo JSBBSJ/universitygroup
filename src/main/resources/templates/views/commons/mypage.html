@@ -23,9 +23,21 @@
 				</div>
 
 				<div class="name">
-					<p>김라라 (2024001795)</p>
-					<span>컴퓨터공학과</span><br> <span>접속IP:</span>
+					<span th:text="${#authentication.principal.name}">이름</span><br>
+
+					<!-- Check if studentDTO is not null -->
+					<div th:if="${#authentication.principal.studentDTO != null}">
+						<span th:text="${#authentication.principal.studentDTO.student_number}">교번</span>
+						<span th:text="${#authentication.principal.studentDTO.department_name}">학과</span>
+					</div>
+
+					<!-- Check if professorDTO is not null -->
+					<div th:if="${#authentication.principal.professorDTO != null}">
+						<span th:text="${#authentication.principal.professorDTO.professor_number}">교수번호</span>
+						<span th:text="${#authentication.principal.professorDTO.department_name}">학과</span>
+					</div>
 				</div>
+
 
 				<div class="btn-box">
 					<div class="box1">
@@ -75,10 +87,21 @@
 					</div>
 					<div class="user-details">
 						<ul>
-							<li><strong>아이디:</strong> <span>user123</span></li>
-							<li><strong>이름:</strong> <span>홍길동</span></li>
-							<li><strong>비밀번호:</strong> <span>********</span></li>
-							<li><strong>학번:</strong> <span>20241234</span></li>
+							<li><strong>아이디:</strong> <span th:text="${#authentication.principal.email}"></span>
+							</li>
+							<li><strong>이름:</strong> <span th:text="${#authentication.principal.name}"></span></li>
+							<li><strong>새 비밀번호:</strong> <input type="password" name="newPassword" id="newPassword"
+									placeholder="새 비밀번호"></li>
+							<li th:if="${#authentication.principal.studentDTO != null}">
+								<strong>학번:</strong> <span
+									th:text="${#authentication.principal.studentDTO.student_number}"></span>
+							</li>
+
+							<!-- Display professor information if professorDTO is not null -->
+							<li th:if="${#authentication.principal.professorDTO != null}">
+								<strong>교수번호:</strong> <span
+									th:text="${#authentication.principal.professorDTO.professor_number}"></span>
+							</li>
 						</ul>
 					</div>
 					<button class="edit-button" onclick="toggleEditMode()">정보
@@ -87,28 +110,66 @@
 			</div>
 
 			<div id="editSection" class="mypage" style="display: none;">
-				<!-- <form action="/updateProfile" method="post"> -->
-				<input type="hidden" name="username" value="user123" /> <input type="hidden" name="studentId"
-					value="20241234" />
+				<form id="updateProfileForm" enctype="multipart/form-data">
+					<input type="hidden" name="username" value="${#authentication.principal.username}" />
+					<input type="hidden" name="studentId"
+						value="${#authentication.principal.studentDTO.student_number}" />
 
-				<div class="user-info">
-					<div class="user-photo">
-						<input type="file" name="newPhoto" id="newPhoto" accept="image/*">
+					<div class="user-info">
+						<div class="user-photo">
+							<label for="newPhoto">프로필 사진 업로드:</label>
+							<input type="file" name="newPhoto" id="newPhoto" accept="image/*">
+						</div>
+						<div class="user-details">
+							<ul>
+								<li><strong>아이디:</strong> <span th:text="${#authentication.principal.email}"></span>
+								</li>
+								<li><strong>이름:</strong> <span th:text="${#authentication.principal.name}"></span></li>
+								<li><strong>새 비밀번호:</strong> <input type="password" name="newPassword" id="newPassword"
+										placeholder="새 비밀번호"></li>
+								<li th:if="${#authentication.principal.studentDTO != null}">
+									<strong>학번:</strong> <span
+										th:text="${#authentication.principal.studentDTO.student_number}"></span>
+								</li>
+								<li th:if="${#authentication.principal.professorDTO != null}">
+									<strong>교수번호:</strong> <span
+										th:text="${#authentication.principal.professorDTO.professor_number}"></span>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<div class="user-details">
-						<ul>
-							<li><strong>아이디:</strong> <span>user123</span></li>
-							<li><strong>이름:</strong> <span>홍길동</span></li>
-							<li><strong>새 비밀번호:</strong> <input type="password" name="newPassword" id="newPassword"
-									placeholder="새 비밀번호"></li>
-							<li><strong>학번:</strong> <span>20241234</span></li>
-						</ul>
+					<div class="button-group">
+						<button type="button" class="edit-button" onclick="submitProfileForm()">저장</button>
+						<button type="button" class="cancel-button" onclick="toggleEditMode()">취소</button>
 					</div>
-				</div>
-				<button class="save-button" type="submit">저장</button>
-				<button type="button" class="cancel-button" onclick="toggleEditMode()">취소</button>
 				</form>
 			</div>
+			<script>
+				function submitProfileForm() {
+				    // FormData 객체를 사용하여 폼 데이터를 준비합니다
+				    const formData = new FormData(document.getElementById('updateProfileForm'));
+
+				    fetch('/user/updateProfile/${#authentication.principal.id}', {
+				        method: 'PUT',
+				        body: formData
+				    })
+				    .then(response => {
+				        if (!response.ok) {
+				            return response.json().then(data => {throw new Error(data.message)});
+				        }
+				        return response.json();
+				    })
+				    .then(data => {
+				        alert('프로필이 성공적으로 업데이트되었습니다.');
+				        // 페이지를 새로 고침하거나 다른 작업을 수행할 수 있습니다
+				        location.reload(); // 페이지 새로 고침
+				    })
+				    .catch(error => {
+				        console.error('업데이트 실패:', error);
+				        alert('프로필 업데이트 실패: ' + error.message);
+				    });
+				}
+			</script>
 		</section>
 		<article th:insert="~{views/bot/bot.html}"></article>
 	</main>

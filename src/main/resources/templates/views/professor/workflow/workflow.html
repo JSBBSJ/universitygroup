@@ -4,8 +4,12 @@
 
 <head>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+	<script src="/js/bot/bot.js"></script>
+	<link rel="stylesheet" href="/css/bot/bot.css" />
+	
 	<link rel="stylesheet" href="/css/p-main/workflow/workflow.css">
-
 	<script src=' /js/p-main/workflow/workflow.js'></script>
 
 </head>
@@ -24,7 +28,7 @@
 
 		<section class="w-menu">
 
-			<a href="/workflow">전자결재</a>
+			<a href="/professor/workflow">전자결재</a>
 
 			<div class="ww-btn">
 
@@ -42,7 +46,7 @@
 
 					<ul>
 
-						<li><a href="/work-save">결재 진행함</a></li>
+						<li><a href="/professor/work-save">결재 진행함</a></li>
 
 						<li>결재 완료함</li>
 
@@ -150,7 +154,7 @@
 
 			<div class="w-t-contents">
 
-				<div class="w-t-c-name"><span>결제 진행중( )</span></div>
+				<div class="w-t-c-name"><span>결제 완료( )</span></div>
 
 				<div class="w-s-contents-l">
 
@@ -192,7 +196,7 @@
 
 	</section>
 
-
+	<article th:insert="~{views/bot/bot.html}"></article>
 
 </main>
 

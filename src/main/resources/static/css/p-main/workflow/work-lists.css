@@ -16,7 +16,7 @@
 
 	grid-template-columns:1fr 2fr 2fr;
 
-	grid-auto-rows:850px;
+	grid-auto-rows:900px;
 
 	padding: 10px;
 
@@ -107,7 +107,7 @@
 
 	padding: 1em;
 
-	background-color: #944e63;
+	background-color: #356855;
 
 	text-decoration: none;
 
@@ -127,7 +127,8 @@
 .w-update, .w-recive, .w-file, .w-cont > span{
 
 
-
+	white-space: nowrap;
+	
 	font-size: 18px;
 
 	cursor: pointer;
@@ -224,7 +225,7 @@
 
 	padding: 1em;
 
-	background-color: #944e63;
+	background-color: #356855;
 	border-top-left-radius:15px;
 	border-top-right-radius: 15px;
 	
@@ -291,4 +292,3 @@
 	font-weight: 600;
 
 }
-

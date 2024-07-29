@@ -4,12 +4,9 @@
 
 <head>
 	<link rel="stylesheet" href="/css/p-main/board.css">
+
 </head>
 
-<!--
-<header>
-	<h1>라라대학교</h1>
-</header>-->
 
 <main>
 	<section class="container">
@@ -22,21 +19,21 @@
 			<div class="lnb">
 				<dl>
 					<dt>
-						<a>자유게시판</a>
+						<a href="/board/1">자유게시판</a>
 					</dt>
 					<dd></dd>
 				</dl>
 
 				<dl>
 					<dt>
-						<a>학과공지</a>
+						<a href="/board/2">학과공지</a>
 					</dt>
 					<dd></dd>
 				</dl>
 
 				<dl>
 					<dt>
-						<a>학생공지</a>
+						<a href="/board/3">학사공지</a>
 					</dt>
 					<dd></dd>
 				</dl>
@@ -46,43 +43,47 @@
 
 		<div class="board_wrap">
 			<div class="board_title2">
-				<strong>학과공지</strong>
-				<p>수정하세요</p>
+				<strong th:text="${detail.division}">공지사항</strong>
 			</div>
-
+			
+			
 			<div class="board_write_wrap">
+			<form th:action="|/board/edit/${board_no}" method="post">
+			
 				<div class="board_write">
 					<div class="title">
 						<dl>
 							<dt>제목</dt>
-							<dd><input type="text" placeholder="제목입력" value="글 제목이 들어갑니다."></dd>
+							<dd><input type="text" name="title" th:value="${detail.title}" placeholder="제목입력"></dd>
 						</dl>
 					</div>
 
 					<div class="info">
 						<dl>
-							<dt>글쓴이</dt>
-							<dd><input type="text" placeholder="글쓴이 입력" value="조승범"></dd>
+							<dt>작성자</dt>
+							<dd name="username" th:utext="${detail.username}">
 						</dl>
 						<dl>
-							<dt>비밀번호</dt>
-							<dd><input type="password" placeholder="비밀번호 입력" value="1234"></dd>
+							<dt>작성시간</dt>
+							<dd name="createdAt" th:text="${#temporals.format(detail.createdAt, 'yyyy-MM-dd')}">
 						</dl>
 					</div>
 
-					<div class="cont">
-						<textarea placeholder="내용 입력">
-글 내용 들어감
+					<div class="cont" >
+						<textarea placeholder="내용 입력" name="text" th:utext="${detail.text}">
 						</textarea>
 					</div>
 				</div>
-
+					
 				<div class="bt_wrap">
-					<a href="/board" class="on">완료</a>
-					<a href="/board">취소</a>
+					<input type="hidden" name="_method" value="put">
+					<button type="submit">수정완료</button>				
+					<a th:href="|/board/view/${detail.board_no}|">취소</a>
+	
 				</div>
+				</form>
 			</div>
-		</div>
+</div>
 
 	</section>
 </main>

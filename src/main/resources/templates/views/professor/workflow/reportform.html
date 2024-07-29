@@ -1,291 +1,245 @@
 <!DOCTYPE html>
-
-
-
-<!--//내가 만든 보고서 폼///-->
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+	<meta charset="UTF-8">
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<title>내가 만든 회의록 폼</title>
+	<style>
+		.vacation-form {
+			padding: 2em;
+		}
+
+		.w-top,
+		.w-bottom {
+			border: 1px solid #e9e9e9;
+			padding: 1em;
+			margin-bottom: 1em;
+		}
 
- <style>
 
- .leaveform{
+		.butss {
+			padding-bottom: 20px;
 
-	
+		}
 
-	padding: 1em;
+		.butss>button {
 
-	width: 100%;
+			background-color: #ffffff;
+			border: 1px solid #191919;
 
-	height: 100%
+		}
 
-  
-
-}
-
-
-
-.leave-title{
-
-
-
-	padding-bottom: 20px;
-
-}
-
-
-
-
-
-.leave-title > h1{
-
-	justify-content: center;
-
-	font-size: 25px;
-
-}
-
-
-
-
-
-.leave-menu{
-
-
-
-	border: 1px solid #191919;
-
-	width: 270px;
-
-	height: 90px;
-
-	
-
-}
-
-
-
-.leave-menus{
-
-	width: 100%;
-
-	height: 30px;
-
-	border-bottom: 1px solid #191919;
-
-}
-
-
-
-.leave-menus:last-child{
-
-	border-bottom:none;
-
-}
-
-
-
-.munus-name{
-
-	display: inline-block;
-
-	padding-right: 20px;
-
-	height: 100%;
-
-	border-right: 1px solid #191919;
-
-	
-
-}
-
-
-
-.menus-input{
-
-	display: inline-block;
-
-	padding-left: 10px;
-
-}
-
-
-
-.leave-menus > input{
-
-	display: inline-block;
-
-
-
-}
-
-
-
-.leave-top{
-
-	padding-bottom: 30px;
-
-}
-
-
-
-.leave-body{
-
-	border: 1px solid #191919;
-
-	width: 550px;
-
-	height: 400px;
-
-
-
-}
-
-
-
-.leave-reson-menu{
-
-	
-
-   height: 370.2px;
-
-   width: 100%;
-
-   display: flex; 
-
-   align-items: center; 
-
-
-
-}
-
-.reason-input textarea {
-
-  width: 100%; /* 원하는 너비로 조정 */
-
-  height: 100%; /* 원하는 높이로 조정 */
-
-  resize: none; /* 사용자가 사이즈 조절 못하게 설정 */
-
-
-
-}
-
-
-
-.munus-reason{
-
-	
-
-	display: flex;
-
-   align-items: center; /* 세로 가운데 정렬 */
-
-   justify-content: center; /* 가로 가운데 정렬 */
-
-   height: 100%;
-
-   text-align: center;
-
-   padding-right: 20px;
-
-   border-right: 1px solid #191919;
-
- 
-
-  
-
-}
-
-
-
-.reason-input{
-
-	padding-left: 10px;
-
-}
-
-
-
-
-
- </style>
-
-
-
- </head>
-
-
-
-<!--work flow 메인화면-->
-
-
+
+
+
+		.w-bottom-content>textarea {
+			resize: none;
+			/* 사용자 크기 조절 금지 */
+		}
+
+		/* 모달 대화상자 스타일 */
+		.modal {
+			display: none;
+			/* 초기에는 숨김 상태 */
+			position: fixed;
+			/* 화면에 고정 */
+			left: 50%;
+			/* 화면 가운데 정렬 */
+			top: 50%;
+			transform: translate(-50%, -50%);
+			border: 1px solid #ccc;
+			background-color: #fff;
+			padding: 20px;
+			z-index: 1000;
+			/* 다른 요소들보다 위에 오도록 설정 */
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+
+		}
+	</style>
+	<script>
+		// CSRF 토큰을 가져오는 함수
+		function getCsrfToken() {
+			return document.querySelector('meta[name="_csrf"]').getAttribute('content');
+		}
+
+		// CSRF 헤더 이름을 가져오는 함수
+		function getCsrfHeader() {
+			return document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+		}
+		
+		function extractAndCreateHTML() {
+			debugger;
+			// 폼 요소의 HTML 문자열을 추출
+			const sub = $('#agreement').val(); //신청서 내 제목
+			const dra = $('#draftsman1').text(); //기안자  //이건 내가 user에서 가져온것
+			const appr = $('#myInput').val();  //내가 넣어준 결제자(모달창)
+			const depart = $('#department').val(); // 학과명
+			const content = $('#content').val(); // 학과명
+			const worktime = $('#draftDate').val(); // 기안일
+
+
+			//보통 input에 required 있으면 되지만 현재로써 hide,show떔에 안먹어 if문으로 검사 후 alert 발생
+			if (!sub || !appr || !depart || !content || !worktime) {
+				alert('모든 부분 입력 후 결재상신 눌러주세요.');
+				return; // 필수 입력 필드가 비어있으면 함수 종료
+			}
+
+
+
+			$('#agreement').hide();
+			$('#agreement1').show();
+			$('#agreement1').text(sub);
+
+
+			$('#draftsman1').show();
+			$('#draftsman1').text(dra);
+
+			$('#myInput').hide();
+			$('#myInput1').show();
+			$('#myInput1').text(appr);
+
+			$('#department').hide();
+			$('#department1').show();
+			$('#department1').text(depart);
+
+			$('#content').hide();
+			$('#content1').show();
+			$('#content1').text(content);
+
+			$('#draftDate').hide();
+			$('#draftDate1').show();
+			$('#draftDate1').text(worktime);
+
+
+
+			const htmlString = document.getElementById('vacationForm').outerHTML;
+
+
+
+			debugger;
+			// AJAX를 사용하여 post 컨트롤러 호출
+			$.ajax({
+				url: 'http://localhost:8080/professor/saveDoc',
+				type: 'POST',
+				contentType: 'application/json',
+				headers: {
+					[getCsrfHeader()]: getCsrfToken() // CSRF 토큰 헤더 추가
+				},
+				data: JSON.stringify({
+					htmlContent: htmlString,
+					sub: sub,
+					dra: dra,
+					appr: appr,
+					depart: depart,
+					content: content
+				}), // HTML 콘텐츠와 기타 데이터 전송
+				success: function (response) {
+					window.location.href = 'http://localhost:8080/professor/work-save'; // 완료 후 페이지 이동
+				},
+				error: function (xhr, status, error) {
+					console.error('서버에 HTML 데이터를 저장하는 도중 오류가 발생했습니다.');
+				}
+			});
+		}
+		// 모달 열기 함수
+		function openModal() {
+			const modal = document.getElementById('myModal');
+			modal.style.display = 'block';
+
+
+
+			//비동기로 컨트롤러 호출
+			$.ajax({
+				url: 'http://localhost:8080/professor/w-pageup', //컨트롤러 매핑 주소 
+				type: 'GET',  //get으로 저 url 가져오겠다
+				dataType: "html", //가져올 타입은 html
+				success: function (result) { //성공하면 결과값으로 
+					debugger;
+					if (!$('#myModal .work_chart').length > 0) {
+						$('#myModal').append(result);
+					}
+				}
+			});
+
+		}
+
+		// 모달 닫기 함수
+		function closeModal() {
+
+			//input 태그안에 값(approver-list 안 디아이브 값을 텍스트로 넣어줄게) ///이거 내가 결재선 지정한 사람 인풋태그에 넣을려고 하는 거임
+			$('#myInput').val($('#approver-list > div').text());
+
+			const modal = document.getElementById('myModal');
+			modal.style.display = 'none';
+
+		}
+
+
+
+	</script>
+</head>
 
 <body>
-
-	
-
-	<section class="leaveform">
-
-	<section class="leave-top">
-
-		
-
-	<header class="leave-header">
-
-		
-
-		<div class="leave-title">
-
-			<h1>회의록</h1>
-
-			<div class="btns-work">
-
-			<button onclick="window.open('http://localhost:8080/w-pageup','결제선지정','width=550,height=400,top=350, left=1100,location=no,status=no,scrollbars=no,toolbar=no');" >결제선 지정</button>
-
-			<button>결제 상신</button>
-
-		   </div>
-
-		 </div>
-
-		 <div class="leave-menu">
-
-			<div class="leave-menus"><div class="munus-name">기안자</div><div class="menus-input" ><input placeholder="기안자"/></div></div>
-
-			<div class="leave-menus"><div class="munus-name">학과명</div><div class="menus-input" ><input placeholder="학과"/></div></div>
-
-			<div class="leave-menus"><div class="munus-name">기안일</div><div class="menus-input" ><input placeholder="기안자"/></div></div>
-
-		
-
-		 </div>
-
-	 </header>
-
-	</section>
-
-	
-
-	<section class="leave-body">
-
-		<main class="leave-main">	
-
-			<div class="leave-body-menu">
-
-				
-
-				<div class="leave-menus"><div class="munus-name">회의제목</div><div class="menus-input" ><input placeholder="일간일시"/> </div></div>
-
-				<div class="leave-reson-menu"><div class="munus-reason">회의내용</div><div class="reason-input" ><textarea placeholder="내용"  rows="20" cols="58"></textarea></div></div>
+	<div class="vacation-form">
+		<form id="vacationForm">
+			<div class="w-titles">
+				<h2>회의록</h2>
+			</div>
+			<div class="butss">
+				<!-- 모달 대화상자 열기 버튼 -->
+				<button type="button" onclick="extractAndCreateHTML()">결제 상신</button>
+				<button onclick="openModal()" type="button">결제선 지정</button>
+				<label for="draftsman" readonly>결제자</label>
+				<input type="text" id="myInput" readonly><br>
 
 			</div>
 
-		</main>	
+			<div class="w-top">
+				<div class="w-top-draft">
+					<label for="draftsman">기안자:</label>
+					<span th:text="${#authentication.principal.name}" id="draftsman1">이름</span><br>
+					<!--///해당건은 교수 네임을 가져왔기으며 span태그로 위에 js에서 val이 아닌 text로 가져가야함-->
 
-	</section>
+				</div>
 
-	
+				<div class="w-top-depart">
+					<label for="department">학과명:</label>
+					<input type="text" id="department" name="department" required>
+					<label class="none" id="department1"></label><br> <!--요아이 참고-->
+				</div>
 
-	</section>
+				<div class="w-top-date">
+					<label for="draftDate">기안일:</label>
+					<input type="date" id="draftDate" name="draftDate" required>
+					<label class="none" id="draftDate1"></label> <!--요아이 참고-->
+				</div>
+			</div>
 
+			<div class="w-bottom">
+
+				<div class="w-bot-agreement">
+					<label for="agreement">제목:</label>
+					<input type="text" id="agreement" name="agreement" required>
+					<label class="none" id="agreement1"></label><br> <!--요아이 참고-->
+				</div>
+
+				<div class="w-bottom-content">
+					<label for="content">내용</label><br>
+					<textarea id="content" name="content" rows="20" cols="150" required></textarea>
+					<label class="none" id="content1"></label> <!--요아이 참고-->
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<!-- 모달 대화상자 -->
+	<div id="myModal" class="modal">
+
+		<button onclick="closeModal()">저장</button>
+	</div>
 </body>
+
+</html>

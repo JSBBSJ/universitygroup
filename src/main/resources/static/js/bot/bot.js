@@ -1,128 +1,238 @@
-$(document).ready(function() {
-    let flag = false;
 
-    var answers = {
-        'chatbot': '챗봇 기능을 이용할 수 있습니다.',
-        'contacts': '교내 연락처는 홈페이지에서 확인할 수 있습니다.',
-        'menu': '학식 메뉴는 매일 업데이트되니 확인해주세요.',
-        'scholarship': '장학금 관련 문의는 학생처에서 도와드립니다.'
-    };
+var stompClient = null;
+var key;
+var isConnected = false;
 
-    // 버튼 클릭을 처리하는 이벤트 리스너를 추가합니다
-    $('.btn-category').on('click', function() {
-        var category = $(this).data('category');
-        var question = $(this).text();
-        var answer = answers[category];
-        displayUserMessage(question);
-        setTimeout(function() {
-            displayAnswer(answer);
-        }, 500); // 0.5초 후에 챗봇 답변을 표시
-    });
+function isWebSocketSupported() {
+    return 'WebSocket' in window;
+}
 
-    function formatTime() {
-        var now = new Date();
-        var ampm = (now.getHours() > 11) ? "오후" : "오전";
-        var hour = now.getHours() % 12 || 12; // 0시는 12시로 표기
-        var minute = String(now.getMinutes()).padStart(2, '0'); // 분이 한 자리일 경우 앞에 0 추가
-        return `${ampm} ${hour}:${minute}`;
-    }
+if (isWebSocketSupported()) {
+    console.log("이 브라우저는 WebSocket을 지원합니다.");
+} else {
+    console.log("이 브라우저는 WebSocket을 지원하지 않습니다.");
+}
 
-    function formatDate(now) {
-        const year = now.getFullYear();
-        const month = now.getMonth() + 1;
-        const date = now.getDate();
-        const dayOfWeek = now.getDay();
-        const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-        return `${year}년 ${month}월 ${date}일 ${days[dayOfWeek]}`;
-    }
+function formatTime() {
+    var now = new Date();
+    var ampm = (now.getHours() > 11) ? "오후" : "오전";
+    var hour = now.getHours() % 12;
+    if (hour == 0) hour = 12;
+    var minute = now.getMinutes();
+    return `${ampm} ${hour}:${minute}`;
+}
 
-    function showMessage(tag, prepend = false) {
-        if (prepend) {
-            $(".chatbot-body").prepend(tag);
-        } else {
-            $(".chatbot-body").append(tag);
-        }
-        $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight); // 스크롤을 맨 아래로 이동
-    }
+function showMessage(tag) {
+    const chatbotBody = document.getElementById('chatbot-body');
+    const messageElement = document.createElement('div');
+    messageElement.innerHTML = tag;
+    chatbotBody.appendChild(messageElement);
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+}
 
-    function toggleChatbot() {
-        var chatbotWindow = $('#chatbotWindow');
-        chatbotWindow.toggle();
+function formatDate(now) {
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    const dayOfWeek = now.getDay();
+    const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    return `${year}년 ${month}월 ${date}일 ${days[dayOfWeek]}`;
+}
 
-        if (chatbotWindow.is(':visible') && !flag) {
-            flag = true;
+function resetChat() {
+    $("#chatbot-body").html('<div id="category-buttons" class="button-grid"></div>');
+    loadCategories();
+}
+
+function connect() {
+    if (isConnected) return;
+    const socket = new SockJS('/rara-bot');
+    stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, function(frame) {
+        isConnected = true;
+        key = new Date().getTime();
+        console.log('Connected: ' + frame);
+
+        resetChat();
+
+        stompClient.subscribe(`/topic/bot/${key}`, (answer) => {
+            var msgObj = JSON.parse(answer.body);
+            console.log("Received message:", msgObj);
+
             var now = new Date();
-            var date = formatDate(now);
             var time = formatTime();
-            var msgObj = "안녕하세요! 무엇을 도와드릴까요?";
-
+            var date = formatDate(now);
             var tag = `
-                <div class="message-wrapper">
-                    <div class="message-date flex center date">${date}</div>
-                    <div class="message-bubble">
-                        <div class="message-icon">
-                            <img src="/images/common/chatbot-icon.png" alt="챗봇 아이콘">
-                        </div>
-                        <div class="message-content">
-                            <p>${msgObj}</p>
-                            <span class="message-time">${time}</span>
-                        </div>
+                <div class="flex center date">
+                    ${date}
+                </div>
+                <div class="message bot flex">
+                    <div class="icon">
+                        <img src="/images/common/chatbot-icon.png">
                     </div>
+                    <div class="message-content">
+                        <p>${msgObj.content}</p>
+                    </div>
+                    <div class="time">${time}</div>
                 </div>
             `;
+            showMessage(tag);
+        });
 
-            showMessage(tag, true); // 인삿말은 prepend
-        }
-    }
+        var data = {
+            key: key,
+            content: "hello",
+            name: document.getElementById('username').innerText
+        };
 
-    $(".btn-send").click(function() {
-        var inputVal = $("#input").val();
-        if (inputVal.trim() !== "") {
-            displayUserMessage(inputVal);
-            $("#input").val(""); // 입력값 초기화
-        }
+        stompClient.send("/bot/hello", {}, JSON.stringify(data));
+        console.log("Sent message:", data);
+
+        stompClient.subscribe('/topic/category', function(message) {
+            showMessage(JSON.parse(message.body).content);
+        });
+
+        stompClient.subscribe('/topic/question', function(message) {
+            showMessage(JSON.parse(message.body).content);
+        });
+
+        stompClient.subscribe('/topic/children', function(message) {
+            showMessage(JSON.parse(message.body).content);
+        });
+
+        stompClient.subscribe('/topic/create', function(message) {
+            showMessage(JSON.parse(message.body).content);
+        });
     });
+}
 
-    // 사용자 메시지를 표시하는 함수입니다
-    function displayUserMessage(message) {
-        var time = formatTime();
-
-        var userMessage = `
-            <div class="message-wrapper user">
-                <div class="message-bubble user">
-                    <div class="message-content">
-                        <p>${message}</p>
-                        <span class="message-time">${time}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        // 사용자 메시지를 오른쪽 정렬로 챗봇 창의 가장 아래에 추가
-        $(".chatbot-body").append(userMessage);
-        $(".chatbot-body").scrollTop($(".chatbot-body")[0].scrollHeight); // 스크롤을 맨 아래로 이동
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+        isConnected = false;
     }
-    
-    // 질문에 대한 답변을 표시하는 함수입니다
-    function displayAnswer(answer) {
-        var time = formatTime();
+    console.log("Disconnected");
+    resetChat();
+}
 
-        var botMessage = `
-            <div class="message-wrapper">
-                <div class="message-bubble">
-                    <div class="message-icon">
-                        <img src="/images/common/chatbot-icon.png" alt="챗봇 아이콘">
-                    </div>
+function loadCategories() {
+    fetch('/api/questions/categories')
+        .then(response => response.json())
+        .then(categories => {
+            const categoryButtons = document.getElementById('category-buttons');
+            if (categoryButtons) {
+                categoryButtons.innerHTML = '';
+                categories.forEach(category => {
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category';
+                    const button = document.createElement('button');
+                    button.textContent = category;
+                    button.className = 'category-button';
+                    button.onclick = () => {
+                        toggleSubQuestions(`sub-questions-${category}`);
+                        loadSubQuestions(category, `sub-questions-${category}`);
+                    };
+                    categoryDiv.appendChild(button);
+                    const subQuestionsDiv = document.createElement('div');
+                    subQuestionsDiv.id = `sub-questions-${category}`;
+                    subQuestionsDiv.className = 'sub-questions';
+                    categoryDiv.appendChild(subQuestionsDiv);
+                    categoryButtons.appendChild(categoryDiv);
+                });
+            }
+        });
+}
+
+function loadSubQuestions(category, elementId) {
+    fetch(`/api/questions/category/${category}/texts`)
+        .then(response => response.json())
+        .then(texts => {
+            const subQuestionsDiv = document.getElementById(elementId);
+            if (subQuestionsDiv) {
+                subQuestionsDiv.innerHTML = '';
+                texts.forEach(text => {
+                    const button = document.createElement('button');
+                    button.textContent = text;
+                    button.className = 'category-button';
+                    button.onclick = () => {
+                        fetchAnswer(text);
+                    };
+                    subQuestionsDiv.appendChild(button);
+                });
+            }
+        })
+        .catch(error => console.error('Error fetching texts by category:', error));
+}
+
+function fetchAnswer(text) {
+    const encodedText = encodeURIComponent(text);
+    fetch(`/api/questions/question/${encodedText}/answer`)
+        .then(response => response.text())
+        .then(answer => {
+            var now = new Date();
+            var time = formatTime();
+            var date = formatDate(now);
+            var tag = `
+                <div class="message bot flex">
                     <div class="message-content">
                         <p>${answer}</p>
-                        <span class="message-time">${time}</span>
                     </div>
+                    <div class="time">${time}</div>
                 </div>
-            </div>
-        `;
+            `;
+            showMessage(tag);
+        })
+        .catch(error => console.error('Error fetching answer by text:', error));
+}
 
-        showMessage(botMessage); // 챗봇 답변은 append
+function sendText(text) {
+    stompClient.send("/app/question", {}, JSON.stringify({ 'text': text }));
+}
+
+function sendMessage() {
+    const input = document.getElementById('input');
+    const message = input.value;
+    if (message) {
+        stompClient.send("/app/question", {}, JSON.stringify({ 'text': message }));
+        input.value = '';
     }
+}
 
-    window.toggleChatbot = toggleChatbot;
-});
+function btnBotClicked() {
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    if (chatbotWindow.style.display === 'none' || chatbotWindow.style.display === '') {
+        connect();
+        chatbotWindow.style.display = 'flex';
+    } else {
+        disconnect();
+        chatbotWindow.style.display = 'none';
+    }
+}
+
+function btnCloseClicked() {
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    disconnect();
+    chatbotWindow.style.display = 'none';
+}
+
+function hideOtherContent(exceptionId) {
+    const contentIds = ['text-buttons', 'answer'];
+    contentIds.forEach(id => {
+        if (id !== exceptionId) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.style.display = 'none';
+            }
+        }
+    });
+}
+
+function toggleSubQuestions(id) {
+    var subQuestions = document.getElementById(id);
+    if (subQuestions.style.display === 'none' || subQuestions.style.display === '') {
+        subQuestions.style.display = 'block';
+    } else {
+        subQuestions.style.display = 'none';
+    }
+}

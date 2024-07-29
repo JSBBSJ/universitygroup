@@ -19,6 +19,7 @@
 				<h2>게시판</h2>
 				<p>nara university</p>
 			</div>
+			
 			<div class="lnb">
 				<dl>
 					<dt>
@@ -43,7 +44,8 @@
 			</div>
 
 		</div>
-
+		<form action="/board/write" method="post">
+			<input type="hidden" name="user_no" th:value="${#authentication.principal.user_no}"> 
 		<div class="content">
 			<div class="board_title2">
 				<strong>글쓰기</strong>
@@ -55,33 +57,39 @@
 					<div class="title">
 						<dl>
 							<dt>제목</dt>
-							<dd><input type="text" placeholder="제목입력"></dd>
+							<dd><input type="text" name="title" placeholder="제목입력"></dd>
 						</dl>
 					</div>
 
 					<div class="info">
 						<dl>
-							<dt>글쓴이</dt>
-							<dd><input type="text" placeholder="글쓴이 입력"></dd>
+							<dt>작성자</dt>
+							<span id="userName" th:text="${#authentication.principal.name}"></span>
 						</dl>
-						<dl>
-							<dt>비밀번호</dt>
-							<dd><input type="password" placeholder="비밀번호 입력"></dd>
+						    <dt>게시판선택</dt>
+						    <dd>
+						        <select name="division">
+						            <option value="자유게시판">자유게시판</option>
+						            <option value="학과공지">학과공지</option>
+						            <option value="학사공지">학사공지</option>
+						        </select>
+						    </dd>
 						</dl>
 					</div>
 
 					<div class="cont">
-						<textarea placeholder="내용 입력"></textarea>
+						<textarea placeholder="내용 입력" name="text"></textarea>
 					</div>
 				</div>
 
 				<div class="bt_wrap">
-					<a href="/board" class="on">등록</a>
-					<a href="/board">취소</a>
+					<button class="on" type="submit">등록</button>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+					<a href="/board/1">취소</a>
 				</div>
 			</div>
 		</div>
-
+		</form>
 	</section>
 </main>
 

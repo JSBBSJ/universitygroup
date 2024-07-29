@@ -3,13 +3,66 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout :: layout(~{::main} , ~{::head}) }">
 
 <head>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+	<script src="/js/bot/bot.js"></script>
+	<link rel="stylesheet" href="/css/bot/bot.css" />
+
+	<link rel="stylesheet" href="/css/p-main/workflow/work-save.css">
+
+	<script src=' /js/p-main/workflow/workflow.js'></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+		    
+			 $(".w-s-savelist-title div").click(function() {
+				//debugger;
+		        // 클릭한 li 태그의 ID 값을 가져옵니다.
+		        let clickedId = $(this).attr("id");
+				let doc = $(`.${clickedId}`).text();
+						
+				
+				$.ajax({
+
+					url:'http://localhost:8080/professor/detailpage', //컨트롤러 매핑 주소 
+
+					//data: { id: id }, //{ data: id }에서 data는 변수명이고, id는 변수의 값
+
+					type: 'GET',  //get으로 저 url 가져오겠다
+
+					dataType:"html", //가져올 타입은 html
+
+					success : function(result){ //성공하면 결과값으로 
+
+						//debugger;
+
+						$('#worklist-t').append(result); //얘를 보여주고
+
+						$('#w-s-savelist-l').hide(); //가려라
+						
+						$(".worklist-t").append(doc);
+
+						//$('#f-form-list').hide(); //가려라
 
 
+					}
 
-<link rel="stylesheet" href="/css/p-main/workflow/work-save.css"> 
+				});		
 
-<script src=' /js/p-main/workflow/workflow.js'></script>
-
+		       
+		    });
+			
+	});
+	
+	
+	
+	</script>
+	
 
 
 </head>
@@ -27,10 +80,10 @@
 	<section class="work-container">
 
 		<section class="w-s-menu">
-
-			<a href="/workflow">전자결재</a>
-
 			
+			<a href="/professor/workflow">전자결재</a>
+
+
 
 
 
@@ -42,7 +95,7 @@
 
 					<ul>
 
-						<li><a href="/work-save">결재 진행함</a></li>
+						<li><a href="/professor/work-save">결재 진행함</a></li>
 
 						<li>결재 완료함</li>
 
@@ -108,70 +161,111 @@
 
 			</div>
 
-		
-
-	</section>
 
 
+		</section>
 
-	
 
-	 <!--비동기로 진행하기 떄문에 연차신청서, 지출결의서등 따로 화면페이지 없이 띄워짐-->
+
+
+
+		<!--비동기로 진행하기 떄문에 연차신청서, 지출결의서등 따로 화면페이지 없이 띄워짐-->
 
 		<section class="w-s-main">
 
-			
 
 			
 
-			<div class="w-s-savelist">
+			<div class="w-s-savelist" id="w-s-savelist">
 
-							<div class="w-s-savelist-top">
+				<div class="w-s-savelist-top">
 
-								전자결재 진행 목록
+					<a href="/professor/work-save">전자결재 진행 목록 </a>
 
-							</div>
+				</div>
+				
+				<!--띄워주는곳 ▽-->
+				
+				<div class="worklist-t" id ='worklist-t'> </div>
 
-							<div class="w-s-savelist-l">
+				<div id="w-s-savelist-l">
 
-								<ul>
+				<div class="w-s-savelist-l" >
 
-									<li class="w-s-savelist-title">
+					<ul>
 
-										<div >번호</div>
+						<li class="w-s-savelist-title">
 
-										<div >제목</div>
+							<div>번호</div>
 
-										<div >기안자</div>
+							<div>제목</div>
 
-										<div >승인자</div>
+							<div>기안자</div>
+							
+							<div>학과</div>
 
-										<div >기안일자</div>
+							<div>결제자</div>
+							
+							
 
-										<div >승인일자</div>
-
-									</li>
-
-									
-
-								</ul>
-
-							</div>
+							<div>기안일자</div>
+							
+							<div style="display: none;">1111</div>
 
 							
 
-						</div>
+						</li>
 
-					
 
-			
+
+					</ul>
+
+				</div>
+
+				<!--뿌려주는곳-->
+				
+				<div class="w-s-savelist-l" th:each="dto : ${list}"> 
+
+					<ul>
+
+						<li class="w-s-savelist-title" th:id="${dto.id}">
+
+							<div  th:id="${dto.id}" th:text="${dto.id}"  id="reportform-list"></div>
+
+							<div th:id="${dto.id}"  th:text="${dto.sub}"></div>
+
+							<div th:id="${dto.id}"  th:text="${dto.dra}"></div>
+							
+							<div th:id="${dto.id}"  th:text="${dto.depart}"></div>
+
+							<div th:id="${dto.id}"  th:text="${dto.appr}"></div>
+
+							<div th:id="${dto.id}" th:text="${dto.worktime}"></div>
+							
+							<div th:id="${dto.id}" th:class="${dto.id}" style="display: none;" th:text="${dto.htmlContent}"></div>
+
+							
+
+						</li>
+
+
+
+					</ul>
+
+				</div>
+
+			</div>
+
+			</div>
+
+		</section>
+
 
 		
-
-	</section>
-
-
-
+		
+		</section>
+		
+		<article th:insert="~{views/bot/bot.html}"></article>
 </main>
 
 

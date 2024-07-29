@@ -34,7 +34,7 @@ main {
 
 /* ===================왼쪽목록=========================== */
 .tit {
-	background-image: url("/images/common/professor/lnb_bg.png");
+	background-image: url("/images/common/professor/gr1.png");
 }
 
 .tit>h2 {
@@ -88,7 +88,6 @@ a {
 	background-color: #ffffff;
 	border-radius: 1em;
 	grid-area: content;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 1rem;
 	width: 1000px;
 	margin-top:10px;
@@ -99,6 +98,14 @@ a {
 	padding: 1rem;
 }
 
+.cont {
+    padding: 20px; 
+    line-height: 1.8;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    white-space: pre-line; /* 공백과 줄바꿈을 HTML 그대로 반영 */
+    
+}
 
 .board_title2 strong {
 	font-size: 30px;
@@ -119,12 +126,22 @@ a {
 	font-size: 1.4rem;
 }
 
+.board_wrap{
+	background-color: #ffffff;
+    border-radius: 1em;
+    grid-area: content;
+    padding: 1rem;
+    width: 1000px;
+    margin-top: 10px;
+}
+
 .bt_wrap {
 	display: flex;
 	margin-top: 30px;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+	padding: 15px;
 }
 
 .bt_wrap a {
@@ -137,20 +154,40 @@ a {
 	
 }
 
-.bt_wrap a:first-child {
-	margin-left: 0;
+.bt_wrap button,
+.bt_wrap a {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    font-size: 1rem;
+    color: #000;
+    background-color: #fff;
+    
+
 }
 
-.bt_wrap a.on {
-	background: #000;
-	color: #fff;
+.bt_wrap a{
+	 min-width: 60px;
 }
+
+
+.bt_wrap button:hover,
+.bt_wrap a:hover {
+    background: #333;
+    color: #fff;
+}
+
 
 .board_list {
 	width: 1000px;
 	border-top: 2px solid #000;
 }
 
+.board_list_wrap{
+	margin-top:65px;
+}
 .board_list>div {
 	border-bottom: 1px solid #ddd;
 }
@@ -291,19 +328,17 @@ a {
 }
 
 .board_write .info {
-	font-size: 0;
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #000;
 }
 
-.board_write .title dl {
-	font-size: 0;
-}
+
 
 .board_write .info dl {
 	display: inline-block;
 	width: 50%;
 	vertical-align: middle;
+	
 }
 
 .board_write .title dt, .board_write .title dd, .board_write .info dt,
@@ -350,3 +385,80 @@ a {
 	border-bottom: 1px solid #c0c0c0;
 }
 
+
+select {
+
+  width: 150px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+
+  
+}
+
+
+.comment {
+    margin-bottom: 20px;
+}
+
+.comment h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.comment input[type="text"], .comment textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #356855;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment button:hover {
+    background-color: #000000;
+}
+
+.comments-list {
+    margin-top: 20px;
+}
+
+.comments-list h2 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #356855;
+    padding-bottom: 5px;
+}
+
+.comment-item {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.comment-item p {
+    margin: 5px 0;
+}
+
+.comment-item .comment-user {
+    font-weight: bold;
+}
+
+.comment-item .comment-date {
+    font-size: 12px;
+    color: #777;
+}
