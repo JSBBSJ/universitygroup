@@ -13,6 +13,15 @@ java {
 	}
 }
 
+jar{
+	enabled=false
+}
+
+bootJar{
+	archiveFileName= "RaraUniversityGroupWare.jar"
+}
+
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
